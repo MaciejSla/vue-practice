@@ -6,6 +6,7 @@ import { fab } from '@fortawesome/free-brands-svg-icons'
 library.add(fas, fab)
 
 import HeaderTop from './components/HeaderTop.vue'
+import Icon from './components/Icon.vue'
 </script>
 
 <template>
