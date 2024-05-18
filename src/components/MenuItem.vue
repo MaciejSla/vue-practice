@@ -15,7 +15,7 @@ const props = defineProps({
 
 <template>
   <div
-    class="group flex w-fit cursor-pointer items-center gap-2 fill-white text-center text-white hover:fill-yellow-500 hover:text-yellow-500"
+    class="group flex w-fit items-center gap-2 fill-white text-center text-white hover:fill-yellow-500 hover:text-yellow-500"
   >
     <b><slot /></b>
     <IconMenuArrow

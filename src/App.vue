@@ -30,8 +30,12 @@ import MenuItem from '@/components/MenuItem.vue'
   <IconShopping height="32" />
   <IconCalendar height="32" />
   <div class="flex justify-center gap-8 bg-black">
-    <MenuItem>Home</MenuItem>
-    <MenuItem>Events</MenuItem>
+    <MenuItem>
+      <RouterLink to="/"> Home </RouterLink>
+    </MenuItem>
+    <MenuItem>
+      <RouterLink to="/about"> Events </RouterLink>
+    </MenuItem>
     <MenuItem>Causes</MenuItem>
     <MenuItem>Gallery</MenuItem>
     <MenuItem>Sermons</MenuItem>
@@ -39,10 +43,10 @@ import MenuItem from '@/components/MenuItem.vue'
     <MenuItem>Shop</MenuItem>
     <MenuItem :arrow="false">Contact Us</MenuItem>
     <div
-      class="ml-4 flex -skew-x-[20deg] cursor-pointer items-center gap-1 bg-yellow-500 p-4 text-white transition-colors hover:bg-[#da5455]"
+      class="ml-4 flex -skew-x-[20deg] cursor-pointer items-center gap-1 bg-yellow-500 px-8 py-4 text-white transition-colors hover:bg-[#da5455]"
     >
-      <b>DONATE NOW</b>
-      <IconHeart height="16" class="fill-white" />
+      <b class="scale-y-110">DONATE NOW</b>
+      <IconHeart height="16" class="scale-y-110 fill-white" />
     </div>
   </div>
 
