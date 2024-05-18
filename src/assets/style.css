@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.brand-icon {
+  @apply cursor-pointer fill-gray-500 transition-colors hover:fill-yellow-500;
+}
