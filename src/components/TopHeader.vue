@@ -40,6 +40,7 @@ import { RouterLink } from 'vue-router'
           <IconPinterest height="18" class="brand-icon" />
         </RouterLink>
       </span>
+      <!-- TODO add search and shopping functionality -->
       <IconSearch height="18" />
       <IconShopping height="18" />
     </div>
