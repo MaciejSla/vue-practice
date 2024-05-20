@@ -3,9 +3,5 @@
 @tailwind utilities;
 
 .brand-icon {
-  @apply cursor-pointer fill-gray-500 transition-colors hover:fill-yellow-500;
-}
-
-.menu-arrow {
-  @apply rotate-90 transition-transform hover:rotate-180;
+  @apply fill-gray-500 transition-colors hover:fill-yellow-500;
 }
