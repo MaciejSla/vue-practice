@@ -1,11 +1,5 @@
 <script setup>
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem
-  // CarouselNext,
-  // CarouselPrevious
-} from '@/components/ui/carousel'
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
 
 const bannerText = ['We Belive In Humanity', 'A Powerful Religion Theme', "It's Useless To Lecture"]
 const bannerSubtext =
@@ -13,7 +7,6 @@ const bannerSubtext =
 </script>
 
 <template>
-  <!-- TODO figure out how to add text to image -->
   <Carousel :opts="{ loop: true }">
     <CarouselContent>
       <CarouselItem v-for="(_, index) in 3" :key="index">
