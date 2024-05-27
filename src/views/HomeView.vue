@@ -1,6 +1,7 @@
 <script setup>
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
 import Autoplay from 'embla-carousel-autoplay'
+import { scrollToTop } from '@/lib/utils'
 
 import img1 from '@/assets/images/banner/01.jpg'
 import img2 from '@/assets/images/banner/02.jpg'
@@ -12,12 +13,6 @@ const bannerSubtext =
 
 const bannerBg = [img1, img2, img3]
 
-const scrollToTop = () => {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  })
-}
 </script>
 
 <template>
