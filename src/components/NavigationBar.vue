@@ -2,7 +2,6 @@
 import IconHeart from '@/components/icons/IconHeart.vue'
 import MenuItem from '@/components/MenuItem.vue'
 import { onMounted, onBeforeUnmount, ref } from 'vue';
-import { useDebounceFn } from '@vueuse/core';
 import { computed } from 'vue';
 import { scrollToTop } from '@/lib/utils';
 
@@ -16,19 +15,16 @@ const isTop = computed(() => {
   return navYTop.value === 0
 })
 
-const onScroll = (el) => {
-  console.log(navEl.value.getBoundingClientRect().top)
+const onScroll = () => {
   navYTop.value = navEl.value.getBoundingClientRect().top
 }
 
-const debouncedOnScroll = useDebounceFn(onScroll, 30)
-
 onMounted(() => {
-  window.addEventListener('scroll', debouncedOnScroll)
+  window.addEventListener('scroll', onScroll)
 })
 
 onBeforeUnmount(() => {
-  window.removeEventListener('scroll', debouncedOnScroll)
+  window.removeEventListener('scroll', onScroll)
 })
 
 </script>
