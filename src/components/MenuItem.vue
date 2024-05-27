@@ -28,7 +28,7 @@ const props = defineProps({
     <b><slot /></b>
     <IconMenuArrow
       :height="props.height"
-      class="rotate-180 transition-transform duration-[250ms] group-hover:rotate-90"
+      class="rotate-180 transition-transform duration-200 group-hover:rotate-90"
       v-if="props.arrow"
     />
   </RouterLink>
