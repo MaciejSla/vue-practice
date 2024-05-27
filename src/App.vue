@@ -17,7 +17,7 @@ onMounted(() => {
 
 <template>
   <Transition name="fade">
-    <div class="flex flex-col h-screen w-full bg-yellow-500 absolute" v-if="isLoading"></div>
+    <div class="flex flex-col h-screen w-full bg-yellow-500 absolute z-50" v-if="isLoading"></div>
     <div v-else class="absolute w-full">
       <TopHeader />
       <NavigationBar />
@@ -27,12 +27,10 @@ onMounted(() => {
 </template>
 
 <style scoped>
-.fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.5s ease-out;
 }
 
-.fade-enter-from,
 .fade-leave-to {
   opacity: 0
 }
