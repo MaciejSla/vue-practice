@@ -35,9 +35,9 @@ export default {
       },
       fontFamily: {
         sans: ['Montserrat', 'sans-serif'],
-        serif: ['Playfair Display', 'serif'],
+        serif: ['Playfair Display', 'serif']
       }
-    },
+    }
   },
   plugins: [animate]
 }
