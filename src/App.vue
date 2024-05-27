@@ -17,7 +17,12 @@ onMounted(() => {
 
 <template>
   <Transition name="fade">
-    <div class="flex flex-col h-screen w-full bg-yellow-500 absolute z-50" v-if="isLoading"></div>
+    <div class="flex flex-col h-screen w-full bg-yellow-500 absolute z-50 justify-center items-center" v-if="isLoading">
+      <div class="bg-gray-50 opacity-50 p-4 rounded-full w-min animate-ping absolute">
+      </div>
+      <div class="bg-white rounded-full w-min p-2 animate-ping absolute">
+      </div>
+    </div>
     <div v-else class="absolute w-full">
       <TopHeader />
       <NavigationBar />
