@@ -31,51 +31,28 @@ onBeforeUnmount(() => {
 <template>
   <TopHeader />
   <div
-    :class="`sticky top-0 z-10 bg-black transition-all duration-300 ${isTop ? 'p-4' : ''}`"
+    :class="`sticky top-0 z-10 bg-black transition-all duration-500 ${isTop ? 'p-4' : ''}`"
     ref="navEl"
   >
-    <Transition name="nav" mode="out-in">
-      <div class="flex justify-center" v-if="!isTop">
-        <MenuItem to="/">Home</MenuItem>
-        <MenuItem to="/about">About</MenuItem>
-        <MenuItem>Causes</MenuItem>
-        <MenuItem>Gallery</MenuItem>
-        <MenuItem>Sermons</MenuItem>
-        <MenuItem>Blog</MenuItem>
-        <MenuItem>Shop</MenuItem>
-        <MenuItem :arrow="false">Contact Us</MenuItem>
-        <div
-          class="ml-4 flex -skew-x-[20deg] cursor-pointer items-center gap-1 bg-amber-300 px-8 py-4 text-white transition-colors hover:bg-[#da5455]"
-        >
-          <b class="scale-y-110">DONATE NOW</b>
-          <IconHeart height="16" class="scale-y-110 fill-white" />
-        </div>
+    <div class="flex justify-center transition-all">
+      <RouterLink to="/" @click="scrollToTop" v-if="isTop">
+        <img :src="logo" class="mr-32" />
+      </RouterLink>
+      <MenuItem to="/">Home</MenuItem>
+      <MenuItem to="/about">About</MenuItem>
+      <MenuItem>Causes</MenuItem>
+      <MenuItem>Gallery</MenuItem>
+      <MenuItem>Sermons</MenuItem>
+      <MenuItem>Blog</MenuItem>
+      <MenuItem>Shop</MenuItem>
+      <MenuItem :arrow="false">Contact Us</MenuItem>
+      <div
+        v-if="!isTop"
+        class="ml-4 flex -skew-x-[20deg] cursor-pointer items-center gap-1 bg-amber-300 px-8 py-4 text-white transition-colors hover:bg-[#da5455]"
+      >
+        <b class="scale-y-110">DONATE NOW</b>
+        <IconHeart height="16" class="scale-y-110 fill-white" />
       </div>
-      <div class="flex justify-center" v-else>
-        <RouterLink to="/" @click="scrollToTop">
-          <img :src="logo" class="mr-32" />
-        </RouterLink>
-        <MenuItem to="/">Home</MenuItem>
-        <MenuItem to="/about">About</MenuItem>
-        <MenuItem>Causes</MenuItem>
-        <MenuItem>Gallery</MenuItem>
-        <MenuItem>Sermons</MenuItem>
-        <MenuItem>Blog</MenuItem>
-        <MenuItem>Shop</MenuItem>
-        <MenuItem :arrow="false">Contact Us</MenuItem>
-      </div>
-    </Transition>
+    </div>
   </div>
 </template>
-
-<style scoped>
-.nav-enter-active,
-.nav-leave-active {
-  transition: all 0.3s ease-out;
-}
-
-.nav-leave-to,
-.nav-enter-from {
-  opacity: 0;
-}
-</style>
