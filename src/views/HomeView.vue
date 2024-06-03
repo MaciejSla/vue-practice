@@ -64,18 +64,18 @@ const stop = watch(api, (api) => {
     @init-api="setApi"
   >
     <CarouselContent>
-      <CarouselItem v-for="(banner, index) in banners" :key="index" class="basis-1/1">
+      <CarouselItem v-for="(banner, index) in banners" :key="index" class="basis-1/1 w-full">
         <div class="relative flex select-none items-center text-white">
-          <div class="absolute flex w-full justify-around">
+          <div class="absolute flex w-full justify-around px-10">
             <div v-if="banner.rightAlign"></div>
-            <div class="flex w-[35rem] flex-col gap-4">
+            <div class="flex flex-col gap-4 sm:w-[45rem] lg:w-[35rem]">
               <h1
                 :class="`font-serif text-6xl font-semibold transition-all duration-300 ease-in-out ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
               >
                 {{ banner.text }}
               </h1>
               <p
-                :class="`font-medium transition-all duration-300 ease-in-out ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
+                :class="`font-medium capitalize transition-all duration-300 ease-in-out ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
               >
                 {{ banner.subtext }}
               </p>
@@ -88,12 +88,16 @@ const stop = watch(api, (api) => {
             </div>
             <div v-if="!banner.rightAlign"></div>
           </div>
-          <img :src="banner.src" :alt="banner.alt" class="h-[46.5rem] w-full object-cover" />
+          <img
+            :src="banner.src"
+            :alt="banner.alt"
+            class="h-[43rem] object-cover sm:object-right lg:h-[46.5rem] lg:object-center"
+          />
         </div>
       </CarouselItem>
     </CarouselContent>
   </Carousel>
-  <div class="flex items-center justify-center gap-10 bg-stone-950 p-10">
+  <div class="flex flex-col items-center justify-center gap-10 bg-stone-950 p-10 lg:flex-row">
     <h1 class="font-serif text-5xl text-amber-300">Upcoming Event</h1>
     <EventCounter :date="new Date('2025-06-04')" />
     <button
