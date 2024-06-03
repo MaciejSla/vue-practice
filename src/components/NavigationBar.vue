@@ -4,6 +4,7 @@ import MenuItem from '@/components/MenuItem.vue'
 import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { computed } from 'vue'
 import { scrollToTop } from '@/lib/utils'
+import TopHeader from '@/components/TopHeader.vue'
 
 import logo from '@/assets/images/logo/01-b.png'
 
@@ -28,6 +29,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
+  <TopHeader />
   <div
     :class="`sticky top-0 z-10 bg-black transition-all duration-300 ${isTop ? 'p-4' : ''}`"
     ref="navEl"

@@ -1,6 +1,5 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import TopHeader from '@/components/TopHeader.vue'
 import NavigationBar from '@/components/NavigationBar.vue'
 import { onMounted, ref } from 'vue'
 
@@ -25,7 +24,6 @@ onMounted(() => {
       <div class="absolute w-min animate-ping rounded-full bg-white p-2"></div>
     </div>
     <div v-else class="absolute w-full">
-      <TopHeader />
       <NavigationBar />
       <RouterView />
     </div>
