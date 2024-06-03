@@ -18,7 +18,7 @@ onMounted(() => {
 <template>
   <Transition name="fade">
     <div
-      class="absolute z-50 flex h-screen w-full flex-col items-center justify-center bg-yellow-500"
+      class="absolute z-50 flex h-screen w-full flex-col items-center justify-center bg-amber-300"
       v-if="isLoading"
     >
       <div class="absolute w-min animate-ping rounded-full bg-gray-50 p-4 opacity-50"></div>

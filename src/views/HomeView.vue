@@ -80,7 +80,7 @@ const stop = watch(api, (api) => {
               </p>
               <button
                 @click="scrollToTop"
-                :class="`w-fit rounded-full bg-yellow-500 px-6 py-4 font-bold text-white transition-all duration-300 ease-in-out hover:bg-[#da5455] ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
+                :class="`w-fit rounded-full bg-amber-300 px-6 py-4 font-bold text-white transition-all duration-300 ease-in-out hover:bg-[#da5455] ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
               >
                 GET HELP NOW
               </button>
@@ -92,6 +92,21 @@ const stop = watch(api, (api) => {
       </CarouselItem>
     </CarouselContent>
   </Carousel>
+  <div class="flex items-center justify-center bg-stone-950">
+    <h1 class="p-20 font-serif text-5xl text-amber-300">Upcoming Event</h1>
+    <div class="flex gap-10">
+      <div class="size-36 rounded-full bg-stone-800 p-1">
+        <div class="size-full rounded-full bg-stone-950 p-2">
+          <div
+            class="flex size-full flex-col items-center justify-center rounded-full bg-stone-800"
+          >
+            <h3 class="text-3xl font-bold text-amber-300">2</h3>
+            <p>days</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="h-screen bg-gray-500"></div>
 </template>
 

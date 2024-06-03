@@ -21,8 +21,8 @@ const props = defineProps({
 <template>
   <!-- TODO figure out if this should be a dropdown or just a link -->
   <RouterLink
-    class="group flex w-fit items-center gap-2 fill-white px-4 text-center text-white transition-colors hover:fill-yellow-500 hover:text-yellow-500"
-    active-class="fill-yellow-500 text-yellow-500"
+    class="group flex w-fit items-center gap-2 fill-white px-4 text-center text-white transition-colors hover:fill-amber-300 hover:text-amber-300"
+    active-class="fill-amber-300 text-amber-300"
     :to="to"
   >
     <b><slot /></b>
