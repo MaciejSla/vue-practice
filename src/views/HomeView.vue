@@ -8,11 +8,32 @@ import img1 from '@/assets/images/banner/01.jpg'
 import img2 from '@/assets/images/banner/02.jpg'
 import img3 from '@/assets/images/banner/03.jpg'
 
-const bannerText = ['We Belive In Humanity', 'A Powerful Religion Theme', "It's Useless To Lecture"]
 const bannerSubtext =
   'Enthusiastically underwhelm quality benefits rather than professional "outside the box" thinking. Distinctively network highly efficient leadership skills'
 
-const bannerBg = [img1, img2, img3]
+const banners = [
+  {
+    src: img1,
+    alt: 'banner1',
+    text: 'We Believe In Humanity',
+    subtext: bannerSubtext,
+    rightAlign: true
+  },
+  {
+    src: img2,
+    alt: 'banner2',
+    text: 'A Powerful Religion Theme',
+    subtext: bannerSubtext,
+    rightAlign: false
+  },
+  {
+    src: img3,
+    alt: 'banner3',
+    text: "It's Useless To Lecture",
+    subtext: bannerSubtext,
+    rightAlign: true
+  }
+]
 
 const api = ref()
 const currentSlide = ref(0)
@@ -29,7 +50,6 @@ const stop = watch(api, (api) => {
   })
 
   api.on('select', (test) => {
-    console.log(test.selectedScrollSnap())
     currentSlide.value = test.selectedScrollSnap()
   })
 })
@@ -43,34 +63,31 @@ const stop = watch(api, (api) => {
     @init-api="setApi"
   >
     <CarouselContent>
-      <CarouselItem v-for="(_, index) in 3" :key="index" class="basis-1/1">
+      <CarouselItem v-for="(banner, index) in banners" :key="index" class="basis-1/1">
         <div class="relative flex select-none items-center text-white">
           <div class="absolute flex w-full justify-around">
-            <div v-if="index != 1"></div>
+            <div v-if="banner.rightAlign"></div>
             <div class="flex w-[35rem] flex-col gap-4">
               <h1
                 :class="`font-serif text-6xl font-semibold transition-all duration-300 ease-in-out ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
-                :key="`${index}-title`"
               >
-                {{ bannerText[index] }}
+                {{ banner.text }}
               </h1>
               <p
                 :class="`font-medium transition-all duration-300 ease-in-out ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
-                :key="`${index}-subtext`"
               >
-                {{ bannerSubtext }}
+                {{ banner.subtext }}
               </p>
               <button
                 @click="scrollToTop"
                 :class="`w-fit rounded-full bg-yellow-500 px-6 py-4 font-bold text-white transition-all duration-300 ease-in-out hover:bg-[#da5455] ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
-                :key="`${index}-button`"
               >
                 GET HELP NOW
               </button>
             </div>
-            <div v-if="index == 1"></div>
+            <div v-if="!banner.rightAlign"></div>
           </div>
-          <img :src="bannerBg[index]" class="h-[46.5rem] w-full object-cover" />
+          <img :src="banner.src" :alt="banner.alt" class="h-[46.5rem] w-full object-cover" />
         </div>
       </CarouselItem>
     </CarouselContent>
