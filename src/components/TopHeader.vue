@@ -25,7 +25,7 @@ import { RouterLink } from 'vue-router'
     <RouterLink to="/">
       <img src="@/assets/images/logo/01.png" alt="logo full" />
     </RouterLink>
-    <div class="flex gap-8 fill-gray-500">
+    <div class="flex gap-6 fill-gray-500">
       <span class="flex gap-2">
         <RouterLink to="/">
           <IconFacebook height="18" class="brand-icon" />
@@ -40,6 +40,7 @@ import { RouterLink } from 'vue-router'
           <IconPinterest height="18" class="brand-icon" />
         </RouterLink>
       </span>
+      <div class="border-l"></div>
       <!-- TODO add search and shopping functionality -->
       <IconSearch height="18" />
       <IconShopping height="18" />
