@@ -33,7 +33,7 @@ watch(
 </script>
 
 <template>
-  <div class="flex gap-4">
+  <div class="flex flex-wrap justify-center gap-4">
     <CounterElement :count="days" unit="days" />
     <CounterElement :count="hours" unit="hours" />
     <CounterElement :count="minutes" unit="minutes" />

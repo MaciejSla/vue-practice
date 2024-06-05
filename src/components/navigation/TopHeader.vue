@@ -10,10 +10,20 @@ import {
   IconShopping
 } from '@/components/icons'
 import { RouterLink } from 'vue-router'
+import { cn } from '@/lib/utils'
+const props = defineProps({
+  class: {
+    type: String,
+    default: ''
+  }
+})
 </script>
 
 <template>
-  <header class="grid grid-cols-3 items-center justify-items-center gap-4 p-8">
+  <!-- <header class="grid grid-cols-3 items-center justify-items-center gap-4 p-8"> -->
+  <header
+    :class="cn('flex flex-col items-center justify-around gap-4 p-8 sm:flex-row', props.class)"
+  >
     <div class="text-md flex flex-col gap-4 fill-gray-500 text-gray-500">
       <div class="flex items-center gap-4">
         <IconPhone height="13" />
@@ -24,9 +34,10 @@ import { RouterLink } from 'vue-router'
         info@yourmail.com
       </div>
     </div>
-    <RouterLink to="/">
+    <RouterLink to="/" class="hidden md:inline">
       <img src="@/assets/images/logo/01.png" alt="logo full" />
     </RouterLink>
+    <div class="w-full border-b border-black/5 sm:hidden"></div>
     <div class="flex gap-6 fill-gray-500">
       <span class="flex gap-2">
         <RouterLink to="/">

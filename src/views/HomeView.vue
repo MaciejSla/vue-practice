@@ -70,12 +70,12 @@ const stop = watch(api, (api) => {
             <div v-if="banner.rightAlign"></div>
             <div class="flex flex-col gap-4 sm:w-[45rem] lg:w-[35rem]">
               <h1
-                :class="`font-serif text-6xl font-semibold transition-all duration-300 ease-in-out ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
+                :class="`font-serif text-4xl font-semibold leading-none transition-all duration-300 ease-in-out sm:text-[5.9vw] lg:text-6xl ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
               >
                 {{ banner.text }}
               </h1>
               <p
-                :class="`font-medium capitalize transition-all duration-300 ease-in-out ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
+                :class="`text-lg font-normal capitalize transition-all duration-300 ease-in-out ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
               >
                 {{ banner.subtext }}
               </p>
@@ -97,7 +97,7 @@ const stop = watch(api, (api) => {
       </CarouselItem>
     </CarouselContent>
   </Carousel>
-  <div class="flex flex-col items-center justify-center gap-10 bg-stone-950 p-10 lg:flex-row">
+  <div class="flex flex-col items-center justify-center gap-10 bg-stone-950 p-10 xl:flex-row">
     <h1 class="font-serif text-5xl text-amber-300">Upcoming Event</h1>
     <EventCounter :date="new Date('2025-06-04')" />
     <button

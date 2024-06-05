@@ -1,6 +1,6 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import NavigationBar from '@/components/NavigationBar.vue'
+import NavigationBar from '@/components/navigation/NavigationBar.vue'
 import { onMounted, ref } from 'vue'
 
 const isLoading = ref(true)
