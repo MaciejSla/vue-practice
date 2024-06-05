@@ -76,6 +76,7 @@ onBeforeUnmount(() => {
     <Collapsible v-model:open="dropdown" class="w-full">
       <CollapsibleContent class="w-full">
         <div class="w-full px-5 xs:px-20">
+          <!-- TODO add routes etc -->
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
               <AccordionTrigger>Home</AccordionTrigger>
