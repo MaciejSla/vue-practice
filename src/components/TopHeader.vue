@@ -1,12 +1,14 @@
 <script setup>
-import IconPhone from '@/components/icons/IconPhone.vue'
-import IconEnvelope from '@/components/icons/IconEnvelope.vue'
-import IconFacebook from '@/components/icons/IconFacebook.vue'
-import IconXTwitter from '@/components/icons/IconXTwitter.vue'
-import IconLinkedin from '@/components/icons/IconLinkedin.vue'
-import IconPinterest from '@/components/icons/IconPinterest.vue'
-import IconSearch from '@/components/icons/IconSearch.vue'
-import IconShopping from '@/components/icons/IconShopping.vue'
+import {
+  IconPhone,
+  IconEnvelope,
+  IconFacebook,
+  IconXTwitter,
+  IconLinkedin,
+  IconPinterest,
+  IconSearch,
+  IconShopping
+} from '@/components/icons'
 import { RouterLink } from 'vue-router'
 </script>
 
