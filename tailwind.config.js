@@ -86,7 +86,8 @@ export default {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
         'collapsible-down': 'collapsible-down 0.2s ease-in-out',
-        'collapsible-up': 'collapsible-up 0.2s ease-in-out'
+        'collapsible-up': 'collapsible-up 0.2s ease-in-out',
+        'slow-ping': 'ping 4s cubic-bezier(0, 0, 0.2, 1) infinite'
       },
       screens: {
         xs: '520px'

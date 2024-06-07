@@ -1,5 +1,5 @@
 <script setup>
-import { IconHeart, IconInfo, IconMenu } from '@/components/icons'
+import { IconHeart, IconInfo, IconMenu, IconArrow } from '@/components/icons'
 import MenuItem from '@/components/navigation/MenuItem.vue'
 import { onMounted, onBeforeUnmount, ref } from 'vue'
 import { computed } from 'vue'
@@ -133,4 +133,30 @@ onBeforeUnmount(() => {
       </div>
     </div>
   </div>
+  <Transition name="slide">
+    <div
+      class="fixed bottom-8 right-24 z-50 flex cursor-pointer items-center justify-center text-6xl text-white"
+      @click="scrollToTop"
+      v-if="isTop"
+    >
+      <IconArrow class="z-50 size-6 fill-white drop-shadow" />
+      <div class="animate-slow-ping fixed z-40 rounded-full bg-amber-300 p-4"></div>
+      <div class="fixed z-40 rounded-full bg-amber-300 p-5"></div>
+    </div>
+  </Transition>
 </template>
+
+<style scoped>
+.slide-enter-active {
+  transition: all 0.1s ease-out;
+}
+
+.slide-leave-active {
+  transition: all 0.1s ease-in;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  transform: translateY(200%);
+}
+</style>
