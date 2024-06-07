@@ -10,6 +10,14 @@ import {
   IconShopping
 } from '@/components/icons'
 import { RouterLink } from 'vue-router'
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger
+} from '@/components/ui/sheet'
 </script>
 
 <template>
@@ -52,23 +60,37 @@ import { RouterLink } from 'vue-router'
       <div class="h-6 border-l"></div>
       <!-- TODO add search and shopping functionality -->
       <IconSearch class="size-4 flex-shrink-0" />
-
-      <!-- DaisyUI Drawer -->
-      <label for="my-drawer" class="drawer-button cursor-pointer rounded-full border p-2">
-        <IconShopping class="size-4" />
-      </label>
-      <div class="drawer drawer-end z-50">
-        <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-        <div class="drawer-side">
-          <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-          <div>test</div>
-          <div class="min-h-full w-80 bg-white p-4">
-            <label class="btn btn-primary" for="my-drawer">X</label>
-            <li><a>Sidebar Item 1</a></li>
-            <li><a>Sidebar Item 2</a></li>
+      <Sheet>
+        <SheetTrigger asChild>
+          <div class="cursor-pointer rounded-full border p-2">
+            <IconShopping class="size-4" />
           </div>
-        </div>
-      </div>
+        </SheetTrigger>
+        <SheetContent>
+          <SheetHeader>
+            <SheetTitle>Edit profile</SheetTitle>
+            <SheetDescription>
+              Make changes to your profile here. Click save when you're done.
+            </SheetDescription>
+          </SheetHeader>
+          <div>Sheet body</div>
+          <!-- <div class="grid gap-4 py-4">
+            <div class="grid grid-cols-4 items-center gap-4">
+              <Label for="name" class="text-right"> Name </Label>
+              <Input id="name" value="Pedro Duarte" class="col-span-3" />
+            </div>
+            <div class="grid grid-cols-4 items-center gap-4">
+              <Label for="username" class="text-right"> Username </Label>
+              <Input id="username" value="@peduarte" class="col-span-3" />
+            </div>
+          </div> -->
+          <SheetFooter>
+            <SheetClose as-child>
+              <Button type="submit"> Save changes </Button>
+            </SheetClose>
+          </SheetFooter>
+        </SheetContent>
+      </Sheet>
     </div>
   </header>
 </template>
