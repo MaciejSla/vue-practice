@@ -91,6 +91,9 @@ export default {
       },
       screens: {
         xs: '520px'
+      },
+      transitionProperty: {
+        width: 'width'
       }
     }
   },

@@ -31,6 +31,7 @@ const onResize = () => {
 }
 
 const onScroll = () => {
+  if (navEl.value == null) return
   navYTop.value = navEl.value.getBoundingClientRect().top
 }
 

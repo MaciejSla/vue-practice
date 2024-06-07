@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 .brand-icon {
-  @apply fill-gray-500 transition-colors hover:fill-yellow-500;
+  @apply fill-gray-500 transition-colors hover:fill-amber-300;
 }
 
 @layer base {
