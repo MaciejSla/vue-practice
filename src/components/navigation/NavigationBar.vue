@@ -83,7 +83,7 @@ onBeforeUnmount(() => {
               <AccordionContent class="p-0">
                 <RouterLink
                   to="/"
-                  class="flex w-full items-center border-b border-black/15 px-6 py-2 font-semibold"
+                  class="flex w-full items-center border-b border-black/15 px-6 py-2 font-semibold transition-colors hover:bg-black hover:text-amber-300"
                   active-class="bg-black text-amber-300"
                 >
                   Home
@@ -117,12 +117,12 @@ onBeforeUnmount(() => {
       </RouterLink>
       <MenuItem to="/">Home</MenuItem>
       <MenuItem to="/about">About</MenuItem>
-      <MenuItem>Causes</MenuItem>
-      <MenuItem>Gallery</MenuItem>
-      <MenuItem>Sermons</MenuItem>
-      <MenuItem>Blog</MenuItem>
-      <MenuItem>Shop</MenuItem>
-      <MenuItem :arrow="false">Contact Us</MenuItem>
+      <MenuItem to="/causes">Causes</MenuItem>
+      <MenuItem to="/gallery">Gallery</MenuItem>
+      <MenuItem to="/sermons">Sermons</MenuItem>
+      <MenuItem to="/blog">Blog</MenuItem>
+      <MenuItem to="/shop">Shop</MenuItem>
+      <MenuItem :arrow="false" to="/contact">Contact Us</MenuItem>
       <div
         v-if="!isTop"
         class="ml-4 flex -skew-x-[20deg] cursor-pointer items-center gap-1 bg-amber-300 px-8 py-4 text-white transition-colors hover:bg-[#da5455]"
