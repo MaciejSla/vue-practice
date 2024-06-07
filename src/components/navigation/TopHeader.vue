@@ -14,7 +14,7 @@ import { RouterLink } from 'vue-router'
 
 <template>
   <header
-    class="flex flex-col items-center justify-around gap-4 p-8 sm:flex-row 2xl:justify-center 2xl:gap-96"
+    class="flex flex-col items-center justify-around gap-4 p-8 xs:flex-row 2xl:justify-center 2xl:gap-96"
   >
     <div class="text-md flex flex-col gap-4 fill-gray-500 text-gray-500">
       <div class="flex items-center gap-4">
