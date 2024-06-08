@@ -14,12 +14,10 @@ const { title, subtext } = defineProps({
 <template>
   <div class="group flex items-center gap-8 xs:p-4">
     <div
-      class="rounded-full border-none outline-amber-300 transition-all duration-300 group-hover:ring-2 group-hover:ring-amber-300 group-hover:ring-offset-[6px]"
+      class="rounded-full p-[1.4rem] ring-2 ring-gray-200 transition-all duration-300 group-hover:bg-amber-300 group-hover:ring-2 group-hover:ring-amber-300 group-hover:ring-offset-[6px]"
     >
-      <div class="rounded-full border p-6 transition-all duration-300 group-hover:bg-amber-300">
-        <div class="size-8 fill-gray-500 transition-all duration-300 group-hover:fill-white">
-          <slot></slot>
-        </div>
+      <div class="size-8 fill-gray-500 transition-all duration-300 group-hover:fill-white">
+        <slot></slot>
       </div>
     </div>
     <div class="flex max-w-[37rem] flex-col items-start gap-2">
