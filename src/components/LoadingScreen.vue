@@ -10,7 +10,7 @@ const { isLoading } = defineProps({
 <template>
   <Transition name="fade">
     <div
-      class="absolute z-50 flex h-screen w-full flex-col items-center justify-center bg-amber-300"
+      class="absolute z-50 flex h-screen w-full flex-col items-center justify-center bg-main"
       v-if="isLoading"
     >
       <div class="absolute w-min animate-ping rounded-full bg-gray-50 p-4 opacity-50"></div>

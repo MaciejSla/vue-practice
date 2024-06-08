@@ -79,7 +79,7 @@ const stop = watch(api, (api) => {
               </p>
               <button
                 @click="scrollToTop"
-                :class="`w-fit rounded-full bg-amber-300 px-6 py-4 font-bold text-white transition-all duration-300 ease-in-out hover:bg-[#da5455] ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
+                :class="`w-fit rounded-full bg-main px-6 py-4 font-bold text-white transition-all duration-300 ease-in-out hover:bg-[#da5455] ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
               >
                 GET HELP NOW
               </button>

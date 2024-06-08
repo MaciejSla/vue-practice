@@ -54,7 +54,7 @@ onBeforeUnmount(() => {
   </Collapsible>
   <TopHeader v-else />
 
-  <div class="flex flex-col items-center bg-amber-300" v-if="screenWidth <= 1200" ref="navEl">
+  <div class="bg-main flex flex-col items-center" v-if="screenWidth <= 1200" ref="navEl">
     <div class="flex w-full flex-wrap items-center justify-between gap-4 px-5 py-4 xs:px-20">
       <RouterLink to="/" @click="scrollToTop">
         <img :src="logo2" />
@@ -84,15 +84,15 @@ onBeforeUnmount(() => {
               <AccordionContent class="p-0">
                 <RouterLink
                   to="/"
-                  class="flex w-full items-center border-b border-black/15 px-6 py-2 font-semibold transition-colors hover:bg-black hover:text-amber-300"
-                  active-class="bg-black text-amber-300"
+                  class="hover:text-main flex w-full items-center border-b border-black/15 px-6 py-2 font-semibold transition-colors hover:bg-black"
+                  active-class="bg-black text-main"
                 >
                   Home
                 </RouterLink>
                 <RouterLink
                   to="/about"
-                  class="flex w-full items-center border-b border-black/15 px-6 py-2 font-semibold transition-colors hover:bg-black hover:text-amber-300"
-                  active-class="bg-black text-amber-300"
+                  class="hover:text-main flex w-full items-center border-b border-black/15 px-6 py-2 font-semibold transition-colors hover:bg-black"
+                  active-class="bg-black text-main"
                 >
                   About
                 </RouterLink>
@@ -126,7 +126,7 @@ onBeforeUnmount(() => {
       <MenuItem :arrow="false" to="/contact">Contact Us</MenuItem>
       <div
         v-if="!isTop"
-        class="ml-4 flex -skew-x-[20deg] cursor-pointer items-center gap-1 bg-amber-300 px-8 py-4 text-white transition-colors hover:bg-[#da5455]"
+        class="bg-main ml-4 flex -skew-x-[20deg] cursor-pointer items-center gap-1 px-8 py-4 text-white transition-colors hover:bg-[#da5455]"
       >
         <b class="scale-y-110">DONATE NOW</b>
         <IconHeart height="16" class="scale-y-110 fill-white" />
@@ -140,8 +140,8 @@ onBeforeUnmount(() => {
       v-if="(isTop && screenWidth > 1200) || (screenWidth <= 1200 && navYTop < -100)"
     >
       <IconArrow class="z-50 size-6 fill-white drop-shadow" />
-      <div class="fixed z-40 animate-slow-ping rounded-full bg-amber-300 p-4"></div>
-      <div class="fixed z-40 rounded-full bg-amber-300 p-5"></div>
+      <div class="bg-main fixed z-40 animate-slow-ping rounded-full p-4"></div>
+      <div class="bg-main fixed z-40 rounded-full p-5"></div>
     </div>
   </Transition>
 </template>
