@@ -54,7 +54,7 @@ onBeforeUnmount(() => {
   </Collapsible>
   <TopHeader v-else />
 
-  <div class="flex flex-col items-center bg-amber-300" v-if="screenWidth <= 1200">
+  <div class="flex flex-col items-center bg-amber-300" v-if="screenWidth <= 1200" ref="navEl">
     <div class="flex w-full flex-wrap items-center justify-between gap-4 px-5 py-4 xs:px-20">
       <RouterLink to="/" @click="scrollToTop">
         <img :src="logo2" />
@@ -137,10 +137,10 @@ onBeforeUnmount(() => {
     <div
       class="fixed bottom-8 right-24 z-50 flex cursor-pointer items-center justify-center text-6xl text-white"
       @click="scrollToTop"
-      v-if="isTop"
+      v-if="(isTop && screenWidth > 1200) || (screenWidth <= 1200 && navYTop < -100)"
     >
       <IconArrow class="z-50 size-6 fill-white drop-shadow" />
-      <div class="animate-slow-ping fixed z-40 rounded-full bg-amber-300 p-4"></div>
+      <div class="fixed z-40 animate-slow-ping rounded-full bg-amber-300 p-4"></div>
       <div class="fixed z-40 rounded-full bg-amber-300 p-5"></div>
     </div>
   </Transition>
