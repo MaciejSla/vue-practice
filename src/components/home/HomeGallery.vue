@@ -12,22 +12,15 @@ import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
     </div>
     <!-- TODO filtering and image modal -->
     <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      <div
-        v-for="(img, index) in images"
-        :key="index"
-        class="group relative flex items-center justify-center"
-      >
-        <img :src="img" alt="image" />
-        <div
-          class="absolute bottom-0 left-0 right-0 z-10 flex h-full scale-0 items-center justify-center bg-black/60 text-white duration-300 group-hover:scale-100"
-        >
+      <GalleryImage v-for="(img, index) in images" :key="index" :src="img" alt="Image" preview>
+        <template #indicatoricon>
           <div
-            class="hover:bg-main hover:border-main flex cursor-pointer items-center justify-center rounded-full border p-2 transition-colors duration-300"
+            class="flex cursor-pointer items-center justify-center rounded-full border p-2 transition-colors duration-300 hover:border-main hover:bg-main"
           >
             <IconPlus class="size-5 stroke-white" stroke-width="4" />
           </div>
-        </div>
-      </div>
+        </template>
+      </GalleryImage>
     </div>
   </div>
 </template>

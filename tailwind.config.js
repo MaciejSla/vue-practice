@@ -32,7 +32,24 @@ export default {
         main: 'hsl(var(--main))',
         primary: {
           DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))'
+          foreground: 'hsl(var(--primary-foreground))',
+          50: 'hsl(var(--primary-50))',
+          100: 'hsl(var(--primary-100))',
+          200: 'hsl(var(--primary-200))',
+          300: 'hsl(var(--primary-300))',
+          400: 'hsl(var(--primary-400))',
+          500: 'hsl(var(--primary-500))',
+          600: 'hsl(var(--primary-600))',
+          700: 'hsl(var(--primary-700))',
+          800: 'hsl(var(--primary-800))',
+          900: 'hsl(var(--primary-900))',
+          950: 'hsl(var(--primary-950))',
+          inverse: 'hsl(var(--primary-inverse))',
+          hover: 'hsl(var(--primary-hover))',
+          activeColor: 'hsl(var(--primary-active-color))',
+          highlight: 'hsl(var(--primary)/var(--primary-highlight-opacity))',
+          'highlight-inverse': 'hsl(var(--primary-highlight-inverse))',
+          'highlight-hover': 'hsl(var(--primary)/var(--primary-highlight-hover-opacity))'
         },
         secondary: {
           DEFAULT: 'hsl(var(--secondary))',
@@ -57,6 +74,21 @@ export default {
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
+        },
+        surface: {
+          DEFAULT: 'hsl(var(--surface-500))',
+          0: 'hsl(var(--surface-0))',
+          50: 'hsl(var(--surface-50))',
+          100: 'hsl(var(--surface-100))',
+          200: 'hsl(var(--surface-200))',
+          300: 'hsl(var(--surface-300))',
+          400: 'hsl(var(--surface-400))',
+          500: 'hsl(var(--surface-500))',
+          600: 'hsl(var(--surface-600))',
+          700: 'hsl(var(--surface-700))',
+          800: 'hsl(var(--surface-800))',
+          900: 'hsl(var(--surface-900))',
+          950: 'hsl(var(--surface-950))'
         }
       },
       borderRadius: {
