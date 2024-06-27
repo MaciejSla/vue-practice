@@ -8,4 +8,52 @@ import img07 from './07.jpg'
 import img08 from './08.jpg'
 import img09 from './09.jpg'
 
-export default [img01, img02, img03, img04, img05, img06, img07, img08, img09]
+export const tags = ['Christmas', 'Corpus Christi', 'Holy Innocents', 'Lammas']
+
+export const images = [
+  {
+    src: img01,
+    alt: 'Image 01',
+    tags: ['Christmas']
+  },
+  {
+    src: img02,
+    alt: 'Image 02',
+    tags: ['Corpus Christi']
+  },
+  {
+    src: img03,
+    alt: 'Image 03',
+    tags: ['Holy Innocents']
+  },
+  {
+    src: img04,
+    alt: 'Image 04',
+    tags: ['Lammas', 'Christmas']
+  },
+  {
+    src: img05,
+    alt: 'Image 05',
+    tags: ['Holy Innocents']
+  },
+  {
+    src: img06,
+    alt: 'Image 06',
+    tags: ['Corpus Christi', 'Lammas']
+  },
+  {
+    src: img07,
+    alt: 'Image 07',
+    tags: ['Holy Innocents', 'Christmas']
+  },
+  {
+    src: img08,
+    alt: 'Image 08',
+    tags: ['Corpus Christi']
+  },
+  {
+    src: img09,
+    alt: 'Image 09',
+    tags: ['Christmas']
+  }
+]
