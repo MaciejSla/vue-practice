@@ -3,12 +3,39 @@ import { IconPlus } from '@/components/icons'
 import { images, tags } from '@/assets/images/gallery'
 import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
 import { ref, computed } from 'vue'
+import { useWindowSize } from '@vueuse/core'
 
 const filteredImages = computed(() => {
   return images.filter((img) => {
     return img.tags.includes(selectedTag.value) || selectedTag.value === 'All'
   })
 })
+
+const { width } = useWindowSize()
+
+const columns = computed(() => {
+  if (width.value >= 1024) return 3
+  if (width.value >= 640) return 2
+  return 1
+})
+
+const getGridStyle = (index) => {
+  if (columns.value === 3) {
+    return {
+      'grid-column': (index % 3) + 1,
+      'grid-row': Math.floor(index / 3) + 1
+    }
+  } else if (columns.value === 2) {
+    return {
+      'grid-column': (index % 2) + 1,
+      'grid-row': Math.floor(index / 2) + 1
+    }
+  }
+  return {
+    'grid-column': 1,
+    'grid-row': index + 1
+  }
+}
 
 const selectedTag = ref('All')
 </script>
@@ -43,10 +70,12 @@ const selectedTag = ref('All')
       class="relative grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
     >
       <GalleryImage
-        v-for="img in filteredImages"
+        v-for="(img, index) in filteredImages"
         :key="img.src"
         :src="img.src"
         :alt="img.alt"
+        :class="`w-[92vw] sm:w-[46.5vw] lg:w-[31vw]`"
+        :style="getGridStyle(index)"
         preview
       >
         <template #indicatoricon>
@@ -78,8 +107,5 @@ const selectedTag = ref('All')
    animations can be calculated correctly. */
 .gallery-leave-active {
   position: absolute;
-  grid-row: 1;
-  grid-column: 2;
-  width: 32vw;
 }
 </style>
