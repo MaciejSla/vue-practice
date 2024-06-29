@@ -4,6 +4,7 @@ import { images, tags } from '@/assets/images/gallery'
 import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
 import { ref, computed } from 'vue'
 import { useWindowSize } from '@vueuse/core'
+import { scrollToTop } from '@/lib/utils'
 
 const filteredImages = computed(() => {
   return images.filter((img) => {
@@ -87,6 +88,12 @@ const selectedTag = ref('All')
         </template>
       </GalleryImage>
     </TransitionGroup>
+    <button
+      @click="scrollToTop"
+      class="w-fit rounded-full bg-main px-6 py-4 font-bold text-white transition-all duration-300 ease-in-out hover:bg-[#da5455]"
+    >
+      VIEW ALL
+    </button>
   </div>
 </template>
 
@@ -100,7 +107,7 @@ const selectedTag = ref('All')
 .gallery-enter-from,
 .gallery-leave-to {
   opacity: 0;
-  transform: scale(0.2);
+  transform: scale(0);
 }
 
 /* ensure leaving items are taken out of layout flow so that moving
