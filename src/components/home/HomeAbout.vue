@@ -30,7 +30,7 @@ import HoverGroup from '@/components/ui/HoverGroup.vue'
       </div>
     </div>
     <div class="flex flex-col items-start gap-10 xs:px-10 lg:border-l">
-      <div class="group/anim flex flex-col items-start gap-4">
+      <div class="group/anim flex flex-col items-start gap-5">
         <h1 class="font-serif text-[3.5rem] leading-none">What We Do?</h1>
         <AnimatedAccent />
         <p class="max-w-[42rem] text-gray-500">

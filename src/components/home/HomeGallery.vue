@@ -43,7 +43,7 @@ const selectedTag = ref('All')
 
 <template>
   <div class="flex flex-col items-center gap-10 p-4">
-    <div class="group/anim flex flex-col items-center justify-center gap-4">
+    <div class="group/anim flex flex-col items-center justify-center gap-5">
       <h1 class="font-serif text-5xl">Christian Festivals</h1>
       <AnimatedAccent reverse />
     </div>
