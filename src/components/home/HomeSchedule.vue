@@ -35,14 +35,14 @@ const events = [
     title: 'Ascension Day',
     date: '2025-05-29 18:30'
   }
-]
+].sort((a, b) => new Date(a.date) - new Date(b.date))
 </script>
 
 <template>
   <div
     class="bg-[url(@/assets/images/bg-img/01.jpg)] bg-cover bg-center bg-no-repeat p-6 py-24 text-white bg-blend-overlay"
   >
-    <div class="flex flex-wrap items-center justify-center gap-10 lg:items-start">
+    <div class="flex flex-wrap items-start justify-center gap-10">
       <div class="group/anim flex flex-col justify-center gap-5 xl:max-w-96">
         <h1 class="text-adaptive-xl font-serif xl:text-4xl">Festival Schedule</h1>
         <AnimatedAccent />
