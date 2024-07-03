@@ -40,12 +40,12 @@ const events = [
 
 <template>
   <div
-    class="bg-[url(@/assets/images/bg-img/01.jpg)] bg-cover bg-center bg-no-repeat p-6 pt-20 text-white bg-blend-overlay"
+    class="bg-[url(@/assets/images/bg-img/01.jpg)] bg-cover bg-center bg-no-repeat p-6 py-24 text-white bg-blend-overlay"
   >
     <div class="flex flex-wrap items-center justify-center gap-10 lg:items-start">
       <div class="group/anim flex flex-col justify-center gap-5 xl:max-w-96">
         <h1 class="text-adaptive-xl font-serif xl:text-4xl">Festival Schedule</h1>
-        <AnimatedAccent reverse />
+        <AnimatedAccent />
         <p class="max-w-[42rem]">
           Dramatically strategize economically sound action items for e-business niches. Quickly
           re-engineer 24/365 potentialities before.
