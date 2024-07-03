@@ -59,7 +59,7 @@ const events = [
       <div
         v-for="(event, index) in events"
         :key="index"
-        class="group flex w-full flex-col items-start justify-center gap-3 sm:w-[20rem] lg:w-[23rem]"
+        class="group flex w-full flex-col items-start justify-center gap-3 sm:w-[18rem] md:w-[22rem]"
       >
         <div class="relative w-full overflow-hidden">
           <img
