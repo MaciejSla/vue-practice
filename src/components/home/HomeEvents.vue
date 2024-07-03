@@ -46,7 +46,7 @@ const events = [
 </script>
 
 <template>
-  <div class="mt-10 flex flex-col items-center gap-16 p-4">
+  <div class="my-16 flex flex-col items-center gap-16 p-4">
     <div class="group/anim flex flex-col items-center justify-center gap-5 text-center">
       <h1 class="font-serif text-5xl">Recent Events</h1>
       <AnimatedAccent reverse />
