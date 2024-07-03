@@ -68,7 +68,7 @@ const stop = watch(api, (api) => {
             <div v-if="banner.rightAlign"></div>
             <div class="flex flex-col gap-4 sm:w-[45rem] lg:w-[35rem]">
               <h1
-                :class="`font-serif text-4xl font-semibold leading-none transition-all duration-300 ease-in-out sm:text-[5.9vw] lg:text-6xl ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
+                :class="`font-serif text-[calc(1.5rem+3vw)] font-semibold leading-none transition-all duration-300 ease-in-out xl:text-6xl ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
               >
                 {{ banner.text }}
               </h1>
