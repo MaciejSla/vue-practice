@@ -127,6 +127,9 @@ export default {
       },
       transitionProperty: {
         width: 'width'
+      },
+      fontSize: {
+        'adaptive-xl': 'calc(1.35rem + 1.2vw)'
       }
     }
   },
