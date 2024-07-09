@@ -22,7 +22,7 @@ const days = computed(() =>
 
 <template>
   <div
-    class="flex flex-col items-center justify-center gap-10 bg-black/40 bg-[url(@/assets/images/bg-img/02.jpg)] bg-cover bg-center bg-no-repeat p-6 py-24 font-serif text-white bg-blend-overlay"
+    class="flex flex-col items-center justify-center gap-10 bg-black/40 bg-[url(@/assets/images/bg-img/02.jpg)] bg-cover bg-center bg-no-repeat p-8 py-24 font-serif text-white bg-blend-overlay"
   >
     <div class="group/anim flex flex-col items-center justify-center gap-5 text-center">
       <h1 class="text-5xl">Urgent Causes</h1>
