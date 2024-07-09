@@ -39,7 +39,9 @@ watch(
 </script>
 
 <template>
-  <div class="flex flex-wrap items-center justify-around gap-6 rounded border border-gray-500 p-4">
+  <div
+    class="flex h-full flex-wrap items-center justify-around gap-6 rounded border border-gray-500 p-4"
+  >
     <div class="flex flex-col gap-2">
       <h3 class="font-serif text-xl">{{ event.title }}</h3>
       <p class="text-sm">{{ getDate(event.date) }} at {{ getTime(event.date) }}</p>
