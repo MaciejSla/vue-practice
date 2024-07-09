@@ -7,6 +7,7 @@ import HomeEvents from '@/components/home/HomeEvents.vue'
 import HomeSchedule from '@/components/home/HomeSchedule.vue'
 import HomeSermons from '@/components/home/HomeSermons.vue'
 import HomeCauses from '@/components/home/HomeCauses.vue'
+import HomeNews from '@/components/home/HomeNews.vue'
 </script>
 
 <template>
@@ -27,5 +28,6 @@ import HomeCauses from '@/components/home/HomeCauses.vue'
   <HomeSchedule />
   <HomeSermons />
   <HomeCauses />
+  <HomeNews />
   <div class="h-screen bg-gray-500"></div>
 </template>
