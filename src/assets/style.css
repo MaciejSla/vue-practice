@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 .brand-icon {
-  @apply cursor-pointer fill-gray-500 transition-colors hover:fill-main;
+  @apply cursor-pointer fill-gray-500 transition-colors duration-300 hover:fill-main;
 }
 
 @layer base {
