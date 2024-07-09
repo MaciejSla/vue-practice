@@ -13,7 +13,7 @@ const cause = {
   endDate: '2024-09-30'
 }
 
-const percent = computed(() => Math.round((cause.donated / cause.goal) * 1000) / 10)
+const percent = computed(() => parseFloat((cause.donated / cause.goal) * 100).toFixed(1))
 const left = computed(() => cause.goal - cause.donated)
 const days = computed(() =>
   Math.floor((new Date(cause.endDate) - new Date()) / (1000 * 60 * 60 * 24))
