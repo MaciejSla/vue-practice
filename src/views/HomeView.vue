@@ -6,6 +6,7 @@ import HomeGallery from '@/components/home/HomeGallery.vue'
 import HomeEvents from '@/components/home/HomeEvents.vue'
 import HomeSchedule from '@/components/home/HomeSchedule.vue'
 import HomeSermons from '@/components/home/HomeSermons.vue'
+import HomeCauses from '@/components/home/HomeCauses.vue'
 </script>
 
 <template>
@@ -25,5 +26,6 @@ import HomeSermons from '@/components/home/HomeSermons.vue'
   <HomeEvents />
   <HomeSchedule />
   <HomeSermons />
+  <HomeCauses />
   <div class="h-screen bg-gray-500"></div>
 </template>
