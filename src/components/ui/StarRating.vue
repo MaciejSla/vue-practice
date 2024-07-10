@@ -1,19 +1,11 @@
-<script setup>
+<script setup lang="ts">
 import { IconStar } from '@/components/icons'
 import { cn } from '@/lib/utils'
-const props = defineProps({
-  rating: {
-    type: Number,
-    default: 0
-  },
-  max: {
-    type: Number,
-    default: 5
-  },
-  class: {
-    type: String,
-    default: ''
-  }
+
+const props = withDefaults(defineProps<{ rating: number; max?: number; class?: string }>(), {
+  rating: 0,
+  max: 5,
+  class: ''
 })
 </script>
 

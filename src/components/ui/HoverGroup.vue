@@ -1,13 +1,7 @@
-<script setup>
-const { title, subtext } = defineProps({
-  title: {
-    type: String,
-    default: ''
-  },
-  subtext: {
-    type: String,
-    default: ''
-  }
+<script setup lang="ts">
+const { title, subtext } = withDefaults(defineProps<{ title: string; subtext: string }>(), {
+  title: '',
+  subtext: ''
 })
 </script>
 
@@ -17,7 +11,7 @@ const { title, subtext } = defineProps({
       class="rounded-full p-[1.4rem] ring-2 ring-gray-200 transition-all duration-300 group-hover:bg-main group-hover:ring-2 group-hover:ring-main group-hover:ring-offset-[6px]"
     >
       <div class="size-8 fill-gray-500 transition-all duration-300 group-hover:fill-white">
-        <slot></slot>
+        <slot />
       </div>
     </div>
     <div class="flex max-w-[37rem] flex-col items-start gap-2">

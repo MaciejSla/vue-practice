@@ -1,11 +1,11 @@
-<script setup>
+<script setup lang="ts">
 import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
 import ScheduleCounter from '@/components/home/ScheduleCounter.vue'
 import { IconSunrise, IconSunset } from '@/components/icons'
 import { getSunrise, getSunset } from 'sunrise-sunset-js'
-import { useDateFormat } from '@vueuse/core'
+import { useDateFormat } from '@/lib/utils'
 
-const getTime = (date) => useDateFormat(date, 'h.mm A').value
+const getTime = (date: string | Date) => useDateFormat(date, 'h.mm A').value
 
 const sunset = getTime(getSunset(50.434288, 18.316142))
 const sunrise = getTime(getSunrise(50.434288, 18.316142))
@@ -35,7 +35,7 @@ const events = [
     title: 'Ascension Day',
     date: '2025-05-29 18:30'
   }
-].sort((a, b) => new Date(a.date) - new Date(b.date))
+].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
 </script>
 
 <template>
@@ -44,7 +44,7 @@ const events = [
   >
     <div class="flex flex-wrap items-start justify-center gap-10">
       <div class="group/anim flex flex-col justify-center gap-5 xl:max-w-96">
-        <h1 class="text-adaptive-xl font-serif xl:text-4xl">Festival Schedule</h1>
+        <h1 class="font-serif text-adaptive-xl xl:text-4xl">Festival Schedule</h1>
         <AnimatedAccent />
         <p class="max-w-[42rem]">
           Dramatically strategize economically sound action items for e-business niches. Quickly
@@ -64,7 +64,7 @@ const events = [
           <div class="flex items-center justify-around gap-4 rounded border-2 border-main p-4">
             <IconSunrise class="size-16 flex-shrink-0 stroke-[#ffcb08]" />
             <div class="flex flex-col">
-              <h2 class="text-adaptive-xl font-serif text-main transition-transform xl:text-4xl">
+              <h2 class="font-serif text-adaptive-xl text-main transition-transform xl:text-4xl">
                 Sunrise
               </h2>
               <p class="text-[#ffcb08]">{{ sunrise }}</p>
@@ -73,7 +73,7 @@ const events = [
           <div class="flex items-center justify-around gap-4 rounded border-2 border-main p-4">
             <IconSunset class="size-16 flex-shrink-0 stroke-[#f57002]" />
             <div class="flex flex-col">
-              <h2 class="text-adaptive-xl font-serif text-main xl:text-4xl">Sunset</h2>
+              <h2 class="font-serif text-adaptive-xl text-main xl:text-4xl">Sunset</h2>
               <p class="text-[#f57002]">{{ sunset }}</p>
             </div>
           </div>

@@ -1,8 +1,8 @@
-<script setup>
+<script setup lang="ts">
 import { IconHeart, IconInfo, IconMenu, IconArrow } from '@/components/icons'
+import { RouterLink } from 'vue-router'
 import MenuItem from '@/components/navigation/MenuItem.vue'
-import { onMounted, onBeforeUnmount, ref } from 'vue'
-import { computed } from 'vue'
+import { onMounted, onBeforeUnmount, ref, computed } from 'vue'
 import { scrollToTop } from '@/lib/utils'
 import TopHeader from '@/components/navigation/TopHeader.vue'
 import {
@@ -12,23 +12,20 @@ import {
   AccordionTrigger
 } from '@/components/ui/accordion'
 import { Collapsible, CollapsibleContent } from '@/components/ui/collapsible'
+import { useWindowSize } from '@vueuse/core'
 
 import logo from '@/assets/images/logo/01-b.png'
 import logo2 from '@/assets/images/logo/01.png'
 
 const navEl = ref()
 const navYTop = ref(1)
-const screenWidth = ref(window.innerWidth)
+const { width } = useWindowSize()
 const info = ref(false)
 const dropdown = ref(false)
 
 const isTop = computed(() => {
   return navYTop.value === 0
 })
-
-const onResize = () => {
-  screenWidth.value = window.innerWidth
-}
 
 const onScroll = () => {
   if (navEl.value == null) return
@@ -37,24 +34,22 @@ const onScroll = () => {
 
 onMounted(() => {
   window.addEventListener('scroll', onScroll)
-  window.addEventListener('resize', onResize)
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('scroll', onScroll)
-  window.removeEventListener('resize', onResize)
 })
 </script>
 
 <template>
-  <Collapsible v-model:open="info" v-if="screenWidth <= 1200">
+  <Collapsible v-if="width <= 1200" v-model:open="info">
     <CollapsibleContent>
       <TopHeader />
     </CollapsibleContent>
   </Collapsible>
   <TopHeader v-else />
 
-  <div class="flex flex-col items-center bg-main" v-if="screenWidth <= 1200" ref="navEl">
+  <div v-if="width <= 1200" ref="navEl" class="flex flex-col items-center bg-main">
     <div class="flex w-full flex-wrap items-center justify-between gap-4 px-5 py-4 xs:px-20">
       <RouterLink to="/" @click="scrollToTop">
         <img :src="logo2" />
@@ -108,12 +103,12 @@ onBeforeUnmount(() => {
     </Collapsible>
   </div>
   <div
-    v-if="screenWidth > 1200"
-    :class="`sticky top-0 z-10 bg-black transition-all duration-500 ${isTop ? 'p-4' : ''}`"
+    v-if="width > 1200"
     ref="navEl"
+    :class="`sticky top-0 z-10 bg-black transition-all duration-500 ${isTop ? 'p-4' : ''}`"
   >
     <div class="flex justify-center transition-all">
-      <RouterLink to="/" @click="scrollToTop" v-if="isTop">
+      <RouterLink v-if="isTop" to="/" @click="scrollToTop">
         <img :src="logo" class="mr-32" />
       </RouterLink>
       <MenuItem to="/">Home</MenuItem>
@@ -135,13 +130,13 @@ onBeforeUnmount(() => {
   </div>
   <Transition name="slide">
     <div
+      v-if="(isTop && width > 1200) || (width <= 1200 && navYTop < -100)"
       class="fixed bottom-8 right-24 z-50 flex cursor-pointer items-center justify-center text-6xl text-white"
       @click="scrollToTop"
-      v-if="(isTop && screenWidth > 1200) || (screenWidth <= 1200 && navYTop < -100)"
     >
       <IconArrow class="z-50 size-6 fill-white drop-shadow" />
-      <div class="fixed z-40 animate-slow-ping rounded-full bg-main p-5"></div>
-      <div class="fixed z-40 rounded-full bg-main p-5"></div>
+      <div class="fixed z-40 animate-slow-ping rounded-full bg-main p-5" />
+      <div class="fixed z-40 rounded-full bg-main p-5" />
     </div>
   </Transition>
 </template>

@@ -1,9 +1,6 @@
-<script setup>
-const { isLoading } = defineProps({
-  isLoading: {
-    type: Boolean,
-    default: false
-  }
+<script setup lang="ts">
+const props = withDefaults(defineProps<{ isLoading: boolean }>(), {
+  isLoading: false
 })
 </script>
 
@@ -11,7 +8,7 @@ const { isLoading } = defineProps({
   <Transition name="fade">
     <div
       class="absolute z-50 flex h-screen w-full flex-col items-center justify-center bg-main"
-      v-if="isLoading"
+      v-if="props.isLoading"
     >
       <div class="absolute w-min animate-ping rounded-full bg-gray-50 p-4 opacity-50"></div>
       <div class="absolute w-min animate-ping rounded-full bg-white p-2"></div>

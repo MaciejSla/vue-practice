@@ -1,16 +1,11 @@
-<script setup>
-import { CollapsibleRoot, useForwardPropsEmits } from "radix-vue";
+<script setup lang="ts">
+import { CollapsibleRoot, useForwardPropsEmits } from 'radix-vue'
+import type { CollapsibleRootEmits, CollapsibleRootProps } from 'radix-vue'
 
-const props = defineProps({
-  defaultOpen: { type: Boolean, required: false },
-  open: { type: Boolean, required: false },
-  disabled: { type: Boolean, required: false },
-  asChild: { type: Boolean, required: false },
-  as: { type: null, required: false },
-});
-const emits = defineEmits(["update:open"]);
+const props = defineProps<CollapsibleRootProps>()
+const emits = defineEmits<CollapsibleRootEmits>()
 
-const forwarded = useForwardPropsEmits(props, emits);
+const forwarded = useForwardPropsEmits(props, emits)
 </script>
 
 <template>

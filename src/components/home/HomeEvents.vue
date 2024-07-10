@@ -1,15 +1,14 @@
-<script setup>
+<script setup lang="ts">
 import AnimatedAccent from '../ui/AnimatedAccent.vue'
 import event1 from '@/assets/images/event/01.jpg'
 import event2 from '@/assets/images/event/02.jpg'
 import event3 from '@/assets/images/event/03.jpg'
+import { IconClock, IconLocation, IconComments, IconShare } from '@/components/icons'
+import { useDateFormat } from '@/lib/utils'
 
-import { useDateFormat } from '@vueuse/core'
-import { IconClock, IconLocation, IconComments, IconShare } from '../icons'
-
-const getDay = (date) => useDateFormat(date, 'DD').value
-const getMonth = (date) => useDateFormat(date, 'MMM').value
-const getHour = (date) => useDateFormat(date, 'hha').value
+const getDay = (date: string) => useDateFormat(date, 'DD').value
+const getMonth = (date: string) => useDateFormat(date, 'MMM').value
+const getHour = (date: string) => useDateFormat(date, 'hha').value
 
 const events = [
   {

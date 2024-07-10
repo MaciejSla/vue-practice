@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import blog1 from '@/assets/images/blog/01.jpg'
@@ -10,18 +10,18 @@ import slider2 from '@/assets/images/blog/slider/02.jpg'
 import slider3 from '@/assets/images/blog/slider/03.jpg'
 import { useDateFormat } from '@vueuse/core'
 import { IconCalendar, IconUser, IconComments, IconCartPlus } from '@/components/icons'
-import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
+import { type CarouselApi, Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
 import { scrollToTop } from '@/lib/utils'
 import StarRating from '@/components/ui/StarRating.vue'
 import { ref } from 'vue'
 import { watchOnce } from '@vueuse/core'
 import Autoplay from 'embla-carousel-autoplay'
 
-const api = ref()
-const totalCount = ref(0)
-const current = ref(0)
+const api = ref<CarouselApi>()
+const totalCount = ref<number>(0)
+const current = ref<number>(0)
 
-function setApi(val) {
+function setApi(val: CarouselApi) {
   api.value = val
 }
 
@@ -36,11 +36,11 @@ watchOnce(api, (api) => {
   })
 })
 
-const onButtonClick = (index) => {
-  api.value.scrollTo(index)
+const onButtonClick = (index: number) => {
+  api?.value?.scrollTo(index)
 }
 
-const getDate = (date) => useDateFormat(date, 'DD MMM YYYY').value
+const getDate = (date: string) => useDateFormat(date, 'DD MMM YYYY').value
 
 const news = [
   {
@@ -118,9 +118,9 @@ const products = [
         <ScrollArea class="h-[35rem] p-2" type="always">
           <div class="flex flex-col gap-6">
             <div
-              class="group flex flex-col items-start gap-6 xs:flex-row"
               v-for="newsItem in news"
               :key="newsItem.title"
+              class="group flex flex-col items-start gap-6 xs:flex-row"
             >
               <div class="size-52 shrink-0 overflow-hidden">
                 <img
@@ -166,12 +166,12 @@ const products = [
           <Carousel
             :opts="{ loop: true }"
             class="select-none"
-            @init-api="setApi"
             :plugins="[
               Autoplay({
                 delay: 10000
               })
             ]"
+            @init-api="setApi"
           >
             <CarouselContent class="ml-0">
               <CarouselItem
@@ -189,11 +189,11 @@ const products = [
                     <h3 class="font-serif text-xl">{{ product.name }}</h3>
                     <StarRating :rating="product.rating" class="size-4" />
                     <span class="font-serif text-[calc(1.4rem+0.3vw)] lg:text-2xl"
-                      >${{ parseFloat(product.price).toFixed(2) }}</span
+                      >${{ product.price.toFixed(2) }}</span
                     >
                     <button
-                      @click="scrollToTop"
                       class="flex w-fit items-center gap-1 rounded-full bg-main px-4 py-2 text-sm font-bold uppercase text-white transition-all duration-300 ease-in-out hover:bg-[#da5455]"
+                      @click="scrollToTop"
                     >
                       <IconCartPlus class="size-4 fill-white" />
                       ADD TO CART
@@ -205,11 +205,11 @@ const products = [
           </Carousel>
           <div class="flex items-center justify-center gap-2">
             <div
-              :class="`size-3 cursor-pointer rounded-full ${index === current ? 'bg-main' : 'bg-gray-300'}`"
               v-for="index in totalCount"
               :key="index"
+              :class="`size-3 cursor-pointer rounded-full ${index === current ? 'bg-main' : 'bg-gray-300'}`"
               @click="onButtonClick(index - 1)"
-            ></div>
+            />
           </div>
         </div>
       </div>

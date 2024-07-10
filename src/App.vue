@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import { RouterView } from 'vue-router'
 import NavigationBar from '@/components/navigation/NavigationBar.vue'
 import { onMounted, ref } from 'vue'

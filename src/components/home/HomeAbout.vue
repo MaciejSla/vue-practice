@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import {
   IconFacebook,
   IconXTwitter,
@@ -14,7 +14,7 @@ import HoverGroup from '@/components/ui/HoverGroup.vue'
 <template>
   <div class="flex flex-col justify-center gap-10 px-10 py-24 lg:flex-row">
     <div class="flex flex-col items-center justify-center gap-3">
-      <img src="@/assets/images/about/01.jpg" alt="about" class="rounded-full" />
+      <img src="@/assets/images/about/01.jpg" alt="about" class="size-[355px] rounded-full" />
       <div class="flex flex-col items-center gap-1">
         <h1 class="font-serif text-2xl xs:text-3xl">Deniyel Murchi</h1>
         <h3 class="text-gray-500">Church Pastor</h3>

@@ -1,16 +1,11 @@
-<script setup>
-import { useDateFormat } from '@vueuse/core'
+<script setup lang="ts">
+import { useDateFormat } from '@/lib/utils'
 import { ref, computed, watch } from 'vue'
 
-const { event } = defineProps({
-  event: {
-    type: Object,
-    required: true
-  }
-})
+const { event } = defineProps<{ event: { title: string; date: string } }>()
 
-const getDate = (date) => useDateFormat(date, 'D MMMM').value
-const getTime = (date) => useDateFormat(date, 'h:mm a').value
+const getDate = (date: string) => useDateFormat(date, 'D MMMM').value
+const getTime = (date: string) => useDateFormat(date, 'h:mm a').value
 
 const date = new Date(event.date)
 

@@ -1,13 +1,7 @@
-<script setup>
-const props = defineProps({
-  top: {
-    type: String,
-    required: true
-  },
-  bottom: {
-    type: String,
-    required: true
-  }
+<script setup lang="ts">
+const props = withDefaults(defineProps<{ top: string | number; bottom: string }>(), {
+  top: '',
+  bottom: ''
 })
 </script>
 

@@ -1,12 +1,7 @@
-<script setup>
-const props = defineProps({
-  count: {
-    type: Number,
-    default: 0
-  },
-  unit: {
-    type: String
-  }
+<script setup lang="ts">
+const props = withDefaults(defineProps<{ count: number; unit: string }>(), {
+  count: 0,
+  unit: ''
 })
 </script>
 

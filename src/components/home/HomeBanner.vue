@@ -1,5 +1,5 @@
-<script setup>
-import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
+<script setup lang="ts">
+import { type CarouselApi, Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
 import Autoplay from 'embla-carousel-autoplay'
 import { scrollToTop } from '@/lib/utils'
 import { ref, nextTick, watch } from 'vue'
@@ -34,10 +34,10 @@ const banners = [
   }
 ]
 
-const api = ref()
-const currentSlide = ref(0)
+const api = ref<CarouselApi>()
+const currentSlide = ref<number | undefined>(0)
 
-function setApi(val) {
+function setApi(val: CarouselApi) {
   api.value = val
 }
 
@@ -48,8 +48,8 @@ const stop = watch(api, (api) => {
     stop()
   })
 
-  api.on('select', (test) => {
-    currentSlide.value = test.selectedScrollSnap()
+  api.on('select', (test: CarouselApi) => {
+    currentSlide.value = test?.selectedScrollSnap()
   })
 })
 </script>
@@ -65,7 +65,7 @@ const stop = watch(api, (api) => {
       <CarouselItem v-for="(banner, index) in banners" :key="index" class="basis-1/1 w-full">
         <div class="relative flex select-none items-center text-white">
           <div class="absolute flex w-full justify-around px-10">
-            <div v-if="banner.rightAlign"></div>
+            <div v-if="banner.rightAlign" />
             <div class="flex flex-col gap-4 sm:w-[45rem] lg:w-[35rem]">
               <h1
                 :class="`font-serif text-[calc(1.5rem+3vw)] font-semibold leading-none transition-all duration-300 ease-in-out xl:text-6xl ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
@@ -78,13 +78,13 @@ const stop = watch(api, (api) => {
                 {{ banner.subtext }}
               </p>
               <button
-                @click="scrollToTop"
                 :class="`w-fit rounded-full bg-main px-6 py-4 font-bold text-white transition-all duration-300 ease-in-out hover:bg-[#da5455] ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
+                @click="scrollToTop"
               >
                 GET HELP NOW
               </button>
             </div>
-            <div v-if="!banner.rightAlign"></div>
+            <div v-if="!banner.rightAlign" />
           </div>
           <img
             :src="banner.src"

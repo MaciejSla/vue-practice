@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import sermon1 from '@/assets/images/sermon/01.jpg'
 import sermon2 from '@/assets/images/sermon/02.jpg'
 import sermon3 from '@/assets/images/sermon/03.jpg'
@@ -12,9 +12,9 @@ import {
   IconFile,
   IconImage
 } from '@/components/icons'
-import { useDateFormat } from '@vueuse/core'
+import { useDateFormat } from '@/lib/utils'
 
-const getDate = (date) => useDateFormat(date, 'DD MMM YYYY').value
+const getDate = (date: string) => useDateFormat(date, 'DD MMM YYYY').value
 
 const sermons = [
   {
@@ -56,9 +56,9 @@ const sermons = [
     </div>
     <div class="grid grid-cols-1 gap-8 p-10 lg:grid-cols-2">
       <div
-        class="group flex flex-col items-center gap-6 rounded border p-6 xs:flex-row lg:w-[35rem]"
         v-for="sermon in sermons"
         :key="sermon.title"
+        class="group flex flex-col items-center gap-6 rounded border p-6 xs:flex-row lg:w-[35rem]"
       >
         <div class="size-40 shrink-0 overflow-hidden rounded-full">
           <img

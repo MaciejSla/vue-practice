@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import EventCounter from '@/components/home/EventCounter.vue'
 import HomeBanner from '@/components/home/HomeBanner.vue'
 import HomeAbout from '@/components/home/HomeAbout.vue'
@@ -8,6 +8,7 @@ import HomeSchedule from '@/components/home/HomeSchedule.vue'
 import HomeSermons from '@/components/home/HomeSermons.vue'
 import HomeCauses from '@/components/home/HomeCauses.vue'
 import HomeNews from '@/components/home/HomeNews.vue'
+import { scrollToTop } from '@/lib/utils'
 </script>
 
 <template>

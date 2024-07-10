@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import {
   IconPhone,
   IconEnvelope,
@@ -41,7 +41,7 @@ import {
     <RouterLink to="/" class="hidden md:inline">
       <img src="@/assets/images/logo/01.png" alt="logo full" />
     </RouterLink>
-    <div class="w-full border-b border-black/5 sm:hidden"></div>
+    <div class="w-full border-b border-black/5 sm:hidden" />
     <div class="flex items-center gap-6 fill-gray-500">
       <span class="flex gap-2">
         <RouterLink to="/">
@@ -57,11 +57,11 @@ import {
           <IconPinterest class="brand-icon size-4" />
         </RouterLink>
       </span>
-      <div class="h-6 border-l"></div>
+      <div class="h-6 border-l" />
       <!-- TODO add search and shopping functionality -->
       <IconSearch class="size-4 flex-shrink-0" />
       <Sheet>
-        <SheetTrigger asChild>
+        <SheetTrigger as-child>
           <div class="cursor-pointer rounded-full border p-2">
             <IconShopping class="size-4" />
           </div>
