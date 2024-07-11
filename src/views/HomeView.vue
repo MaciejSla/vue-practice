@@ -9,6 +9,7 @@ import HomeSermons from '@/components/home/HomeSermons.vue'
 import HomeCauses from '@/components/home/HomeCauses.vue'
 import HomeNews from '@/components/home/HomeNews.vue'
 import HomeQuotes from '@/components/home/HomeQuotes.vue'
+import HomeSponsors from '@/components/home/HomeSponsors.vue'
 import { scrollToTop } from '@/lib/utils'
 </script>
 
@@ -32,5 +33,6 @@ import { scrollToTop } from '@/lib/utils'
   <HomeCauses />
   <HomeNews />
   <HomeQuotes />
+  <HomeSponsors />
   <div class="h-screen bg-gray-500"></div>
 </template>
