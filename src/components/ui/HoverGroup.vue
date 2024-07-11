@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { title, subtext } = withDefaults(defineProps<{ title: string; subtext: string }>(), {
+const props = withDefaults(defineProps<{ title: string; subtext: string }>(), {
   title: '',
   subtext: ''
 })
@@ -16,10 +16,10 @@ const { title, subtext } = withDefaults(defineProps<{ title: string; subtext: st
     </div>
     <div class="flex max-w-[37rem] flex-col items-start gap-2">
       <h2 class="font-serif text-3xl transition-all duration-300 group-hover:text-main">
-        {{ title }}
+        {{ props.title }}
       </h2>
       <p class="text-gray-500">
-        {{ subtext }}
+        {{ props.subtext }}
       </p>
     </div>
   </div>
