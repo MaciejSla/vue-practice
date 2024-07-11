@@ -3,6 +3,7 @@ import { RouterView } from 'vue-router'
 import NavigationBar from '@/components/navigation/NavigationBar.vue'
 import { onMounted, ref } from 'vue'
 import LoadingScreen from '@/components/LoadingScreen.vue'
+import Toaster from '@/components/ui/toast/Toaster.vue'
 
 const isLoading = ref(true)
 
@@ -22,4 +23,5 @@ onMounted(() => {
       <RouterView />
     </div>
   </LoadingScreen>
+  <Toaster />
 </template>

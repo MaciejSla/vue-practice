@@ -10,6 +10,7 @@ import HomeCauses from '@/components/home/HomeCauses.vue'
 import HomeNews from '@/components/home/HomeNews.vue'
 import HomeQuotes from '@/components/home/HomeQuotes.vue'
 import HomeSponsors from '@/components/home/HomeSponsors.vue'
+import ContactForm from '@/components/ContactForm.vue'
 import { scrollToTop } from '@/lib/utils'
 </script>
 
@@ -34,5 +35,6 @@ import { scrollToTop } from '@/lib/utils'
   <HomeNews />
   <HomeQuotes />
   <HomeSponsors />
+  <ContactForm />
   <div class="h-screen bg-gray-500"></div>
 </template>

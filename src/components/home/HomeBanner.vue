@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { type CarouselApi, Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
+import CustomButton from '@/components/ui/CustomButton.vue'
 import Autoplay from 'embla-carousel-autoplay'
 import { scrollToTop } from '@/lib/utils'
 import { ref, nextTick, watch } from 'vue'
@@ -77,12 +78,12 @@ const stop = watch(api, (api) => {
               >
                 {{ banner.subtext }}
               </p>
-              <button
-                :class="`w-fit rounded-full bg-main px-6 py-4 font-bold text-white transition-all duration-300 ease-in-out hover:bg-[#da5455] ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
+              <CustomButton
+                :class="index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'"
                 @click="scrollToTop"
               >
                 GET HELP NOW
-              </button>
+              </CustomButton>
             </div>
             <div v-if="!banner.rightAlign" />
           </div>

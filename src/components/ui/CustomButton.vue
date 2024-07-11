@@ -10,7 +10,7 @@ const props = defineProps<{
   <button
     :class="
       cn(
-        'group relative w-fit overflow-hidden rounded-full bg-main px-6 py-4 font-bold text-white',
+        'group relative w-fit overflow-hidden rounded-full bg-main px-6 py-4 font-bold text-white transition-all duration-300 ease-in-out',
         props.class
       )
     "
