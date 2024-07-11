@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
+import CustomButton from '@/components/ui/CustomButton.vue'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import blog1 from '@/assets/images/blog/01.jpg'
 import blog2 from '@/assets/images/blog/02.jpg'
@@ -191,13 +192,12 @@ const products = [
                     <span class="font-serif text-[calc(1.4rem+0.3vw)] lg:text-2xl"
                       >${{ product.price.toFixed(2) }}</span
                     >
-                    <button
-                      class="flex w-fit items-center gap-1 rounded-full bg-main px-4 py-2 text-sm font-bold uppercase text-white transition-all duration-300 ease-in-out hover:bg-[#da5455]"
-                      @click="scrollToTop"
-                    >
-                      <IconCartPlus class="size-4 fill-white" />
-                      ADD TO CART
-                    </button>
+                    <CustomButton class="w-fit px-4 py-2 text-sm" @click="scrollToTop">
+                      <span class="flex items-center gap-1">
+                        <IconCartPlus class="size-4 fill-white" />
+                        ADD TO CART
+                      </span>
+                    </CustomButton>
                   </div>
                 </div>
               </CarouselItem>

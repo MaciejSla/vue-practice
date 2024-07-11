@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
+import CustomButton from '@/components/ui/CustomButton.vue'
 import { IconHeart } from '@/components/icons'
 import { Progress } from '@/components/ui/progress'
 import { scrollToTop } from '@/lib/utils'
@@ -41,12 +42,11 @@ const days = computed(() =>
         <span> / ${{ left }} To Go</span>
       </h1>
       <Progress :model-value="percent" class="h-5 max-w-[43rem]" />
-      <button
-        class="flex w-fit items-center justify-center gap-2 rounded-full bg-main px-6 py-4 font-sans font-bold text-white transition-all duration-300 ease-in-out hover:bg-[#da5455]"
-        @click="scrollToTop"
-      >
-        DONATE <IconHeart class="size-4 fill-white" />
-      </button>
+      <CustomButton @click="scrollToTop">
+        <span class="flex items-center justify-center gap-2 font-sans">
+          DONATE <IconHeart class="size-4 fill-white" />
+        </span>
+      </CustomButton>
     </div>
   </div>
 </template>

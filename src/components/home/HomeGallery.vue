@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { IconPlus } from '@/components/icons'
 import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
+import CustomButton from '@/components/ui/CustomButton.vue'
 import { images, tags } from '@/assets/images/gallery'
 import { scrollToTop } from '@/lib/utils'
 import { ref, computed } from 'vue'
@@ -88,12 +89,7 @@ const selectedTag = ref('All')
         </template>
       </GalleryImage>
     </TransitionGroup>
-    <button
-      class="w-fit rounded-full bg-main px-6 py-4 font-bold text-white transition-all duration-300 ease-in-out hover:bg-[#da5455]"
-      @click="scrollToTop"
-    >
-      VIEW ALL
-    </button>
+    <CustomButton @click="scrollToTop"> VIEW ALL </CustomButton>
   </div>
 </template>
 
