@@ -11,6 +11,7 @@ import HomeNews from '@/components/home/HomeNews.vue'
 import HomeQuotes from '@/components/home/HomeQuotes.vue'
 import HomeSponsors from '@/components/home/HomeSponsors.vue'
 import ContactForm from '@/components/ContactForm.vue'
+import ContactMap from '@/components/ContactMap.vue'
 </script>
 
 <template>
@@ -26,5 +27,6 @@ import ContactForm from '@/components/ContactForm.vue'
   <HomeQuotes />
   <HomeSponsors />
   <ContactForm />
+  <ContactMap />
   <div class="h-screen bg-gray-500"></div>
 </template>
