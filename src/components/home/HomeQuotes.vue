@@ -14,13 +14,15 @@ const quotes = [exampleQuote, exampleQuote]
 
 <template>
   <div
-    class="flex select-none flex-col items-center justify-center bg-black/30 bg-[url(@/assets/images/bg-img/03.jpg)] bg-cover bg-center bg-no-repeat p-5 bg-blend-overlay xs:p-20"
+    class="flex select-none flex-col items-center justify-center overflow-hidden bg-black/30 bg-[url(@/assets/images/bg-img/03.jpg)] bg-cover bg-center bg-no-repeat px-5 py-20 bg-blend-overlay xs:p-20"
   >
     <Carousel :opts="{ loop: true }" :plugins="[Autoplay({ delay: 10000 })]" class="max-w-[70rem]">
       <CarouselContent>
         <CarouselItem class="w-full" v-for="quote in quotes" :key="quote.subtitle">
-          <div class="flex flex-wrap items-center justify-center gap-8">
-            <div class="relative flex size-48 items-center justify-center rounded-full bg-main">
+          <div class="flex flex-col items-center justify-center gap-6 xs:flex-row">
+            <div
+              class="relative flex size-48 shrink-0 items-center justify-center rounded-full bg-main"
+            >
               <h3
                 class="line-clamp-1 flex flex-col gap-2 p-2 text-center font-serif text-3xl text-white"
               >
@@ -33,7 +35,7 @@ const quotes = [exampleQuote, exampleQuote]
                 <IconQuoteLeft class="size-5 fill-main" />
               </div>
             </div>
-            <div class="flex flex-col gap-4 overflow-hidden">
+            <div class="flex flex-col gap-4 overflow-hidden px-6">
               <p
                 class="break-all text-2xl capitalize text-white transition-all duration-300 ease-in-out"
               >
