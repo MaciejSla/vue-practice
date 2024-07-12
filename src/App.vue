@@ -23,7 +23,6 @@ onMounted(() => {
       <NavigationBar />
       <RouterView />
       <PageFooter />
-      <div class="h-screen bg-gray-500"></div>
     </div>
   </LoadingScreen>
   <Toaster />
