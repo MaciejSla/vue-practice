@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import {
   IconPhone,
   IconEnvelope,
@@ -9,7 +9,6 @@ import {
   IconSearch,
   IconShopping
 } from '@/components/icons'
-import { RouterLink } from 'vue-router'
 import {
   Sheet,
   SheetContent,
@@ -18,6 +17,7 @@ import {
   SheetTitle,
   SheetTrigger
 } from '@/components/ui/sheet'
+import AppLink from '@/components/navigation/AppLink.vue'
 </script>
 
 <template>
@@ -38,30 +38,30 @@ import {
         info@yourmail.com
       </div>
     </div>
-    <RouterLink to="/" class="hidden md:inline">
+    <AppLink to="/" class="hidden md:inline">
       <img src="@/assets/images/logo/01.png" alt="logo full" />
-    </RouterLink>
-    <div class="w-full border-b border-black/5 sm:hidden"></div>
+    </AppLink>
+    <div class="w-full border-b border-black/5 sm:hidden" />
     <div class="flex items-center gap-6 fill-gray-500">
       <span class="flex gap-2">
-        <RouterLink to="/">
+        <AppLink to="/">
           <IconFacebook class="brand-icon size-4" />
-        </RouterLink>
-        <RouterLink to="/">
+        </AppLink>
+        <AppLink to="/">
           <IconXTwitter class="brand-icon size-4" />
-        </RouterLink>
-        <RouterLink to="/">
+        </AppLink>
+        <AppLink to="/">
           <IconLinkedin class="brand-icon size-4" />
-        </RouterLink>
-        <RouterLink to="/">
+        </AppLink>
+        <AppLink to="/">
           <IconPinterest class="brand-icon size-4" />
-        </RouterLink>
+        </AppLink>
       </span>
-      <div class="h-6 border-l"></div>
+      <div class="h-6 border-l" />
       <!-- TODO add search and shopping functionality -->
       <IconSearch class="size-4 flex-shrink-0" />
       <Sheet>
-        <SheetTrigger asChild>
+        <SheetTrigger as-child>
           <div class="cursor-pointer rounded-full border p-2">
             <IconShopping class="size-4" />
           </div>

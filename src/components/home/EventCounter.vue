@@ -1,13 +1,8 @@
-<script setup>
+<script setup lang="ts">
 import CounterElement from '@/components/ui/CounterElement.vue'
-import { computed, ref, watch } from 'vue'
+import { ref, computed, watch } from 'vue'
 
-const props = defineProps({
-  date: {
-    type: Date,
-    required: true
-  }
-})
+const props = defineProps<{ date: Date }>()
 
 const timeLeft = ref(props.date.getTime() - new Date().getTime())
 const days = computed(() => Math.floor(timeLeft.value / (1000 * 60 * 60 * 24)))

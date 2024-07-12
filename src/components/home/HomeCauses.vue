@@ -1,7 +1,8 @@
-<script setup>
+<script setup lang="ts">
 import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
+import CustomButton from '@/components/ui/CustomButton.vue'
+import { IconHeart } from '@/components/icons'
 import { Progress } from '@/components/ui/progress'
-import { IconHeart } from '../icons'
 import { scrollToTop } from '@/lib/utils'
 import CausesElement from '@/components/home/CausesElement.vue'
 import { computed } from 'vue'
@@ -12,11 +13,11 @@ const cause = {
   donors: 10,
   endDate: '2024-09-30'
 }
-
-const percent = computed(() => parseFloat((cause.donated / cause.goal) * 100).toFixed(1))
+// TODO add back toFixed(1) at the end if this doesn't work
+const percent = computed(() => (cause.donated / cause.goal) * 100)
 const left = computed(() => cause.goal - cause.donated)
 const days = computed(() =>
-  Math.floor((new Date(cause.endDate) - new Date()) / (1000 * 60 * 60 * 24))
+  Math.floor((new Date(cause.endDate).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24))
 )
 </script>
 
@@ -41,12 +42,11 @@ const days = computed(() =>
         <span> / ${{ left }} To Go</span>
       </h1>
       <Progress :model-value="percent" class="h-5 max-w-[43rem]" />
-      <button
-        @click="scrollToTop"
-        class="flex w-fit items-center justify-center gap-2 rounded-full bg-main px-6 py-4 font-sans font-bold text-white transition-all duration-300 ease-in-out hover:bg-[#da5455]"
-      >
-        DONATE <IconHeart class="size-4 fill-white" />
-      </button>
+      <CustomButton @click="scrollToTop">
+        <span class="flex items-center justify-center gap-2 font-sans">
+          DONATE <IconHeart class="size-4 fill-white" />
+        </span>
+      </CustomButton>
     </div>
   </div>
 </template>

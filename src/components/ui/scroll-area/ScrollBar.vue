@@ -1,15 +1,14 @@
-<script setup>
-import { computed } from 'vue'
-import { ScrollAreaScrollbar, ScrollAreaThumb } from 'radix-vue'
+<script setup lang="ts">
+import { type HTMLAttributes, computed } from 'vue'
+import { ScrollAreaScrollbar, type ScrollAreaScrollbarProps, ScrollAreaThumb } from 'radix-vue'
 import { cn } from '@/lib/utils'
 
-const props = defineProps({
-  orientation: { type: String, required: false, default: 'vertical' },
-  forceMount: { type: Boolean, required: false },
-  asChild: { type: Boolean, required: false },
-  as: { type: null, required: false },
-  class: { type: null, required: false }
-})
+const props = withDefaults(
+  defineProps<ScrollAreaScrollbarProps & { class?: HTMLAttributes['class'] }>(),
+  {
+    orientation: 'vertical'
+  }
+)
 
 const delegatedProps = computed(() => {
   const { class: _, ...delegated } = props

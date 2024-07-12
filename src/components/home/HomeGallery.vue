@@ -1,10 +1,11 @@
-<script setup>
+<script setup lang="ts">
 import { IconPlus } from '@/components/icons'
-import { images, tags } from '@/assets/images/gallery'
 import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
+import CustomButton from '@/components/ui/CustomButton.vue'
+import { images, tags } from '@/assets/images/gallery'
+import { scrollToTop } from '@/lib/utils'
 import { ref, computed } from 'vue'
 import { useWindowSize } from '@vueuse/core'
-import { scrollToTop } from '@/lib/utils'
 
 const filteredImages = computed(() => {
   return images.filter((img) => {
@@ -20,7 +21,7 @@ const columns = computed(() => {
   return 1
 })
 
-const getGridStyle = (index) => {
+const getGridStyle = (index: number) => {
   if (columns.value === 3) {
     return {
       'grid-column': (index % 3) + 1,
@@ -79,7 +80,7 @@ const selectedTag = ref('All')
         :style="getGridStyle(index)"
         preview
       >
-        <template #indicatoricon>
+        <template #previewicon>
           <div
             class="pointer-events-auto flex cursor-pointer items-center justify-center rounded-full border p-2 transition-colors duration-300 hover:border-main hover:bg-main"
           >
@@ -88,12 +89,7 @@ const selectedTag = ref('All')
         </template>
       </GalleryImage>
     </TransitionGroup>
-    <button
-      @click="scrollToTop"
-      class="w-fit rounded-full bg-main px-6 py-4 font-bold text-white transition-all duration-300 ease-in-out hover:bg-[#da5455]"
-    >
-      VIEW ALL
-    </button>
+    <CustomButton @click="scrollToTop"> VIEW ALL </CustomButton>
   </div>
 </template>
 

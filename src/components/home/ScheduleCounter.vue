@@ -1,18 +1,13 @@
-<script setup>
-import { useDateFormat } from '@vueuse/core'
+<script setup lang="ts">
+import { useDateFormat } from '@/lib/utils'
 import { ref, computed, watch } from 'vue'
 
-const { event } = defineProps({
-  event: {
-    type: Object,
-    required: true
-  }
-})
+const props = defineProps<{ event: { title: string; date: string } }>()
 
-const getDate = (date) => useDateFormat(date, 'D MMMM').value
-const getTime = (date) => useDateFormat(date, 'h:mm a').value
+const getDate = (date: string) => useDateFormat(date, 'D MMMM').value
+const getTime = (date: string) => useDateFormat(date, 'h:mm a').value
 
-const date = new Date(event.date)
+const date = new Date(props.event.date)
 
 const timeLeft = ref(date.getTime() - new Date().getTime())
 const days = computed(() => Math.floor(timeLeft.value / (1000 * 60 * 60 * 24)))
@@ -43,8 +38,8 @@ watch(
     class="flex h-full flex-wrap items-center justify-around gap-6 rounded border border-gray-500 p-4"
   >
     <div class="flex flex-col gap-2">
-      <h3 class="font-serif text-xl">{{ event.title }}</h3>
-      <p class="text-sm">{{ getDate(event.date) }} at {{ getTime(event.date) }}</p>
+      <h3 class="font-serif text-xl">{{ props.event.title }}</h3>
+      <p class="text-sm">{{ getDate(props.event.date) }} at {{ getTime(props.event.date) }}</p>
     </div>
     <div class="flex gap-2">
       <div class="flex size-[4.5rem] flex-col items-center justify-center rounded-full border-2">

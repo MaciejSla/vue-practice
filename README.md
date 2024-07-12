@@ -1,3 +1,5 @@
+# Praktyki Vue
+
 Celem praktyk jest zapoznanie się praktykanta z frameworkiem Vue 3 oraz zdobycie praktycznego doświadczenia w tworzeniu interfejsów użytkownika przy użyciu tego narzędzia.
 Głównym celem praktykanta będzie, próba zaadoptowania szablonu strony internetowej i osadzenia jej we frameworku Vue.js
 
@@ -23,6 +25,6 @@ W tym celu wymagane jest zapoznanie się z takimi elementami jak:
 
 Tutoriale:
 
-- https://vuejs.org/tutorial/#step-1
-- https://www.youtube.com/watch?v=YrxBCBibVo0&list=PL4cUxeGkcC9hYYGbV60Vq3IXYNfDk8At1&index=1
-- https://www.youtube.com/watch?v=I_xLMmNeLDY
+- <https://vuejs.org/tutorial/#step-1>
+- <https://www.youtube.com/watch?v=YrxBCBibVo0&list=PL4cUxeGkcC9hYYGbV60Vq3IXYNfDk8At1&index=1>
+- <https://www.youtube.com/watch?v=I_xLMmNeLDY>
