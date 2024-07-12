@@ -83,7 +83,7 @@ const links = [
         </div>
         <div class="flex flex-col gap-3">
           <img :src="footer" alt="footer" class="h-full w-full object-cover" />
-          <p class="text-sm text-gray-500">
+          <p class="text-sm text-white/40">
             Dramatically strategize economically sound action items for e-business niches. Quickly
             re-engineer 24/365 potentialities before.
           </p>
@@ -130,8 +130,8 @@ const links = [
               >
                 {{ post.title }}
               </h3>
-              <p class="flex items-center gap-1 text-sm text-gray-500">
-                <IconCalendar class="size-4 fill-gray-500" />
+              <p class="flex items-center gap-1 text-sm text-white/40">
+                <IconCalendar class="size-4 fill-white/40" />
                 {{ getDate(post.date) }}
               </p>
             </div>
