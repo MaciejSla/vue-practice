@@ -131,7 +131,7 @@ onBeforeUnmount(() => {
   <Transition name="slide">
     <div
       v-if="(isTop && width > 1200) || (width <= 1200 && navYTop < -100)"
-      class="fixed bottom-8 right-8 z-50 flex cursor-pointer items-center justify-center text-6xl text-white xs:right-24"
+      class="fixed bottom-[3%] right-[5%] z-50 flex cursor-pointer items-center justify-center text-6xl text-white"
       @click="scrollToTop"
     >
       <IconArrow class="z-50 size-6 fill-white drop-shadow" />
