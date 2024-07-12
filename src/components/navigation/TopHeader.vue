@@ -17,7 +17,7 @@ import {
   SheetTitle,
   SheetTrigger
 } from '@/components/ui/sheet'
-import AppLink from '@/components/AppLink.vue'
+import AppLink from '@/components/navigation/AppLink.vue'
 </script>
 
 <template>

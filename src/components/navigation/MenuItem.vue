@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import IconMenuArrow from '@/components/icons/IconMenuArrow.vue'
-import AppLink from '@/components/AppLink.vue'
+import AppLink from '@/components/navigation/AppLink.vue'
 const props = withDefaults(defineProps<{ height?: string; arrow?: boolean; to?: string }>(), {
   height: '18',
   arrow: true,

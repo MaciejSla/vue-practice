@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IconHeart, IconInfo, IconMenu, IconArrow } from '@/components/icons'
-import AppLink from '@/components/AppLink.vue'
+import AppLink from '@/components/navigation/AppLink.vue'
 import MenuItem from '@/components/navigation/MenuItem.vue'
 import { onMounted, onBeforeUnmount, ref, computed } from 'vue'
 import { scrollToTop } from '@/lib/utils'

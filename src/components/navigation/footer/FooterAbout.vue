@@ -4,7 +4,7 @@ import footer from '@/assets/images/footer/about/01.jpg'
 import post1 from '@/assets/images/footer/post/01.jpg'
 import post2 from '@/assets/images/footer/post/02.jpg'
 import post3 from '@/assets/images/footer/post/03.jpg'
-import AppLink from '@/components/AppLink.vue'
+import AppLink from '@/components/navigation/AppLink.vue'
 import { IconCalendar } from '@/components/icons'
 import { useDateFormat } from '@/lib/utils'
 

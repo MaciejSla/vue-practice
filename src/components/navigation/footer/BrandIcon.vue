@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { type RouteLocationAsPathGeneric, type RouteLocationAsRelativeGeneric } from 'vue-router'
-import AppLink from '@/components/AppLink.vue'
+import AppLink from '@/components/navigation/AppLink.vue'
 import { cn } from '@/lib/utils'
 const props = withDefaults(
   defineProps<{
