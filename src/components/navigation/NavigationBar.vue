@@ -131,12 +131,12 @@ onBeforeUnmount(() => {
   <Transition name="slide">
     <div
       v-if="(isTop && width > 1200) || (width <= 1200 && navYTop < -100)"
-      class="fixed bottom-8 right-24 z-50 flex cursor-pointer items-center justify-center text-6xl text-white"
+      class="fixed bottom-8 right-8 z-50 flex cursor-pointer items-center justify-center text-6xl text-white xs:right-24"
       @click="scrollToTop"
     >
       <IconArrow class="z-50 size-6 fill-white drop-shadow" />
-      <div class="fixed z-40 animate-slow-ping rounded-full bg-main p-5" />
-      <div class="fixed z-40 rounded-full bg-main p-5" />
+      <div class="absolute z-40 animate-slow-ping rounded-full bg-main p-5" />
+      <div class="absolute z-40 rounded-full bg-main p-5" />
     </div>
   </Transition>
 </template>
