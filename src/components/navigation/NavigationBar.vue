@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { IconHeart, IconInfo, IconMenu, IconArrow } from '@/components/icons'
-import { RouterLink } from 'vue-router'
+import AppLink from '@/components/AppLink.vue'
 import MenuItem from '@/components/navigation/MenuItem.vue'
 import { onMounted, onBeforeUnmount, ref, computed } from 'vue'
 import { scrollToTop } from '@/lib/utils'
@@ -51,9 +51,9 @@ onBeforeUnmount(() => {
 
   <div v-if="width <= 1200" ref="navEl" class="flex flex-col items-center bg-main">
     <div class="flex w-full flex-wrap items-center justify-between gap-4 px-5 py-4 xs:px-20">
-      <RouterLink to="/" @click="scrollToTop">
+      <AppLink to="/" @click="scrollToTop">
         <img :src="logo2" />
-      </RouterLink>
+      </AppLink>
       <div class="flex items-center gap-4">
         <button
           class="cursor-pointer rounded border border-black/15 px-4 py-2"
@@ -77,20 +77,20 @@ onBeforeUnmount(() => {
             <AccordionItem value="item-1">
               <AccordionTrigger>Home</AccordionTrigger>
               <AccordionContent class="p-0">
-                <RouterLink
+                <AppLink
                   to="/"
                   class="flex w-full items-center border-b border-black/15 px-6 py-2 font-semibold transition-colors hover:bg-black hover:text-main"
                   active-class="bg-black text-main"
                 >
                   Home
-                </RouterLink>
-                <RouterLink
+                </AppLink>
+                <AppLink
                   to="/about"
                   class="flex w-full items-center border-b border-black/15 px-6 py-2 font-semibold transition-colors hover:bg-black hover:text-main"
                   active-class="bg-black text-main"
                 >
                   About
-                </RouterLink>
+                </AppLink>
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2" class="border-none">
@@ -108,9 +108,9 @@ onBeforeUnmount(() => {
     :class="`sticky top-0 z-10 bg-black transition-all duration-500 ${isTop ? 'p-4' : ''}`"
   >
     <div class="flex justify-center transition-all">
-      <RouterLink v-if="isTop" to="/" @click="scrollToTop">
+      <AppLink v-if="isTop" to="/" @click="scrollToTop">
         <img :src="logo" class="mr-32" />
-      </RouterLink>
+      </AppLink>
       <MenuItem to="/">Home</MenuItem>
       <MenuItem to="/about">About</MenuItem>
       <MenuItem to="/causes">Causes</MenuItem>

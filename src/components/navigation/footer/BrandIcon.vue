@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import {
-  RouterLink,
-  type RouteLocationAsPathGeneric,
-  type RouteLocationAsRelativeGeneric
-} from 'vue-router'
+import { type RouteLocationAsPathGeneric, type RouteLocationAsRelativeGeneric } from 'vue-router'
+import AppLink from '@/components/AppLink.vue'
 import { cn } from '@/lib/utils'
 const props = withDefaults(
   defineProps<{
@@ -24,7 +21,7 @@ const props = withDefaults(
 </script>
 
 <template>
-  <RouterLink :to="props.to" class="group flex items-center gap-2">
+  <AppLink :to="props.to" class="group flex items-center gap-2">
     <div
       :class="
         cn(
@@ -40,5 +37,5 @@ const props = withDefaults(
     <span :class="cn('text-gray-500 transition-colors duration-300', props.textClass)">
       {{ props.text }}
     </span>
-  </RouterLink>
+  </AppLink>
 </template>
