@@ -28,5 +28,4 @@ import ContactMap from '@/components/ContactMap.vue'
   <HomeSponsors />
   <ContactForm />
   <ContactMap />
-  <div class="h-screen bg-gray-500"></div>
 </template>

@@ -4,6 +4,7 @@ import NavigationBar from '@/components/navigation/NavigationBar.vue'
 import { onMounted, ref } from 'vue'
 import LoadingScreen from '@/components/LoadingScreen.vue'
 import Toaster from '@/components/ui/toast/Toaster.vue'
+import PageFooter from '@/components/navigation/PageFooter.vue'
 
 const isLoading = ref(true)
 
@@ -21,6 +22,8 @@ onMounted(() => {
     <div class="absolute w-full">
       <NavigationBar />
       <RouterView />
+      <PageFooter />
+      <div class="h-screen bg-gray-500"></div>
     </div>
   </LoadingScreen>
   <Toaster />
