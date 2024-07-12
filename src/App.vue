@@ -4,7 +4,7 @@ import NavigationBar from '@/components/navigation/NavigationBar.vue'
 import { onMounted, ref } from 'vue'
 import LoadingScreen from '@/components/LoadingScreen.vue'
 import Toaster from '@/components/ui/toast/Toaster.vue'
-import PageFooter from '@/components/navigation/PageFooter.vue'
+import PageFooter from '@/components/navigation/footer/PageFooter.vue'
 
 const isLoading = ref(true)
 
