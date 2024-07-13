@@ -6,6 +6,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
+  SheetDescription,
   SheetClose
 } from '@/components/ui/sheet'
 import CustomButton from '@/components/ui/CustomButton.vue'
@@ -45,6 +46,7 @@ watch(isFinished, () => {
       <SheetHeader>
         <img src="@/assets/images/logo/01.png" alt="logo full" class="mb-6 w-min" />
         <SheetTitle class="mb-6 font-serif font-normal text-white">Shopping Cart</SheetTitle>
+        <SheetDescription></SheetDescription>
       </SheetHeader>
       <TransitionGroup name="cart-item" tag="div" class="mb-10 flex flex-col items-start gap-4">
         <div v-for="item in cartStore.cart" :key="item.id">
@@ -68,14 +70,14 @@ watch(isFinished, () => {
           </div>
         </div>
       </TransitionGroup>
-      <SheetFooter class="flex justify-center gap-4">
+      <div class="flex justify-center gap-4">
         <SheetClose>
           <AppLink to="/checkout">
             <CustomButton type="submit"> CHECKOUT </CustomButton>
           </AppLink>
         </SheetClose>
         <CustomButton type="button" @click="execute"> REFRESH </CustomButton>
-      </SheetFooter>
+      </div>
     </SheetContent>
   </Sheet>
 </template>
@@ -83,11 +85,11 @@ watch(isFinished, () => {
 <style scoped>
 .cart-item-enter-active,
 .cart-item-leave-active {
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 .cart-item-enter-from,
 .cart-item-leave-to {
   opacity: 0;
-  transform: translateX(-100%);
+  transform: translateX(-100%) scale(0);
 }
 </style>
