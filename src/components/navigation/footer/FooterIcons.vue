@@ -10,6 +10,7 @@ import BrandIcon from './BrandIcon.vue'
       border-class="group-hover:border-[#3b5998]"
       icon-class="group-hover:fill-[#3b5998]"
       text-class="group-hover:text-[#3b5998]"
+      to="https://www.facebook.com"
     >
       <IconFacebook class="size-4" />
     </BrandIcon>
@@ -18,6 +19,7 @@ import BrandIcon from './BrandIcon.vue'
       border-class="group-hover:border-[#000000]"
       icon-class="group-hover:fill-[#000000]"
       text-class="group-hover:text-[#000000]"
+      to="https://x.com"
     >
       <IconXTwitter class="size-3" />
     </BrandIcon>
@@ -26,6 +28,7 @@ import BrandIcon from './BrandIcon.vue'
       border-class="group-hover:border-[#007bb5]"
       icon-class="group-hover:fill-[#007bb5]"
       text-class="group-hover:text-[#007bb5]"
+      to="https://www.linkedin.com"
     >
       <IconLinkedin class="size-4" />
     </BrandIcon>
@@ -34,6 +37,7 @@ import BrandIcon from './BrandIcon.vue'
       border-class="group-hover:border-[#e4405f]"
       icon-class="group-hover:fill-[#e4405f]"
       text-class="group-hover:text-[#e4405f]"
+      to="https://www.instagram.com"
     >
       <IconInstagram class="size-4" />
     </BrandIcon>
