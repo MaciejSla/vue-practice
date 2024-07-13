@@ -10,9 +10,34 @@ const router = createRouter({
       component: HomeView
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue')
+      path: '/events',
+      name: 'events',
+      component: () => import('../views/EventsView.vue')
+    },
+    {
+      path: '/causes',
+      name: 'causes',
+      component: () => import('../views/CausesView.vue')
+    },
+    {
+      path: '/gallery',
+      name: 'gallery',
+      component: () => import('../views/GalleryView.vue')
+    },
+    {
+      path: '/sermons',
+      name: 'sermons',
+      component: () => import('../views/SermonsView.vue')
+    },
+    {
+      path: '/blog',
+      name: 'blog',
+      component: () => import('../views/BlogView.vue')
+    },
+    {
+      path: '/shop',
+      name: 'shop',
+      component: () => import('../views/ShopView.vue')
     },
     {
       path: '/contact',
@@ -20,9 +45,9 @@ const router = createRouter({
       component: () => import('../views/ContactView.vue')
     },
     {
-      path: '/gallery',
-      name: 'gallery',
-      component: () => import('../views/GalleryView.vue')
+      path: '/checkout',
+      name: 'checkout',
+      component: () => import('../views/CheckoutView.vue')
     }
   ]
 })

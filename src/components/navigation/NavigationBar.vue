@@ -5,17 +5,18 @@ import MenuItem from '@/components/navigation/MenuItem.vue'
 import { ref, computed } from 'vue'
 import { scrollToTop } from '@/lib/utils'
 import TopHeader from '@/components/navigation/TopHeader.vue'
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger
-} from '@/components/ui/accordion'
 import { Collapsible, CollapsibleContent } from '@/components/ui/collapsible'
 import { useWindowSize, useElementBounding } from '@vueuse/core'
+import { useRouter } from 'vue-router'
 
 import logo from '@/assets/images/logo/01-b.png'
 import logo2 from '@/assets/images/logo/01.png'
+
+const router = useRouter()
+const excludedRoutes = ['checkout']
+const navbarRoutes = router.options.routes.filter(
+  (route) => !excludedRoutes.includes(route.name?.toString()!)
+)
 
 const navEl = ref()
 const { width } = useWindowSize()
@@ -60,31 +61,15 @@ const isTop = computed(() => {
       <CollapsibleContent class="w-full">
         <div class="w-full px-5 xs:px-20">
           <!-- TODO add routes etc -->
-          <Accordion type="single" collapsible>
-            <AccordionItem value="item-1">
-              <AccordionTrigger>Home</AccordionTrigger>
-              <AccordionContent class="p-0">
-                <AppLink
-                  to="/"
-                  class="flex w-full items-center border-b border-black/15 px-6 py-2 font-semibold transition-colors hover:bg-black hover:text-main"
-                  active-class="bg-black text-main"
-                >
-                  Home
-                </AppLink>
-                <AppLink
-                  to="/about"
-                  class="flex w-full items-center border-b border-black/15 px-6 py-2 font-semibold transition-colors hover:bg-black hover:text-main"
-                  active-class="bg-black text-main"
-                >
-                  About
-                </AppLink>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="item-2" class="border-none">
-              <AccordionTrigger>Test</AccordionTrigger>
-              <AccordionContent> No </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+          <AppLink
+            :to="route.path"
+            class="flex w-full items-center border-b border-black/15 px-6 py-2 font-semibold capitalize transition-colors hover:bg-black hover:text-main"
+            active-class="bg-black text-main"
+            v-for="route in navbarRoutes"
+            :key="route.name"
+          >
+            {{ route.name == 'contact' ? 'Contact Us' : route.name }}
+          </AppLink>
         </div>
       </CollapsibleContent>
     </Collapsible>
@@ -94,18 +79,13 @@ const isTop = computed(() => {
     ref="navEl"
     :class="`sticky top-0 z-10 bg-black transition-all duration-500 ${isTop ? 'p-4' : ''}`"
   >
-    <div class="flex justify-center transition-all">
+    <div class="flex justify-center gap-2 transition-all">
       <AppLink v-if="isTop" to="/" @click="scrollToTop">
         <img :src="logo" class="mr-32" />
       </AppLink>
-      <MenuItem to="/">Home</MenuItem>
-      <MenuItem to="/about">About</MenuItem>
-      <MenuItem to="/causes">Causes</MenuItem>
-      <MenuItem to="/gallery">Gallery</MenuItem>
-      <MenuItem to="/sermons">Sermons</MenuItem>
-      <MenuItem to="/blog">Blog</MenuItem>
-      <MenuItem to="/shop">Shop</MenuItem>
-      <MenuItem :arrow="false" to="/contact">Contact Us</MenuItem>
+      <MenuItem :to="route.path" v-for="route in navbarRoutes" :key="route.name" class="capitalize">
+        {{ route.name == 'contact' ? 'Contact Us' : route.name }}
+      </MenuItem>
       <div
         v-if="!isTop"
         class="ml-4 flex -skew-x-[20deg] cursor-pointer items-center gap-1 bg-main px-8 py-4 text-white transition-colors hover:bg-[#da5455]"
