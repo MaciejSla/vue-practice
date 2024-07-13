@@ -73,6 +73,7 @@ const isTop = computed(() => {
       </CollapsibleContent>
     </Collapsible>
   </div>
+  <!-- TODO fix nav starting with padding on route change -->
   <div
     v-if="width > 1200"
     ref="navEl"

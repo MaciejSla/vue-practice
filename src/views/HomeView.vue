@@ -15,17 +15,19 @@ import ContactMap from '@/components/ContactMap.vue'
 </script>
 
 <template>
-  <HomeBanner />
-  <HomeUpcoming />
-  <HomeAbout />
-  <HomeGallery />
-  <HomeEvents />
-  <HomeSchedule />
-  <HomeSermons />
-  <HomeCauses />
-  <HomeNews />
-  <HomeQuotes />
-  <HomeSponsors />
-  <ContactForm />
-  <ContactMap />
+  <div>
+    <HomeBanner />
+    <HomeUpcoming />
+    <HomeAbout />
+    <HomeGallery />
+    <HomeEvents />
+    <HomeSchedule />
+    <HomeSermons />
+    <HomeCauses />
+    <HomeNews />
+    <HomeQuotes />
+    <HomeSponsors />
+    <ContactForm />
+    <ContactMap />
+  </div>
 </template>

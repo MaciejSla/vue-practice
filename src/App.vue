@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { RouterView, useRoute, useRouter } from 'vue-router'
+import { RouterView, useRoute } from 'vue-router'
 import NavigationBar from '@/components/navigation/NavigationBar.vue'
 import { onMounted, ref, watch } from 'vue'
 import LoadingScreen from '@/components/LoadingScreen.vue'
@@ -10,9 +10,6 @@ import AppLink from '@/components/navigation/AppLink.vue'
 const isLoading = ref(true)
 
 const route = useRoute()
-const router = useRouter()
-
-console.log(router.options.routes)
 
 watch(route, () => {
   isLoading.value = true
@@ -30,6 +27,7 @@ onMounted(() => {
 })
 </script>
 
+<!-- TODO fix route change transition -->
 <template>
   <LoadingScreen :is-loading="isLoading">
     <div class="absolute w-full">
