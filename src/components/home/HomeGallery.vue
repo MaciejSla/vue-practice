@@ -48,7 +48,6 @@ const selectedTag = ref('All')
       <h1 class="font-serif text-5xl">Christian Festivals</h1>
       <AnimatedAccent reverse />
     </div>
-    <!-- TODO filtering and image modal -->
     <div class="font-sm flex flex-wrap justify-center gap-10 text-sm font-bold capitalize">
       <p
         :class="`cursor-pointer ${selectedTag === 'All' ? 'text-main' : ''}`"
@@ -65,7 +64,6 @@ const selectedTag = ref('All')
         {{ tag }}
       </p>
     </div>
-    <!-- TODO fix leave animation -->
     <TransitionGroup
       name="gallery"
       tag="div"

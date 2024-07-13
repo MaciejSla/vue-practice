@@ -60,7 +60,6 @@ const isTop = computed(() => {
     <Collapsible v-model:open="dropdown" class="w-full">
       <CollapsibleContent class="w-full">
         <div class="w-full px-5 xs:px-20">
-          <!-- TODO add routes etc -->
           <AppLink
             :to="route.path"
             class="flex w-full items-center border-b border-black/15 px-6 py-2 font-semibold capitalize transition-colors hover:bg-black hover:text-main"

@@ -13,7 +13,6 @@ const cause = {
   donors: 10,
   endDate: '2024-09-30'
 }
-// TODO add back toFixed(1) at the end if this doesn't work
 const percent = computed(() => (cause.donated / cause.goal) * 100)
 const left = computed(() => cause.goal - cause.donated)
 const days = computed(() =>
