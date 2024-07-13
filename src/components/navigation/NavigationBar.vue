@@ -2,7 +2,7 @@
 import { IconHeart, IconInfo, IconMenu, IconArrow } from '@/components/icons'
 import AppLink from '@/components/navigation/AppLink.vue'
 import MenuItem from '@/components/navigation/MenuItem.vue'
-import { onMounted, onBeforeUnmount, ref, computed } from 'vue'
+import { ref, computed } from 'vue'
 import { scrollToTop } from '@/lib/utils'
 import TopHeader from '@/components/navigation/TopHeader.vue'
 import {
@@ -12,32 +12,19 @@ import {
   AccordionTrigger
 } from '@/components/ui/accordion'
 import { Collapsible, CollapsibleContent } from '@/components/ui/collapsible'
-import { useWindowSize } from '@vueuse/core'
+import { useWindowSize, useElementBounding } from '@vueuse/core'
 
 import logo from '@/assets/images/logo/01-b.png'
 import logo2 from '@/assets/images/logo/01.png'
 
 const navEl = ref()
-const navYTop = ref(1)
 const { width } = useWindowSize()
+const { top } = useElementBounding(navEl)
 const info = ref(false)
 const dropdown = ref(false)
 
 const isTop = computed(() => {
-  return navYTop.value === 0
-})
-
-const onScroll = () => {
-  if (navEl.value == null) return
-  navYTop.value = navEl.value.getBoundingClientRect().top
-}
-
-onMounted(() => {
-  window.addEventListener('scroll', onScroll)
-})
-
-onBeforeUnmount(() => {
-  window.removeEventListener('scroll', onScroll)
+  return top.value <= 0
 })
 </script>
 
@@ -130,7 +117,7 @@ onBeforeUnmount(() => {
   </div>
   <Transition name="slide">
     <div
-      v-if="(isTop && width > 1200) || (width <= 1200 && navYTop < -100)"
+      v-if="(isTop && width > 1200) || (width <= 1200 && top < -100)"
       class="fixed bottom-[3%] right-[5%] z-50 flex cursor-pointer items-center justify-center text-6xl text-white"
       @click="scrollToTop"
     >
