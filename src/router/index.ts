@@ -25,9 +25,9 @@ const router = createRouter({
       component: () => import('../views/GalleryView.vue')
     },
     {
-      path: '/sermon',
-      name: 'sermon',
-      component: () => import('../views/SermonView.vue')
+      path: '/sermons',
+      name: 'sermons',
+      component: () => import('../views/SermonsView.vue')
     },
     {
       path: '/blog',
@@ -49,7 +49,14 @@ const router = createRouter({
       name: 'checkout',
       component: () => import('../views/CheckoutView.vue')
     }
-  ]
+  ],
+  scrollBehavior(_to, _from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { top: 0 }
+    }
+  }
 })
 
 export default router
