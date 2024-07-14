@@ -73,7 +73,6 @@ const isTop = computed(() => {
       </CollapsibleContent>
     </Collapsible>
   </div>
-  <!-- TODO fix nav starting with padding on route change -->
   <div
     v-if="width > 1200"
     ref="navEl"
@@ -88,7 +87,7 @@ const isTop = computed(() => {
       </MenuItem>
       <div
         v-if="!isTop"
-        class="ml-4 flex -skew-x-[20deg] cursor-pointer items-center gap-1 bg-main px-8 py-4 text-white transition-colors hover:bg-[#da5455]"
+        class="ml-4 flex -skew-x-[20deg] cursor-pointer items-center gap-1 bg-main px-8 py-4 text-white transition-colors hover:bg-[#d95454]"
       >
         <b class="scale-y-110">DONATE NOW</b>
         <IconHeart height="16" class="scale-y-110 fill-white" />
