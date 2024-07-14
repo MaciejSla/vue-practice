@@ -42,7 +42,9 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
       class="flex w-full max-w-[30rem] flex-col items-center justify-center gap-6 md:max-w-[45rem] lg:max-w-[60rem]"
     >
       <div class="flex w-full justify-between border p-3">
-        <span> Showing {{ skip + 1 }} - {{ (skip + 1) * limit }} of {{ data.total }} Results </span>
+        <span>
+          Showing {{ skip + 1 }} - {{ (skip + 1) * limit }} of {{ data?.total }} Results
+        </span>
         <div class="flex items-center gap-2">
           <button @click="listView = false">
             <IconTable
