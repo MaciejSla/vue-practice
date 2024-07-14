@@ -3,7 +3,6 @@ import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
 import GalleryPage from '@/components/pages/GalleryPage.vue'
 import CustomButton from '@/components/ui/CustomButton.vue'
 import { RouterLink } from 'vue-router'
-import { scrollToTop } from '@/lib/utils'
 </script>
 
 <template>
