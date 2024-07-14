@@ -132,6 +132,9 @@ export default {
       },
       fontSize: {
         'adaptive-xl': 'calc(1.35rem + 1.2vw)'
+      },
+      boxShadow: {
+        border: '0px 0px 20px 0px rgba(136, 136, 136, 0.1)'
       }
     }
   },
