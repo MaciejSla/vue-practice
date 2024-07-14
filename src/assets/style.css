@@ -11,6 +11,7 @@
 @layer base {
   :root {
     --main: 42 85% 63%;
+    --main-hover: 360 64% 59%;
 
     --background: 0 0% 100%;
     --foreground: 224 71.4% 4.1%;
@@ -81,6 +82,7 @@
 
   .dark {
     --main: 42 85% 63%;
+    --main-hover: 360 64% 59%;
 
     --background: 224 71.4% 4.1%;
     --foreground: 210 20% 98%;

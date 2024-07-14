@@ -20,7 +20,7 @@ const props = defineProps<{
     </div>
     <div
       ref="el"
-      :class="`absolute left-0 top-0 z-0 h-full w-full origin-bottom scale-y-0 bg-[#da5455] transition-all duration-300 ease-in-out group-hover:scale-y-100`"
+      :class="`absolute left-0 top-0 z-0 h-full w-full origin-bottom scale-y-0 bg-main-hover transition-all duration-300 ease-in-out group-hover:scale-y-100`"
     ></div>
   </button>
 </template>
