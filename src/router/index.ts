@@ -1,53 +1,82 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+const mainTitle = 'Vue Practice'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        title: `${mainTitle} | Home`
+      }
     },
     {
       path: '/events',
       name: 'events',
-      component: () => import('../views/EventsView.vue')
+      component: () => import('../views/EventsView.vue'),
+      meta: {
+        title: `${mainTitle} | Events`
+      }
     },
     {
       path: '/causes',
       name: 'causes',
-      component: () => import('../views/CausesView.vue')
+      component: () => import('../views/CausesView.vue'),
+      meta: {
+        title: `${mainTitle} | Causes`
+      }
     },
     {
       path: '/gallery',
       name: 'gallery',
-      component: () => import('../views/GalleryView.vue')
+      component: () => import('../views/GalleryView.vue'),
+      meta: {
+        title: `${mainTitle} | Gallery`
+      }
     },
     {
       path: '/sermons',
       name: 'sermons',
-      component: () => import('../views/SermonsView.vue')
+      component: () => import('../views/SermonsView.vue'),
+      meta: {
+        title: `${mainTitle} | Sermons`
+      }
     },
     {
       path: '/blog',
       name: 'blog',
-      component: () => import('../views/BlogView.vue')
+      component: () => import('../views/BlogView.vue'),
+      meta: {
+        title: `${mainTitle} | Blog`
+      }
     },
     {
       path: '/shop',
       name: 'shop',
-      component: () => import('../views/ShopView.vue')
+      component: () => import('../views/ShopView.vue'),
+      meta: {
+        title: `${mainTitle} | Shop`
+      }
     },
     {
       path: '/contact',
       name: 'contact',
-      component: () => import('../views/ContactView.vue')
+      component: () => import('../views/ContactView.vue'),
+      meta: {
+        title: `${mainTitle} | Contact`
+      }
     },
     {
       path: '/checkout',
       name: 'checkout',
-      component: () => import('../views/CheckoutView.vue')
+      component: () => import('../views/CheckoutView.vue'),
+      meta: {
+        title: `${mainTitle} | Checkout`
+      }
     }
   ],
   scrollBehavior(_to, _from, savedPosition) {
@@ -58,5 +87,18 @@ const router = createRouter({
     }
   }
 })
+
+router.beforeEach((to, _from, next) => {
+  document.title = to.meta.title || mainTitle
+  next()
+})
+
+import 'vue-router'
+
+declare module 'vue-router' {
+  interface RouteMeta {
+    title?: string
+  }
+}
 
 export default router
