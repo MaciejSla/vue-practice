@@ -54,11 +54,11 @@ const sermons = [
         tortor eget felis porttitor volutpat.
       </p>
     </div>
-    <div class="grid grid-cols-1 gap-8 p-10 lg:grid-cols-2">
+    <div class="grid grid-cols-1 gap-8 p-3 xs:p-10 lg:grid-cols-2">
       <div
         v-for="sermon in sermons"
         :key="sermon.title"
-        class="group flex flex-col items-center gap-6 rounded border p-6 xs:flex-row lg:w-[35rem]"
+        class="group flex flex-col items-center gap-6 rounded border p-6 sm:flex-row lg:w-[28rem] xl:w-[36rem]"
       >
         <div class="size-40 shrink-0 overflow-hidden rounded-full">
           <img

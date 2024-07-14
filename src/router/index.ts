@@ -25,9 +25,9 @@ const router = createRouter({
       component: () => import('../views/GalleryView.vue')
     },
     {
-      path: '/sermons',
-      name: 'sermons',
-      component: () => import('../views/SermonsView.vue')
+      path: '/sermon',
+      name: 'sermon',
+      component: () => import('../views/SermonView.vue')
     },
     {
       path: '/blog',
