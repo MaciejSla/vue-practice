@@ -2,7 +2,7 @@
 import { IconHeart, IconInfo, IconMenu, IconArrow } from '@/components/icons'
 import AppLink from '@/components/navigation/AppLink.vue'
 import MenuItem from '@/components/navigation/MenuItem.vue'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { scrollToTop } from '@/lib/utils'
 import TopHeader from '@/components/navigation/TopHeader.vue'
 import { Collapsible, CollapsibleContent } from '@/components/ui/collapsible'
@@ -18,26 +18,42 @@ const navbarRoutes = router.options.routes.filter(
   (route) => !excludedRoutes.includes(route.name?.toString()!)
 )
 
+watch(router.currentRoute, () => {
+  info.value = false
+  dropdown.value = false
+})
+
 const navEl = ref()
 const { width } = useWindowSize()
-const { top } = useElementBounding(navEl)
-const info = ref(false)
-const dropdown = ref(false)
+const isLarge = computed(() => {
+  return width.value > 1200
+})
 
+const info = ref(false)
+const toggleInfo = () => {
+  info.value = !info.value
+}
+
+const dropdown = ref(false)
+const toggleDropdown = () => {
+  dropdown.value = !dropdown.value
+}
+
+const { top } = useElementBounding(navEl)
 const isTop = computed(() => {
   return top.value <= 0
 })
 </script>
 
 <template>
-  <Collapsible v-if="width <= 1200" v-model:open="info">
+  <Collapsible v-if="!isLarge" v-model:open="info">
     <CollapsibleContent>
       <TopHeader />
     </CollapsibleContent>
   </Collapsible>
   <TopHeader v-else />
 
-  <div v-if="width <= 1200" ref="navEl" class="flex flex-col items-center bg-main">
+  <div v-if="!isLarge" ref="navEl" class="flex flex-col items-center bg-main">
     <div class="flex w-full flex-wrap items-center justify-between gap-4 px-5 py-4 xs:px-20">
       <AppLink to="/" @click="scrollToTop">
         <img :src="logo2" />
@@ -45,14 +61,11 @@ const isTop = computed(() => {
       <div class="flex items-center gap-4">
         <button
           class="cursor-pointer rounded border border-black/15 px-4 py-2"
-          @click="dropdown = !dropdown"
+          @click="toggleDropdown"
         >
           <IconMenu class="size-5 fill-black/70" />
         </button>
-        <button
-          class="cursor-pointer rounded border border-black/15 px-4 py-2"
-          @click="info = !info"
-        >
+        <button class="cursor-pointer rounded border border-black/15 px-4 py-2" @click="toggleInfo">
           <IconInfo class="size-5 fill-black/70" />
         </button>
       </div>
@@ -74,7 +87,7 @@ const isTop = computed(() => {
     </Collapsible>
   </div>
   <div
-    v-if="width > 1200"
+    v-if="isLarge"
     ref="navEl"
     :class="`sticky top-0 z-10 bg-black transition-all duration-500 ${isTop ? 'p-4' : ''}`"
   >
@@ -96,7 +109,7 @@ const isTop = computed(() => {
   </div>
   <Transition name="slide">
     <div
-      v-if="(isTop && width > 1200) || (width <= 1200 && top < -100)"
+      v-if="(isTop && isLarge) || (!isLarge && top < -100)"
       class="fixed bottom-[3%] right-[5%] z-50 flex cursor-pointer items-center justify-center text-6xl text-white"
       @click="scrollToTop"
     >
