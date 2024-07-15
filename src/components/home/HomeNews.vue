@@ -100,7 +100,7 @@ const totalCount = computed(() => products?.value?.products.length)
     </div>
     <div class="grid max-w-[50rem] grid-cols-1 gap-6 p-10 lg:max-w-[76rem] lg:grid-cols-3">
       <div class="col-span-1 rounded border p-6 lg:col-span-2">
-        <ScrollArea class="h-[35rem] p-2" type="always">
+        <ScrollArea class="h-[39.5rem] p-2" type="hover">
           <div class="flex flex-col gap-6">
             <div
               v-for="newsItem in news"
