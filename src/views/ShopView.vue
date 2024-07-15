@@ -42,6 +42,8 @@ const url = ref(
 const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
 </script>
 
+<!-- TODO figure out layout change animation -->
+
 <template>
   <div class="flex items-center justify-center p-4 md:p-10">
     <div
@@ -101,6 +103,45 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
               >
               <span class="font-serif text-xl text-black/60 line-through">${{ item.price }}</span>
             </div>
+          </div>
+        </div>
+      </div>
+      <div v-else class="flex flex-col gap-6">
+        <div
+          v-for="item in data?.products"
+          :key="item.id"
+          class="group flex w-full flex-col items-center justify-center gap-3 border p-3 md:flex-row"
+        >
+          <div class="relative w-full shrink-0 overflow-hidden md:w-auto">
+            <img :src="item.thumbnail" :alt="item.title" class="h-full w-full object-cover" />
+            <div
+              class="absolute bottom-0 left-0 right-0 h-full scale-0 bg-main/80 transition-all duration-300 group-hover:scale-100"
+            />
+            <div
+              class="absolute bottom-0 left-0 right-0 flex h-full translate-y-full items-center justify-center gap-3 transition-all duration-300 group-hover:translate-y-0"
+            >
+              <div class="flex size-9 items-center justify-center rounded-full bg-white">
+                <EyeIcon class="size-4" />
+              </div>
+              <div class="flex size-9 items-center justify-center rounded-full bg-white">
+                <HeartIcon class="size-4" />
+              </div>
+              <div class="flex size-9 items-center justify-center rounded-full bg-white">
+                <ShoppingCartIcon class="size-4" />
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="font-serif text-2xl transition-colors duration-300 group-hover:text-main">
+              {{ item.title }}
+            </h3>
+            <div class="flex items-center gap-2">
+              <span class="font-serif text-xl">
+                ${{ getDiscountedPrice(item.price, item.discountPercentage) }}
+              </span>
+              <span class="font-serif text-xl text-black/60 line-through"> ${{ item.price }} </span>
+            </div>
+            <p class="line-clamp-4 font-serif text-black/60">{{ item.description }}</p>
           </div>
         </div>
       </div>
