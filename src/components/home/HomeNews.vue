@@ -6,20 +6,15 @@ import blog1 from '@/assets/images/blog/01.jpg'
 import blog2 from '@/assets/images/blog/02.jpg'
 import blog3 from '@/assets/images/blog/03.jpg'
 import blog4 from '@/assets/images/blog/04.jpg'
-import slider1 from '@/assets/images/blog/slider/01.jpg'
-import slider2 from '@/assets/images/blog/slider/02.jpg'
-import slider3 from '@/assets/images/blog/slider/03.jpg'
-import { useDateFormat } from '@vueuse/core'
 import { CalendarIcon, UserIcon, MessagesSquareIcon, ShoppingCartIcon } from 'lucide-vue-next'
 import { type CarouselApi, Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
 import { scrollToTop } from '@/lib/utils'
 import StarRating from '@/components/ui/StarRating.vue'
-import { ref } from 'vue'
-import { watchOnce } from '@vueuse/core'
+import { computed, ref } from 'vue'
+import { watchOnce, useFetch, useDateFormat } from '@vueuse/core'
 import Autoplay from 'embla-carousel-autoplay'
 
 const api = ref<CarouselApi>()
-const totalCount = ref<number>(0)
 const current = ref<number>(0)
 
 function setApi(val: CarouselApi) {
@@ -29,7 +24,6 @@ function setApi(val: CarouselApi) {
 watchOnce(api, (api) => {
   if (!api) return
 
-  totalCount.value = api.scrollSnapList().length
   current.value = api.selectedScrollSnap() + 1
 
   api.on('select', () => {
@@ -82,26 +76,16 @@ const news = [
   }
 ]
 
-const products = [
-  {
-    name: 'Lorem Ipsum Dolor.',
-    image: slider1,
-    price: 100.0,
-    rating: 2.5
-  },
-  {
-    name: 'Lorem Ipsum Dolor.',
-    image: slider2,
-    price: 9.0,
-    rating: 3.5
-  },
-  {
-    name: 'Lorem Ipsum Dolor.',
-    image: slider3,
-    price: 21.37,
-    rating: 4.5
-  }
-]
+const { data: products } = useFetch(
+  'https://dummyjson.com/products?skip=54&limit=4&select=title,thumbnail,price,rating'
+)
+  .get()
+  .json<{
+    products: { id: number; title: string; thumbnail: string; price: number; rating: number }[]
+    total: number
+  }>()
+
+const totalCount = computed(() => products?.value?.products.length)
 </script>
 
 <template>
@@ -176,21 +160,23 @@ const products = [
           >
             <CarouselContent class="ml-0">
               <CarouselItem
-                v-for="(product, index) in products"
-                :key="index"
+                v-for="product in products?.products"
+                :key="product.id"
                 class="basis-1/1 w-full pl-0"
               >
                 <div class="flex flex-col bg-gray-200">
-                  <img
-                    :src="product.image"
-                    :alt="product.name"
-                    class="h-full w-full object-cover object-top"
-                  />
+                  <div class="p-3">
+                    <img
+                      :src="product.thumbnail"
+                      :alt="product.title"
+                      class="aspect-square h-full w-full bg-white object-fill object-top"
+                    />
+                  </div>
                   <div class="flex flex-col items-center justify-center gap-1 p-8">
-                    <h3 class="font-serif text-xl">{{ product.name }}</h3>
+                    <h3 class="line-clamp-1 font-serif text-xl">{{ product.title }}</h3>
                     <StarRating :rating="product.rating" class="size-4" />
                     <span class="font-serif text-[calc(1.4rem+0.3vw)] lg:text-2xl"
-                      >${{ product.price.toFixed(2) }}</span
+                      >${{ product?.price?.toFixed(2) }}</span
                     >
                     <CustomButton class="w-fit px-4 py-2 text-sm" @click="scrollToTop">
                       <span class="flex items-center gap-1">
