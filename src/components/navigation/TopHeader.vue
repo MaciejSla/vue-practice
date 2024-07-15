@@ -1,13 +1,6 @@
 <script setup lang="ts">
-import {
-  IconPhone,
-  IconEnvelope,
-  IconFacebook,
-  IconXTwitter,
-  IconLinkedin,
-  IconPinterest,
-  IconSearch,
-} from '@/components/icons'
+import { IconPhone, IconEnvelope, IconSearch } from '@/components/icons'
+import { FacebookIcon, XIcon, LinkedInIcon, PinterestIcon } from 'vue3-simple-icons'
 import AppLink from '@/components/navigation/AppLink.vue'
 import CartSlider from '@/components/navigation/CartSlider.vue'
 </script>
@@ -37,16 +30,16 @@ import CartSlider from '@/components/navigation/CartSlider.vue'
     <div class="flex items-center gap-6 fill-gray-500">
       <span class="flex gap-2">
         <AppLink to="/">
-          <IconFacebook class="brand-icon size-4" />
+          <FacebookIcon class="brand-icon size-4" />
         </AppLink>
         <AppLink to="/">
-          <IconXTwitter class="brand-icon size-4" />
+          <XIcon class="brand-icon size-4" />
         </AppLink>
         <AppLink to="/">
-          <IconLinkedin class="brand-icon size-4" />
+          <LinkedInIcon class="brand-icon size-4" />
         </AppLink>
         <AppLink to="/">
-          <IconPinterest class="brand-icon size-4" />
+          <PinterestIcon class="brand-icon size-4" />
         </AppLink>
       </span>
       <div class="h-6 border-l" />

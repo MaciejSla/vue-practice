@@ -1,12 +1,6 @@
 <script setup lang="ts">
-import {
-  IconFacebook,
-  IconXTwitter,
-  IconLinkedin,
-  IconBriefcase,
-  IconBinoculars,
-  IconRocket
-} from '@/components/icons'
+import { IconBriefcase, IconBinoculars, IconRocket } from '@/components/icons'
+import { FacebookIcon, XIcon, LinkedInIcon } from 'vue3-simple-icons'
 import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
 import HoverGroup from '@/components/ui/HoverGroup.vue'
 </script>
@@ -24,9 +18,9 @@ import HoverGroup from '@/components/ui/HoverGroup.vue'
         Objectively enable unique.
       </p>
       <div class="flex gap-2">
-        <IconFacebook class="brand-icon size-4" />
-        <IconXTwitter class="brand-icon size-4" />
-        <IconLinkedin class="brand-icon size-4" />
+        <FacebookIcon class="brand-icon size-4" />
+        <XIcon class="brand-icon size-4" />
+        <LinkedInIcon class="brand-icon size-4" />
       </div>
     </div>
     <div class="flex flex-col items-start gap-10 xs:px-10 lg:border-l">

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IconFacebook, IconXTwitter, IconLinkedin, IconInstagram } from '@/components/icons'
+import { FacebookIcon, XIcon, LinkedInIcon, InstagramIcon } from 'vue3-simple-icons'
 import BrandIcon from './BrandIcon.vue'
 </script>
 
@@ -11,35 +11,31 @@ import BrandIcon from './BrandIcon.vue'
       icon-class="group-hover:fill-[#3b5998]"
       text-class="group-hover:text-[#3b5998]"
       to="https://www.facebook.com"
-    >
-      <IconFacebook class="size-4" />
-    </BrandIcon>
+      :icon="FacebookIcon"
+    />
     <BrandIcon
       text="X (Twitter)"
       border-class="group-hover:border-[#000000]"
       icon-class="group-hover:fill-[#000000]"
       text-class="group-hover:text-[#000000]"
       to="https://x.com"
-    >
-      <IconXTwitter class="size-3" />
-    </BrandIcon>
+      :icon="XIcon"
+    />
     <BrandIcon
       text="Linkedin"
       border-class="group-hover:border-[#007bb5]"
       icon-class="group-hover:fill-[#007bb5]"
       text-class="group-hover:text-[#007bb5]"
       to="https://www.linkedin.com"
-    >
-      <IconLinkedin class="size-4" />
-    </BrandIcon>
+      :icon="LinkedInIcon"
+    />
     <BrandIcon
       text="Instagram"
       border-class="group-hover:border-[#e4405f]"
       icon-class="group-hover:fill-[#e4405f]"
       text-class="group-hover:text-[#e4405f]"
       to="https://www.instagram.com"
-    >
-      <IconInstagram class="size-4" />
-    </BrandIcon>
+      :icon="InstagramIcon"
+    />
   </div>
 </template>

@@ -2,20 +2,25 @@
 import { type RouteLocationAsPathGeneric, type RouteLocationAsRelativeGeneric } from 'vue-router'
 import AppLink from '@/components/navigation/AppLink.vue'
 import { cn } from '@/lib/utils'
+import { VueDotjsIcon } from 'vue3-simple-icons'
+import type { Component } from 'vue'
+
 const props = withDefaults(
   defineProps<{
     borderClass?: string
     iconClass?: string
     textClass?: string
     text?: string
-    to: string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric
+    to?: string | RouteLocationAsRelativeGeneric | RouteLocationAsPathGeneric
+    icon?: Component
   }>(),
   {
     borderClass: 'group-hover:border-main',
     iconClass: 'group-hover:fill-main',
     textClass: 'group-hover:text-main',
     text: '',
-    to: '#'
+    to: '#',
+    icon: VueDotjsIcon
   }
 )
 </script>
@@ -30,9 +35,10 @@ const props = withDefaults(
         )
       "
     >
-      <div :class="cn('fill-gray-500 transition-colors duration-1000', props.iconClass)">
-        <slot />
-      </div>
+      <component
+        :is="props.icon"
+        :class="cn('size-4 fill-gray-500 transition-colors duration-1000', props.iconClass)"
+      />
     </div>
     <span :class="cn('text-gray-500 transition-colors duration-300', props.textClass)">
       {{ props.text }}
