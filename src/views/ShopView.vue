@@ -18,8 +18,8 @@ import {
 
 // Functional
 import { useRouteQuery } from '@vueuse/router'
-import { useFetch } from '@vueuse/core'
-import { ref, computed } from 'vue'
+import { useFetch, useElementVisibility } from '@vueuse/core'
+import { ref, computed, watch } from 'vue'
 
 const currentProduct = ref<ProductPreview | null>(null)
 const showProduct = ref(false)
@@ -34,6 +34,17 @@ const listView = ref(false)
 const limit = ref(12)
 const currentPage = useRouteQuery('p', 1, { transform: Number })
 const skip = computed(() => (currentPage.value - 1) * limit.value)
+
+const target = ref<HTMLElement | null>(null)
+const isVisible = useElementVisibility(target)
+
+watch(currentPage, () => {
+  if (!isVisible.value) {
+    window.scrollTo({
+      top: 0
+    })
+  }
+})
 
 const url = computed(
   () =>
@@ -71,6 +82,7 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
         </div>
       </div>
       <ShopPagination
+        ref="target"
         v-model:page="currentPage"
         :total="data?.total"
         :sibling-count="1"
