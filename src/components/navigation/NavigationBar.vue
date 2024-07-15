@@ -39,9 +39,12 @@ const toggleDropdown = () => {
   dropdown.value = !dropdown.value
 }
 
-const { top } = useElementBounding(navEl)
+const { top, bottom } = useElementBounding(navEl)
 const isTop = computed(() => {
   return top.value <= 0
+})
+const isBottom = computed(() => {
+  return bottom.value <= 0
 })
 </script>
 
@@ -86,20 +89,12 @@ const isTop = computed(() => {
       </CollapsibleContent>
     </Collapsible>
   </div>
-  <div
-    v-if="isLarge"
-    ref="navEl"
-    :class="`sticky top-0 z-10 bg-black transition-all duration-500 ${isTop ? 'p-4' : ''}`"
-  >
+  <div v-if="isLarge" ref="navEl" class="bg-black">
     <div class="flex justify-center gap-8 transition-all">
-      <AppLink v-if="isTop" to="/" @click="scrollToTop">
-        <img :src="logo" class="mr-32" />
-      </AppLink>
       <MenuItem :to="route.path" v-for="route in navbarRoutes" :key="route.name" class="capitalize">
         {{ route.name == 'contact' ? 'Contact Us' : route.name }}
       </MenuItem>
       <div
-        v-if="!isTop"
         class="ml-4 flex -skew-x-[20deg] cursor-pointer items-center gap-1 bg-main px-8 py-4 text-white transition-colors duration-300 hover:bg-main-hover"
       >
         <b class="scale-y-110">DONATE NOW</b>
@@ -107,6 +102,23 @@ const isTop = computed(() => {
       </div>
     </div>
   </div>
+  <Transition name="slide-down">
+    <div v-if="isBottom" class="fixed top-0 z-10 w-full bg-black p-4">
+      <div class="flex justify-center gap-8 transition-all">
+        <AppLink to="/" @click="scrollToTop">
+          <img :src="logo" class="mr-32" />
+        </AppLink>
+        <MenuItem
+          :to="route.path"
+          v-for="route in navbarRoutes"
+          :key="route.name"
+          class="capitalize"
+        >
+          {{ route.name == 'contact' ? 'Contact Us' : route.name }}
+        </MenuItem>
+      </div>
+    </div>
+  </Transition>
   <Transition name="slide">
     <div
       v-if="(isTop && isLarge) || (!isLarge && top < -100)"
@@ -132,5 +144,19 @@ const isTop = computed(() => {
 .slide-enter-from,
 .slide-leave-to {
   transform: translateY(200%);
+}
+
+.slide-down-enter-active {
+  transition: all 1s ease-out;
+}
+
+.slide-down-leave-active {
+  transition: all 0.2s ease-in;
+}
+
+.slide-down-enter-from,
+.slide-down-leave-to {
+  opacity: 0;
+  transform: translateY(-200%);
 }
 </style>
