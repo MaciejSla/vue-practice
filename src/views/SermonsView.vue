@@ -3,5 +3,7 @@ import SermonsPage from '@/components/pages/SermonsPage.vue'
 </script>
 
 <template>
-  <SermonsPage />
+  <div class="flex items-center justify-center">
+    <SermonsPage />
+  </div>
 </template>
