@@ -17,10 +17,9 @@ import {
 } from '@/components/shop'
 
 // Functional
-import { useElementVisibility } from '@vueuse/core'
 import { useRouteQuery } from '@vueuse/router'
 import { useFetch } from '@vueuse/core'
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 
 const currentProduct = ref<ProductPreview | null>(null)
 const showProduct = ref(false)
@@ -32,22 +31,9 @@ const selectProduct = (product: ProductPreview) => {
 
 const listView = ref(false)
 
-const target = ref<HTMLElement | null>(null)
-const isVisible = useElementVisibility(target)
-
 const limit = ref(12)
 const currentPage = useRouteQuery('p', 1, { transform: Number })
 const skip = computed(() => (currentPage.value - 1) * limit.value)
-
-watch(currentPage, () => {
-  if (!isVisible.value) {
-    setTimeout(() => {
-      window.scrollTo({
-        top: 0
-      })
-    }, 100)
-  }
-})
 
 const url = computed(
   () =>
