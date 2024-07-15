@@ -6,8 +6,22 @@ import {
   LayoutListIcon,
   HeartIcon,
   ShoppingCartIcon,
-  EyeIcon
+  EyeIcon,
+  XIcon
 } from 'lucide-vue-next'
+import {
+  Pagination,
+  PaginationEllipsis,
+  PaginationFirst,
+  PaginationLast,
+  PaginationList,
+  PaginationListItem,
+  PaginationNext,
+  PaginationPrev
+} from '@/components/ui/pagination'
+import { UseImage } from '@vueuse/components'
+
+import { Button } from '@/components/ui/button'
 
 type ProductPreview = {
   id: number
@@ -28,15 +42,16 @@ type ResponseType = {
 const listView = ref(false)
 
 const limit = ref(12)
-const page = ref(1)
-const skip = computed(() => (page.value - 1) * limit.value)
+const currentPage = ref(1)
+const skip = computed(() => (currentPage.value - 1) * limit.value)
 
 const getDiscountedPrice = (price: number, discountPercentage: number) => {
   return ((price * (100 - discountPercentage)) / 100).toFixed(2)
 }
 
-const url = ref(
-  `https://dummyjson.com/products?limit=${limit.value}&skip=${skip.value}&select=title,price,discountPercentage,thumbnail,description`
+const url = computed(
+  () =>
+    `https://dummyjson.com/products?limit=${limit.value}&skip=${skip.value}&select=title,price,discountPercentage,thumbnail,description`
 )
 
 const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
@@ -51,7 +66,9 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
     >
       <div class="flex w-full justify-between border p-3">
         <span>
-          Showing {{ skip + 1 }} - {{ (skip + 1) * limit }} of {{ data?.total }} Results
+          Showing {{ skip + 1 }} -
+          {{ limit * currentPage > data?.total! ? data?.total : limit * currentPage }} of
+          {{ data?.total }} Results
         </span>
         <div class="flex items-center gap-2">
           <button @click="listView = false">
@@ -66,14 +83,56 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
           </button>
         </div>
       </div>
+      <Pagination
+        v-model:page="currentPage"
+        v-slot="{ page }"
+        :total="data?.total"
+        :sibling-count="1"
+        show-edges
+        :items-per-page="limit"
+      >
+        <PaginationList v-slot="{ items }" class="flex items-center gap-1">
+          <PaginationFirst />
+          <PaginationPrev />
+
+          <template v-for="(item, index) in items">
+            <PaginationListItem
+              v-if="item.type === 'page'"
+              :key="index"
+              :value="item.value"
+              as-child
+            >
+              <Button class="h-10 w-10 p-0" :variant="item.value === page ? 'default' : 'outline'">
+                {{ item.value }}
+              </Button>
+            </PaginationListItem>
+            <PaginationEllipsis v-else :key="item.type" :index="index" />
+          </template>
+
+          <PaginationNext />
+          <PaginationLast />
+        </PaginationList>
+      </Pagination>
       <div v-if="!listView" class="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         <div
           v-for="item in data?.products"
           :key="item.id"
           class="group flex w-full flex-col items-center justify-center gap-3 border p-3"
         >
-          <div class="relative w-full overflow-hidden md:h-auto">
-            <img :src="item.thumbnail" :alt="item.title" />
+          <div class="relative aspect-square size-full overflow-hidden">
+            <UseImage :src="item.thumbnail" :alt="item.title" class="h-full w-full object-cover">
+              <template #loading>
+                <div class="size-96 bg-white"></div>
+              </template>
+              <template #error>
+                <div
+                  class="flex size-full flex-col items-center justify-center bg-destructive text-destructive-foreground"
+                >
+                  <XIcon class="size-12" />
+                  Failed to load image
+                </div>
+              </template>
+            </UseImage>
             <div
               class="absolute bottom-0 left-0 right-0 h-full scale-0 bg-main/80 transition-all duration-300 group-hover:scale-100"
             />
@@ -112,8 +171,22 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
           :key="item.id"
           class="group flex w-full flex-col items-center justify-center gap-3 border p-3 md:flex-row"
         >
-          <div class="relative w-full shrink-0 overflow-hidden md:w-auto">
-            <img :src="item.thumbnail" :alt="item.title" class="h-full w-full object-cover" />
+          <div
+            class="relative aspect-square size-full overflow-hidden xs:max-w-[30rem] md:max-w-[14rem] lg:max-w-[20rem]"
+          >
+            <UseImage :src="item.thumbnail" :alt="item.title" class="h-full w-full object-cover">
+              <template #loading>
+                <div class="size-96 bg-white"></div>
+              </template>
+              <template #error>
+                <div
+                  class="flex size-full flex-col items-center justify-center bg-destructive text-destructive-foreground"
+                >
+                  <XIcon class="size-12" />
+                  Failed to load image
+                </div>
+              </template>
+            </UseImage>
             <div
               class="absolute bottom-0 left-0 right-0 h-full scale-0 bg-main/80 transition-all duration-300 group-hover:scale-100"
             />
@@ -145,6 +218,36 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
           </div>
         </div>
       </div>
+      <Pagination
+        v-model:page="currentPage"
+        v-slot="{ page }"
+        :total="data?.total"
+        :sibling-count="1"
+        show-edges
+        :items-per-page="limit"
+      >
+        <PaginationList v-slot="{ items }" class="flex items-center gap-1">
+          <PaginationFirst />
+          <PaginationPrev />
+
+          <template v-for="(item, index) in items">
+            <PaginationListItem
+              v-if="item.type === 'page'"
+              :key="index"
+              :value="item.value"
+              as-child
+            >
+              <Button class="h-10 w-10 p-0" :variant="item.value === page ? 'default' : 'outline'">
+                {{ item.value }}
+              </Button>
+            </PaginationListItem>
+            <PaginationEllipsis v-else :key="item.type" :index="index" />
+          </template>
+
+          <PaginationNext />
+          <PaginationLast />
+        </PaginationList>
+      </Pagination>
     </div>
   </div>
 </template>
