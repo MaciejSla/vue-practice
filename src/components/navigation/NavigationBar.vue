@@ -103,7 +103,7 @@ const isBottom = computed(() => {
     </div>
   </div>
   <Transition name="slide-down">
-    <div v-if="isBottom" class="fixed top-0 z-10 w-full bg-black p-4">
+    <div v-if="isBottom && isLarge" class="fixed top-0 z-10 w-full bg-black p-4">
       <div class="flex justify-center gap-8 transition-all">
         <AppLink to="/" @click="scrollToTop">
           <img :src="logo" class="mr-32" />
