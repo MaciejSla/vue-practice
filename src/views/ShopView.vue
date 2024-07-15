@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useFetch } from '@vueuse/core'
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import {
   LayoutGridIcon,
   LayoutListIcon,
@@ -19,7 +19,10 @@ import {
   PaginationNext,
   PaginationPrev
 } from '@/components/ui/pagination'
+import AppLink from '@/components/navigation/AppLink.vue'
 import { UseImage } from '@vueuse/components'
+import { useElementVisibility } from '@vueuse/core'
+import { useRouteQuery } from '@vueuse/router'
 
 import { Button } from '@/components/ui/button'
 
@@ -42,8 +45,21 @@ type ResponseType = {
 const listView = ref(false)
 
 const limit = ref(12)
-const currentPage = ref(1)
+const currentPage = useRouteQuery('p', 1, { transform: Number })
 const skip = computed(() => (currentPage.value - 1) * limit.value)
+
+const target = ref<HTMLElement | null>(null)
+const isVisible = useElementVisibility(target)
+
+watch(currentPage, () => {
+  if (!isVisible.value) {
+    setTimeout(() => {
+      window.scrollTo({
+        top: 0
+      })
+    }, 100)
+  }
+})
 
 const getDiscountedPrice = (price: number, discountPercentage: number) => {
   return ((price * (100 - discountPercentage)) / 100).toFixed(2)
@@ -73,17 +89,18 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
         <div class="flex items-center gap-2">
           <button @click="listView = false">
             <LayoutGridIcon
-              :class="`size-6 transition-colors duration-300 hover:stroke-main ${!listView ? 'stroke-main' : ''}`"
+              :class="`size-6 transition-colors duration-300 hover:stroke-main ${!listView ? 'stroke-main' : 'stroke-gray-500'}`"
             />
           </button>
           <button @click="listView = true">
             <LayoutListIcon
-              :class="`size-6 transition-colors duration-300 hover:stroke-main ${listView ? 'stroke-main' : ''}`"
+              :class="`size-6 transition-colors duration-300 hover:stroke-main ${listView ? 'stroke-main' : 'stroke-gray-500'}`"
             />
           </button>
         </div>
       </div>
       <Pagination
+        ref="target"
         v-model:page="currentPage"
         v-slot="{ page }"
         :total="data?.total"
@@ -102,9 +119,14 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
               :value="item.value"
               as-child
             >
-              <Button class="h-10 w-10 p-0" :variant="item.value === page ? 'default' : 'outline'">
-                {{ item.value }}
-              </Button>
+              <AppLink :to="`/shop?p=${item.value}`">
+                <Button
+                  class="h-10 w-10 p-0"
+                  :variant="item.value === page ? 'default' : 'outline'"
+                >
+                  {{ item.value }}
+                </Button>
+              </AppLink>
             </PaginationListItem>
             <PaginationEllipsis v-else :key="item.type" :index="index" />
           </template>
@@ -237,9 +259,14 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
               :value="item.value"
               as-child
             >
-              <Button class="h-10 w-10 p-0" :variant="item.value === page ? 'default' : 'outline'">
-                {{ item.value }}
-              </Button>
+              <AppLink :to="`/shop?p=${item.value}`">
+                <Button
+                  class="h-10 w-10 p-0"
+                  :variant="item.value === page ? 'default' : 'outline'"
+                >
+                  {{ item.value }}
+                </Button>
+              </AppLink>
             </PaginationListItem>
             <PaginationEllipsis v-else :key="item.type" :index="index" />
           </template>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView, useRoute } from 'vue-router'
 import NavigationBar from '@/components/navigation/NavigationBar.vue'
-import { onMounted, ref, watch } from 'vue'
+import { onMounted, ref, watch, computed } from 'vue'
 import LoadingScreen from '@/components/LoadingScreen.vue'
 import Toaster from '@/components/ui/toast/Toaster.vue'
 import PageFooter from '@/components/navigation/footer/PageFooter.vue'
@@ -10,8 +10,10 @@ import AppLink from '@/components/navigation/AppLink.vue'
 const isLoading = ref(true)
 const route = useRoute()
 
+const routeName = computed(() => route.name)
+
 // mock loading on route change
-watch(route, () => {
+watch(routeName, () => {
   isLoading.value = true
   setTimeout(() => {
     isLoading.value = false
