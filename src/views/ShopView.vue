@@ -18,8 +18,11 @@ import {
 
 // Functional
 import { useRouteQuery } from '@vueuse/router'
-import { useFetch, useElementVisibility } from '@vueuse/core'
+import { useFetch, useElementVisibility, useWindowSize } from '@vueuse/core'
 import { ref, computed, watch } from 'vue'
+
+const { width } = useWindowSize()
+const showEdges = computed(() => width.value >= 520)
 
 const currentProduct = ref<ProductPreview | null>(null)
 const showProduct = ref(false)
@@ -60,7 +63,7 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
 <template>
   <div class="flex items-center justify-center p-4 md:p-10">
     <div
-      class="flex w-full max-w-[30rem] flex-col items-center justify-center gap-6 md:max-w-[45rem] lg:max-w-[60rem]"
+      class="flex w-full max-w-[35rem] flex-col items-center justify-center gap-6 md:max-w-[45rem] lg:max-w-[60rem]"
     >
       <div class="flex w-full justify-between border p-3">
         <span>
@@ -86,10 +89,10 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
         v-model:page="currentPage"
         :total="data?.total"
         :sibling-count="1"
-        show-edges
+        :show-edges="showEdges"
         :items-per-page="limit"
       />
-      <div v-if="!listView" class="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div v-if="!listView" class="2xs:grid-cols-2 grid w-full grid-cols-1 gap-6 lg:grid-cols-3">
         <ShopListElement
           v-for="item in data?.products"
           :key="item.id"
@@ -111,7 +114,7 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
         v-model:page="currentPage"
         :total="data?.total"
         :sibling-count="1"
-        show-edges
+        :show-edges="showEdges"
         :items-per-page="limit"
       />
     </div>

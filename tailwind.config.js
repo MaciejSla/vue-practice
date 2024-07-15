@@ -125,7 +125,8 @@ export default {
         'slow-ping': 'ping 4s cubic-bezier(0, 0, 0.2, 1) infinite'
       },
       screens: {
-        xs: '520px'
+        xs: '520px',
+        '2xs': '410px'
       },
       transitionProperty: {
         width: 'width'
