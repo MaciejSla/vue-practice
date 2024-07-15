@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
 import CustomButton from '@/components/ui/CustomButton.vue'
-import { IconHeart } from '@/components/icons'
+import { HeartIcon } from 'lucide-vue-next'
 import { Progress } from '@/components/ui/progress'
 import { scrollToTop } from '@/lib/utils'
 import CausesElement from '@/components/home/CausesElement.vue'
@@ -43,7 +43,7 @@ const days = computed(() =>
       <Progress :model-value="percent" class="h-5 max-w-[43rem]" />
       <CustomButton @click="scrollToTop">
         <span class="flex items-center justify-center gap-2 font-sans">
-          DONATE <IconHeart class="size-4 fill-white" />
+          DONATE <HeartIcon class="size-5 fill-white" />
         </span>
       </CustomButton>
     </div>

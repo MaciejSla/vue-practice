@@ -5,7 +5,7 @@ import post1 from '@/assets/images/footer/post/01.jpg'
 import post2 from '@/assets/images/footer/post/02.jpg'
 import post3 from '@/assets/images/footer/post/03.jpg'
 import AppLink from '@/components/navigation/AppLink.vue'
-import { IconCalendar } from '@/components/icons'
+import { CalendarIcon } from 'lucide-vue-next'
 import { useDateFormat } from '@/lib/utils'
 
 const getDate = (date: string) => useDateFormat(date, 'DD MMMM, YYYY').value
@@ -131,7 +131,7 @@ const links = [
                 {{ post.title }}
               </h3>
               <p class="flex items-center gap-1 text-sm text-white/40">
-                <IconCalendar class="size-4 fill-white/40" />
+                <CalendarIcon class="size-4 stroke-[#6d6c6b]" />
                 {{ getDate(post.date) }}
               </p>
             </div>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
 import location1 from '@/assets/images/location/01.jpg'
-import { IconLocation, IconClock } from '@/components/icons'
+import { MapPinIcon, ClockIcon } from 'lucide-vue-next'
 </script>
 
 <template>
@@ -44,11 +44,11 @@ import { IconLocation, IconClock } from '@/components/icons'
       </div>
       <div class="flex flex-col gap-6">
         <div class="flex items-center gap-2">
-          <IconLocation class="size-4 fill-main" />
+          <MapPinIcon class="size-5 fill-main" />
           <span class="text-sm text-gray-500"> 47-143 Zimna Wódka, Poland </span>
         </div>
         <div class="flex items-start gap-2">
-          <IconClock class="size-4 fill-main" />
+          <ClockIcon class="size-5 fill-main" />
           <div class="flex flex-col items-start justify-start text-sm text-gray-500">
             <span>
               <b>Monday-Thursday:</b>

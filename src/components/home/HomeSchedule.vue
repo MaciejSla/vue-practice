@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
 import ScheduleCounter from '@/components/home/ScheduleCounter.vue'
-import { IconSunrise, IconSunset } from '@/components/icons'
+import { SunriseIcon, SunsetIcon } from 'lucide-vue-next'
 import { getSunrise, getSunset } from 'sunrise-sunset-js'
 import { useDateFormat } from '@/lib/utils'
 
@@ -62,7 +62,7 @@ const events = [
         </div>
         <div class="grid grid-cols-1 gap-8 xs:grid-cols-2">
           <div class="flex items-center justify-around gap-4 rounded border-2 border-main p-4">
-            <IconSunrise class="size-16 flex-shrink-0 stroke-[#ffcb08]" />
+            <SunriseIcon class="size-16 flex-shrink-0 stroke-[#ffcb08]" />
             <div class="flex flex-col">
               <h2 class="font-serif text-adaptive-xl text-main transition-transform xl:text-4xl">
                 Sunrise
@@ -71,7 +71,7 @@ const events = [
             </div>
           </div>
           <div class="flex items-center justify-around gap-4 rounded border-2 border-main p-4">
-            <IconSunset class="size-16 flex-shrink-0 stroke-[#f57002]" />
+            <SunsetIcon class="size-16 flex-shrink-0 stroke-[#f57002]" />
             <div class="flex flex-col">
               <h2 class="font-serif text-adaptive-xl text-main xl:text-4xl">Sunset</h2>
               <p class="text-[#f57002]">{{ sunset }}</p>

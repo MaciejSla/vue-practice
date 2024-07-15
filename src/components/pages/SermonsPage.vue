@@ -4,13 +4,13 @@ import sermon2 from '@/assets/images/sermon/02.jpg'
 import sermon3 from '@/assets/images/sermon/03.jpg'
 import sermon4 from '@/assets/images/sermon/04.jpg'
 import {
-  IconCalendar,
-  IconUser,
-  IconVideo,
-  IconHeadphones,
-  IconFile,
-  IconImage
-} from '@/components/icons'
+  CalendarIcon,
+  UserIcon,
+  VideoIcon,
+  HeadphonesIcon,
+  FileTextIcon,
+  ImageIcon
+} from 'lucide-vue-next'
 import { useDateFormat } from '@/lib/utils'
 
 const getDate = (date: string) => useDateFormat(date, 'DD MMM YYYY').value
@@ -65,19 +65,19 @@ const sermons = [
         </h2>
         <div class="flex items-center gap-4">
           <p class="flex items-center gap-2 text-gray-500">
-            <IconCalendar class="size-4 fill-gray-500" />
+            <CalendarIcon class="size-4 stroke-gray-500" />
             {{ getDate(sermon.date) }}
           </p>
           <p class="flex items-center gap-2 text-gray-500">
-            <IconUser class="size-4 fill-gray-500" />
+            <UserIcon class="size-4 stroke-gray-500" />
             {{ sermon.user }}
           </p>
         </div>
         <div class="flex items-center gap-2">
-          <IconVideo class="brand-icon size-4" />
-          <IconHeadphones class="brand-icon size-4" />
-          <IconFile class="brand-icon size-4" />
-          <IconImage class="brand-icon size-4" />
+          <VideoIcon class="hover-icon size-4" />
+          <HeadphonesIcon class="hover-icon size-4" />
+          <FileTextIcon class="hover-icon size-4" />
+          <ImageIcon class="hover-icon size-4" />
         </div>
       </div>
     </div>

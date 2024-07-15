@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IconPlus } from '@/components/icons'
+import { PlusIcon } from 'lucide-vue-next'
 import { images, tags } from '@/assets/images/gallery'
 import { ref, computed } from 'vue'
 import { useWindowSize } from '@vueuse/core'
@@ -75,7 +75,7 @@ const selectedTag = ref('All')
           <div
             class="pointer-events-auto flex cursor-pointer items-center justify-center rounded-full border p-2 transition-colors duration-300 hover:border-main hover:bg-main"
           >
-            <IconPlus class="size-5 stroke-white" stroke-width="4" />
+            <PlusIcon class="size-5 stroke-white stroke-[4]" />
           </div>
         </template>
       </GalleryImage>

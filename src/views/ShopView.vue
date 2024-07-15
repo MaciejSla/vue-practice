@@ -1,7 +1,13 @@
 <script setup lang="ts">
 import { useFetch } from '@vueuse/core'
 import { ref, computed } from 'vue'
-import { IconTable, IconList, IconHeart, IconCartPlus, IconEye } from '@/components/icons'
+import {
+  LayoutGridIcon,
+  LayoutListIcon,
+  HeartIcon,
+  ShoppingCartIcon,
+  EyeIcon
+} from 'lucide-vue-next'
 
 type ProductPreview = {
   id: number
@@ -47,13 +53,13 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
         </span>
         <div class="flex items-center gap-2">
           <button @click="listView = false">
-            <IconTable
-              :class="`size-5 transition-colors duration-300 hover:fill-main ${!listView ? 'fill-main' : ''}`"
+            <LayoutGridIcon
+              :class="`size-6 transition-colors duration-300 hover:stroke-main ${!listView ? 'stroke-main' : ''}`"
             />
           </button>
           <button @click="listView = true">
-            <IconList
-              :class="`size-5 transition-colors duration-300 hover:fill-main ${listView ? 'fill-main' : ''}`"
+            <LayoutListIcon
+              :class="`size-6 transition-colors duration-300 hover:stroke-main ${listView ? 'stroke-main' : ''}`"
             />
           </button>
         </div>
@@ -73,13 +79,13 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
               class="absolute bottom-0 left-0 right-0 flex h-full translate-y-full items-center justify-center gap-3 transition-all duration-300 group-hover:translate-y-0"
             >
               <div class="flex size-9 items-center justify-center rounded-full bg-white">
-                <IconEye class="size-4" />
+                <EyeIcon class="size-4" />
               </div>
               <div class="flex size-9 items-center justify-center rounded-full bg-white">
-                <IconHeart class="size-4" />
+                <HeartIcon class="size-4" />
               </div>
               <div class="flex size-9 items-center justify-center rounded-full bg-white">
-                <IconCartPlus class="size-4" />
+                <ShoppingCartIcon class="size-4" />
               </div>
             </div>
           </div>

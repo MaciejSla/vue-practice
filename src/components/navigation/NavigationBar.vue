@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IconHeart, IconInfo, IconMenu, IconArrow } from '@/components/icons'
+import { HeartIcon, InfoIcon, MenuIcon, ArrowUpIcon } from 'lucide-vue-next'
 import AppLink from '@/components/navigation/AppLink.vue'
 import MenuItem from '@/components/navigation/MenuItem.vue'
 import { ref, computed, watch } from 'vue'
@@ -63,10 +63,10 @@ const isTop = computed(() => {
           class="cursor-pointer rounded border border-black/15 px-4 py-2"
           @click="toggleDropdown"
         >
-          <IconMenu class="size-5 fill-black/70" />
+          <MenuIcon class="size-6 stroke-black/70" />
         </button>
         <button class="cursor-pointer rounded border border-black/15 px-4 py-2" @click="toggleInfo">
-          <IconInfo class="size-5 fill-black/70" />
+          <InfoIcon class="size-6 stroke-black/70" />
         </button>
       </div>
     </div>
@@ -91,7 +91,7 @@ const isTop = computed(() => {
     ref="navEl"
     :class="`sticky top-0 z-10 bg-black transition-all duration-500 ${isTop ? 'p-4' : ''}`"
   >
-    <div class="flex justify-center gap-2 transition-all">
+    <div class="flex justify-center gap-8 transition-all">
       <AppLink v-if="isTop" to="/" @click="scrollToTop">
         <img :src="logo" class="mr-32" />
       </AppLink>
@@ -103,7 +103,7 @@ const isTop = computed(() => {
         class="ml-4 flex -skew-x-[20deg] cursor-pointer items-center gap-1 bg-main px-8 py-4 text-white transition-colors duration-300 hover:bg-main-hover"
       >
         <b class="scale-y-110">DONATE NOW</b>
-        <IconHeart height="16" class="scale-y-110 fill-white" />
+        <HeartIcon class="size-5 scale-y-110 fill-white" />
       </div>
     </div>
   </div>
@@ -113,7 +113,7 @@ const isTop = computed(() => {
       class="fixed bottom-[3%] right-[5%] z-50 flex cursor-pointer items-center justify-center text-6xl text-white"
       @click="scrollToTop"
     >
-      <IconArrow class="z-50 size-6 fill-white drop-shadow" />
+      <ArrowUpIcon class="z-50 size-6 stroke-white stroke-[3] drop-shadow" />
       <div class="absolute z-40 animate-slow-ping rounded-full bg-main p-5" />
       <div class="absolute z-40 rounded-full bg-main p-5" />
     </div>

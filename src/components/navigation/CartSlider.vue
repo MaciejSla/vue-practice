@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IconShopping } from '@/components/icons'
+import { ShoppingBagIcon } from 'lucide-vue-next'
 import {
   Sheet,
   SheetContent,
@@ -34,7 +34,7 @@ watch(isFinished, () => {
   <Sheet>
     <SheetTrigger as-child>
       <div class="relative cursor-pointer rounded-full border p-3">
-        <IconShopping class="size-4" />
+        <ShoppingBagIcon class="size-4 stroke-gray-500" />
         <div
           class="absolute right-0 top-0 flex size-4 items-center justify-center rounded-full bg-black text-xs text-white"
         >

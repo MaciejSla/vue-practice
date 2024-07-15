@@ -3,7 +3,7 @@ import AnimatedAccent from '../ui/AnimatedAccent.vue'
 import event1 from '@/assets/images/event/01.jpg'
 import event2 from '@/assets/images/event/02.jpg'
 import event3 from '@/assets/images/event/03.jpg'
-import { IconClock, IconLocation, IconComments, IconShare } from '@/components/icons'
+import { ClockIcon, MapPinIcon, MessagesSquareIcon, Share2Icon } from 'lucide-vue-next'
 import { useDateFormat } from '@/lib/utils'
 
 const getDay = (date: string) => useDateFormat(date, 'DD').value
@@ -83,23 +83,23 @@ const events = [
         <div class="flex w-full justify-between divide-x divide-gray-200">
           <div class="flex flex-col items-start justify-center gap-3">
             <div class="flex items-center gap-2">
-              <IconClock class="size-4 fill-gray-500" />
+              <ClockIcon class="size-4 stroke-gray-500" />
               <span class="text-sm font-normal text-gray-500">
                 {{ getHour(event.start) }} - {{ getHour(event.end) }}
               </span>
             </div>
             <div class="flex items-center gap-2">
-              <IconLocation class="size-4 fill-gray-500" />
+              <MapPinIcon class="size-4 stroke-gray-500" />
               <span class="text-sm font-normal text-gray-500">
                 {{ event.location }}
               </span>
             </div>
           </div>
           <div class="relative flex flex-col items-center justify-center gap-3 px-5 py-2">
-            <IconComments class="size-4 fill-gray-500" />
-            <IconShare class="size-4 fill-gray-500" />
+            <MessagesSquareIcon class="size-4 stroke-gray-500" />
+            <Share2Icon class="size-4 stroke-gray-500" />
             <div
-              class="absolute right-0 top-0 flex size-5 items-center justify-center rounded-full bg-black text-[0.6rem] text-white transition-colors group-hover:bg-main"
+              class="absolute right-0 top-0 flex size-5 cursor-pointer items-center justify-center rounded-full bg-black text-[0.6rem] text-white transition-colors group-hover:bg-main"
             >
               {{ event.comments }}
             </div>

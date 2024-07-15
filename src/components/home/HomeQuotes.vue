@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
-import { IconQuoteLeft } from '@/components/icons'
+import { QuoteIcon } from 'lucide-vue-next'
 import Autoplay from 'embla-carousel-autoplay'
 
 const exampleQuote = {
@@ -32,7 +32,7 @@ const quotes = [exampleQuote, exampleQuote]
               <div
                 class="absolute right-2 top-4 flex size-8 items-center justify-center rounded-full bg-black text-main"
               >
-                <IconQuoteLeft class="size-5 fill-main" />
+                <QuoteIcon class="size-5 rotate-180 fill-main" />
               </div>
             </div>
             <div class="flex flex-col gap-4 overflow-hidden px-6">

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IconPhone, IconEnvelope, IconSearch } from '@/components/icons'
+import { PhoneIcon, MailIcon, SearchIcon } from 'lucide-vue-next'
 import { FacebookIcon, XIcon, LinkedInIcon, PinterestIcon } from 'vue3-simple-icons'
 import AppLink from '@/components/navigation/AppLink.vue'
 import CartSlider from '@/components/navigation/CartSlider.vue'
@@ -12,13 +12,13 @@ import CartSlider from '@/components/navigation/CartSlider.vue'
     <div class="text-md flex flex-col gap-4 fill-gray-500 text-gray-500">
       <div class="flex items-center gap-4">
         <div class="rounded-full border p-2">
-          <IconPhone class="size-3" />
+          <PhoneIcon class="size-4 stroke-gray-500 stroke-[3]" />
         </div>
         +8812 345 678 912
       </div>
       <div class="flex items-center gap-4">
         <div class="rounded-full border p-2">
-          <IconEnvelope class="size-3" />
+          <MailIcon class="size-4 stroke-gray-500 stroke-[3]" />
         </div>
         info@yourmail.com
       </div>
@@ -44,7 +44,7 @@ import CartSlider from '@/components/navigation/CartSlider.vue'
       </span>
       <div class="h-6 border-l" />
       <!-- TODO add search and shopping functionality -->
-      <IconSearch class="size-4 flex-shrink-0" />
+      <SearchIcon class="size-4 flex-shrink-0 stroke-gray-500 stroke-[3]" />
       <CartSlider />
     </div>
   </header>

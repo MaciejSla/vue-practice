@@ -7,6 +7,9 @@
 .brand-icon {
   @apply cursor-pointer fill-gray-500 transition-colors duration-300 hover:fill-main;
 }
+.hover-icon {
+  @apply cursor-pointer stroke-gray-500 transition-colors duration-300 hover:stroke-main;
+}
 
 @layer base {
   :root {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IconBriefcase, IconBinoculars, IconRocket } from '@/components/icons'
+import { BriefcaseIcon, TelescopeIcon, RocketIcon } from 'lucide-vue-next'
 import { FacebookIcon, XIcon, LinkedInIcon } from 'vue3-simple-icons'
 import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
 import HoverGroup from '@/components/ui/HoverGroup.vue'
@@ -36,21 +36,18 @@ import HoverGroup from '@/components/ui/HoverGroup.vue'
         <HoverGroup
           title="Glorify God"
           subtext="Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a."
-        >
-          <IconBriefcase />
-        </HoverGroup>
+          :icon="BriefcaseIcon"
+        />
         <HoverGroup
           title="Love Community"
           subtext="Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a."
-        >
-          <IconBinoculars />
-        </HoverGroup>
+          :icon="TelescopeIcon"
+        />
         <HoverGroup
           title="Believe Biblically"
           subtext="Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a."
-        >
-          <IconRocket />
-        </HoverGroup>
+          :icon="RocketIcon"
+        />
       </div>
     </div>
   </div>

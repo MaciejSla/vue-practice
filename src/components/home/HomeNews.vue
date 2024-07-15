@@ -10,7 +10,7 @@ import slider1 from '@/assets/images/blog/slider/01.jpg'
 import slider2 from '@/assets/images/blog/slider/02.jpg'
 import slider3 from '@/assets/images/blog/slider/03.jpg'
 import { useDateFormat } from '@vueuse/core'
-import { IconCalendar, IconUser, IconComments, IconCartPlus } from '@/components/icons'
+import { CalendarIcon, UserIcon, MessagesSquareIcon, ShoppingCartIcon } from 'lucide-vue-next'
 import { type CarouselApi, Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
 import { scrollToTop } from '@/lib/utils'
 import StarRating from '@/components/ui/StarRating.vue'
@@ -137,16 +137,16 @@ const products = [
                   {{ newsItem.title }}
                 </h2>
                 <div class="flex flex-wrap items-center gap-4">
-                  <p class="flex items-center gap-2 text-gray-500">
-                    <IconCalendar class="size-4 fill-gray-500" />
+                  <p class="flex items-center gap-1 text-gray-500">
+                    <CalendarIcon class="size-4 stroke-gray-500" />
                     {{ getDate(newsItem.date) }}
                   </p>
-                  <p class="flex items-center gap-2 text-gray-500">
-                    <IconUser class="size-4 fill-gray-500" />
+                  <p class="flex items-center gap-1 text-gray-500">
+                    <UserIcon class="size-4 stroke-gray-500" />
                     {{ newsItem.user }}
                   </p>
-                  <p class="flex items-center gap-2 text-gray-500">
-                    <IconComments class="size-4 fill-gray-500" />
+                  <p class="flex items-center gap-1 text-gray-500">
+                    <MessagesSquareIcon class="size-4 stroke-gray-500" />
                     {{ newsItem.comments }}
                   </p>
                 </div>
@@ -194,7 +194,7 @@ const products = [
                     >
                     <CustomButton class="w-fit px-4 py-2 text-sm" @click="scrollToTop">
                       <span class="flex items-center gap-1">
-                        <IconCartPlus class="size-4 fill-white" />
+                        <ShoppingCartIcon class="size-4 stroke-white" />
                         ADD TO CART
                       </span>
                     </CustomButton>
