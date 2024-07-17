@@ -34,7 +34,7 @@ onMounted(() => {
     <NavigationBar />
     <div class="flex w-full items-center justify-center">
       <div
-        class="flex w-full max-w-[74rem] items-center justify-between p-3 py-6 xs:p-8"
+        class="flex w-full max-w-[74rem] items-center justify-between px-3 py-6 xs:px-8"
         v-if="route.name != 'home'"
       >
         <h1 class="font-serif text-[calc(1.35rem+1.2vw)] capitalize xl:text-[2.25rem]">
