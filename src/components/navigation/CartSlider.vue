@@ -41,10 +41,16 @@ watch(total, () => {
       <div class="relative cursor-pointer rounded-full border p-3">
         <ShoppingBagIcon class="size-4 stroke-gray-500" />
         <div
-          :class="`absolute right-0 top-0 flex size-4 items-center justify-center rounded-full bg-black text-xs text-white ${animate ? 'animate-bounce-once' : ''}`"
+          :class="`absolute right-0 top-0 flex size-4 items-center justify-center rounded-full bg-black text-[0.7rem] text-white ${animate ? 'animate-bounce-once' : ''}`"
           @animationend="animate = false"
         >
-          {{ cartStore.count > 99 ? '99' : cartStore.count }}
+          {{
+            cartStore.count > 99
+              ? '99'
+              : cartStore.count < 10
+                ? '0' + cartStore.count
+                : cartStore.count
+          }}
         </div>
       </div>
     </SheetTrigger>
