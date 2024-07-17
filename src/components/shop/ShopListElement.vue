@@ -1,16 +1,23 @@
 <script setup lang="ts">
-import type { ProductPreview } from '.'
+import { type Product, getDiscountedPrice } from '@/stores/cart'
 import { UseImage } from '@vueuse/components'
 import { HeartIcon, ShoppingCartIcon, EyeIcon, XIcon } from 'lucide-vue-next'
+import { useCartStore } from '@/stores/cart'
+import { ref } from 'vue'
+
+const cartStore = useCartStore()
 
 const props = defineProps<{
   listView: boolean
-  item: ProductPreview
-  selectProduct: (product: ProductPreview) => void
+  item: Product
+  selectProduct: (product: Product) => void
 }>()
 
-const getDiscountedPrice = (price: number, discountPercentage: number) => {
-  return ((price * (100 - discountPercentage)) / 100).toFixed(2)
+const animate = ref(false)
+
+const clickCart = () => {
+  animate.value = true
+  cartStore.addProduct(props.item, 1)
 }
 </script>
 
@@ -53,9 +60,13 @@ const getDiscountedPrice = (price: number, discountPercentage: number) => {
         <div class="flex size-9 items-center justify-center rounded-full bg-white">
           <HeartIcon class="size-4" />
         </div>
-        <div class="flex size-9 items-center justify-center rounded-full bg-white">
+        <button
+          :class="`flex size-9 items-center justify-center rounded-full bg-white ${animate ? 'animate-rotate' : ''}`"
+          @click="clickCart"
+          @animationend="animate = false"
+        >
           <ShoppingCartIcon class="size-4" />
-        </div>
+        </button>
       </div>
     </div>
     <div :class="`flex flex-col justify-center ${listView ? 'items-start' : 'items-center'}`">

@@ -1,14 +1,7 @@
-export type ProductPreview = {
-  id: number
-  title: string
-  price: number
-  discountPercentage: number
-  thumbnail: string
-  description: string
-}
+import type { Product } from '@/stores/cart'
 
 export type ResponseType = {
-  products: ProductPreview[]
+  products: Product[]
   total: number
   skip: number
   limit: number

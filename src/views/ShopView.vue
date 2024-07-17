@@ -1,35 +1,42 @@
 <script setup lang="ts">
 // UI
-import { LayoutGridIcon, LayoutListIcon } from 'lucide-vue-next'
+import { LayoutGridIcon, LayoutListIcon, XIcon } from 'lucide-vue-next'
+import { type ResponseType, ShopListElement, ShopPagination } from '@/components/shop'
+import { type Product } from '@/stores/cart'
 import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle
-} from '@/components/ui/dialog'
-import {
-  type ProductPreview,
-  type ResponseType,
-  ShopListElement,
-  ShopPagination
-} from '@/components/shop'
+  NumberField,
+  NumberFieldContent,
+  NumberFieldDecrement,
+  NumberFieldIncrement,
+  NumberFieldInput
+} from '@/components/ui/number-field'
+import AppLink from '@/components/navigation/AppLink.vue'
+import CustomButton from '@/components/ui/CustomButton.vue'
 
 // Functional
 import { useRouteQuery } from '@vueuse/router'
 import { useFetch, useElementVisibility, useWindowSize } from '@vueuse/core'
 import { ref, computed, watch } from 'vue'
+import { useCartStore, getDiscountedPrice } from '@/stores/cart'
+
+const cartStore = useCartStore()
 
 const { width } = useWindowSize()
 const showEdges = computed(() => width.value >= 520)
 
-const currentProduct = ref<ProductPreview | null>(null)
+const currentProduct = ref<Product | null>(null)
+const currentProductAmount = ref(1)
 const showProduct = ref(false)
 
-const selectProduct = (product: ProductPreview) => {
+const selectProduct = (product: Product) => {
+  currentProductAmount.value = 1
   currentProduct.value = product
   showProduct.value = true
+}
+
+const addToCart = () => {
+  cartStore.addProduct(currentProduct.value!, currentProductAmount.value)
+  showProduct.value = false
 }
 
 const listView = ref(false)
@@ -92,7 +99,7 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
         :show-edges="showEdges"
         :items-per-page="limit"
       />
-      <div v-if="!listView" class="2xs:grid-cols-2 grid w-full grid-cols-1 gap-6 lg:grid-cols-3">
+      <div v-if="!listView" class="grid w-full grid-cols-1 gap-6 2xs:grid-cols-2 lg:grid-cols-3">
         <ShopListElement
           v-for="item in data?.products"
           :key="item.id"
@@ -118,17 +125,81 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
         :items-per-page="limit"
       />
     </div>
-    <Dialog v-model:open="showProduct">
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>{{ currentProduct?.title }}</DialogTitle>
-          <DialogDescription>
-            {{ currentProduct?.description }}
-          </DialogDescription>
-        </DialogHeader>
-
-        <DialogFooter> Save changes </DialogFooter>
-      </DialogContent>
-    </Dialog>
+    <Transition name="slide-down">
+      <div v-if="showProduct" class="fixed inset-0 z-50 flex items-center justify-center bg-black">
+        <div class="relative flex max-w-[50rem] bg-white p-4">
+          <div class="w-full max-w-[19rem] overflow-hidden">
+            <img
+              :src="currentProduct?.thumbnail"
+              :alt="currentProduct?.title"
+              class="h-full w-full object-cover"
+            />
+          </div>
+          <div class="flex flex-col justify-center gap-2">
+            <AppLink :to="`/product/${currentProduct?.id}`">
+              <h1
+                class="line-clamp-1 font-serif text-3xl text-gray-500 transition-colors duration-300 hover:text-main"
+              >
+                {{ currentProduct?.title }}
+              </h1>
+            </AppLink>
+            <div class="flex items-center gap-2">
+              <span class="font-serif text-xl 2xs:text-[calc(0.7rem+1vw)] md:text-xl">
+                ${{
+                  getDiscountedPrice(currentProduct?.price!, currentProduct?.discountPercentage!)
+                }}
+              </span>
+              <span
+                class="font-serif text-xl text-black/60 line-through 2xs:text-[calc(0.7rem+1vw)] md:text-xl"
+              >
+                ${{ currentProduct?.price }}
+              </span>
+            </div>
+            <p class="text-sm text-gray-500">{{ currentProduct?.description }}</p>
+            <div class="mt-6 flex gap-4">
+              <NumberField
+                :min="1"
+                :default-value="1"
+                @update:model-value="
+                  (v) => {
+                    if (v) {
+                      currentProductAmount = v
+                    } else {
+                      currentProductAmount = 1
+                    }
+                  }
+                "
+                class="w-32"
+              >
+                <NumberFieldContent>
+                  <NumberFieldDecrement />
+                  <NumberFieldInput v-model="currentProductAmount" />
+                  <NumberFieldIncrement />
+                </NumberFieldContent>
+              </NumberField>
+              <CustomButton class="py-2" @click="addToCart"> Add To Cart </CustomButton>
+            </div>
+          </div>
+          <button
+            type="button"
+            @click="showProduct = false"
+            class="absolute right-0 top-0 flex size-10 items-center justify-center bg-main"
+          >
+            <XIcon class="size-5 stroke-white stroke-[3]" />
+          </button>
+        </div>
+      </div>
+    </Transition>
   </div>
 </template>
+
+<style scoped>
+.slide-down-enter-active,
+.slide-down-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-down-enter-from,
+.slide-down-leave-to {
+  transform: translateY(-100%);
+}
+</style>

@@ -115,6 +115,21 @@ export default {
         'collapsible-up': {
           from: { height: 'var(--radix-collapsible-content-height)' },
           to: { height: 0 }
+        },
+        rotate: {
+          to: {
+            transform: 'rotate(360deg)'
+          }
+        },
+        'bounce-once': {
+          '0%, 100%': {
+            transform: 'none',
+            'animation-timing-function': 'cubic-bezier(0,0,0.2,1)'
+          },
+          '50%': {
+            transform: 'translateY(-25%) scale(1.15)',
+            'animation-timing-function': 'cubic-bezier(0.8,0,1,1)'
+          }
         }
       },
       animation: {
@@ -122,7 +137,9 @@ export default {
         'accordion-up': 'accordion-up 0.2s ease-out',
         'collapsible-down': 'collapsible-down 0.2s ease-in-out',
         'collapsible-up': 'collapsible-up 0.2s ease-in-out',
-        'slow-ping': 'ping 4s cubic-bezier(0, 0, 0.2, 1) infinite'
+        'slow-ping': 'ping 4s cubic-bezier(0, 0, 0.2, 1) infinite',
+        rotate: 'rotate 0.5s ease-in-out',
+        'bounce-once': 'bounce-once 0.3s'
       },
       screens: {
         xs: '520px',
