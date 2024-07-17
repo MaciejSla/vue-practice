@@ -83,7 +83,7 @@ const isBottom = computed(() => {
             v-for="route in navbarRoutes"
             :key="route.name"
           >
-            {{ route.name == 'contact' ? 'Contact Us' : route.name }}
+            {{ route.name === 'contact' ? 'Contact Us' : route.name }}
           </AppLink>
         </div>
       </CollapsibleContent>
@@ -92,7 +92,7 @@ const isBottom = computed(() => {
   <div v-if="isLarge" ref="navEl" class="bg-black">
     <div class="flex justify-center gap-8 transition-all">
       <MenuItem :to="route.path" v-for="route in navbarRoutes" :key="route.name" class="capitalize">
-        {{ route.name == 'contact' ? 'Contact Us' : route.name }}
+        {{ route.name === 'contact' ? 'Contact Us' : route.name }}
       </MenuItem>
       <div
         class="ml-4 flex -skew-x-[20deg] cursor-pointer items-center gap-1 bg-main px-8 py-4 text-white transition-colors duration-300 hover:bg-main-hover"
@@ -114,7 +114,7 @@ const isBottom = computed(() => {
           :key="route.name"
           class="capitalize"
         >
-          {{ route.name == 'contact' ? 'Contact Us' : route.name }}
+          {{ route.name === 'contact' ? 'Contact Us' : route.name }}
         </MenuItem>
       </div>
     </div>

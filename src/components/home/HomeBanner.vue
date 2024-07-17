@@ -69,17 +69,17 @@ const stop = watch(api, (api) => {
             <div v-if="banner.rightAlign" />
             <div class="flex flex-col gap-4 sm:w-[45rem] lg:w-[35rem]">
               <h1
-                :class="`font-serif text-[calc(1.5rem+3vw)] font-semibold leading-none transition-all duration-300 ease-in-out xl:text-6xl ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
+                :class="`font-serif text-[calc(1.5rem+3vw)] font-semibold leading-none transition-all duration-300 ease-in-out xl:text-6xl ${index === currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
               >
                 {{ banner.text }}
               </h1>
               <p
-                :class="`text-lg font-normal capitalize transition-all duration-300 ease-in-out ${index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
+                :class="`text-lg font-normal capitalize transition-all duration-300 ease-in-out ${index === currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'}`"
               >
                 {{ banner.subtext }}
               </p>
               <CustomButton
-                :class="index == currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'"
+                :class="index === currentSlide ? 'slide-up' : 'translate-y-[200%] opacity-0'"
                 @click="scrollToTop"
               >
                 GET HELP NOW

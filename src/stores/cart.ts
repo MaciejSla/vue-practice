@@ -43,7 +43,7 @@ export const useCartStore = defineStore('cart', () => {
     },
     removeProduct: (item: CartItem) => {
       const index = cart.value.findIndex((i) => i.id === item.id)
-      if (cart.value[index].quantity == 1) {
+      if (cart.value[index].quantity === 1) {
         cart.value.splice(index, 1)
       } else {
         cart.value[index].quantity--
