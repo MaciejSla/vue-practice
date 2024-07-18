@@ -48,7 +48,10 @@ watch(total, () => {
         </div>
       </div>
     </SheetTrigger>
-    <SheetContent class="dark overflow-y-auto bg-black text-white outline-none">
+    <SheetContent
+      class="dark overflow-y-auto bg-black text-white outline-none"
+      @open-auto-focus="(e) => e.preventDefault()"
+    >
       <SheetHeader>
         <img src="@/assets/images/logo/01.png" alt="logo full" class="mb-6 w-min" />
         <SheetTitle class="mb-6 font-serif font-normal text-white">Shopping Cart</SheetTitle>
