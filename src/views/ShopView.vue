@@ -98,7 +98,7 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
       />
       <div
         :class="`gap-6 ${
-          listView ? 'flex flex-col' : 'grid w-full grid-cols-1 2xs:grid-cols-2 lg:grid-cols-3'
+          listView ? 'flex flex-col' : 'grid w-full grid-cols-1 2xs:grid-cols-2 md:grid-cols-3'
         }`"
       >
         <ShopListElement
@@ -131,7 +131,7 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
             />
           </div>
           <div class="flex flex-col justify-center gap-2">
-            <AppLink :to="`/product/${currentProduct?.id}`">
+            <AppLink :to="`/products/${currentProduct?.id}`">
               <h1
                 class="line-clamp-1 font-serif text-3xl text-gray-500 transition-colors duration-300 hover:text-main"
               >

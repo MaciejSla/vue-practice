@@ -4,6 +4,7 @@ import { UseImage } from '@vueuse/components'
 import { HeartIcon, ShoppingCartIcon, EyeIcon, XIcon } from 'lucide-vue-next'
 import { useCartStore } from '@/stores/cart'
 import { ref } from 'vue'
+import AppLink from '@/components/navigation/AppLink.vue'
 
 const cartStore = useCartStore()
 
@@ -23,10 +24,10 @@ const clickCart = () => {
 
 <template>
   <div
-    :class="`group flex w-full flex-col items-center justify-center gap-3 border p-3 ${listView ? '2xs:flex-row' : ''}`"
+    :class="`group flex w-full flex-col items-center justify-start gap-3 border p-3 ${listView ? '2xs:flex-row' : ''}`"
   >
     <div
-      :class="`relative aspect-square size-full overflow-hidden ${listView ? '2xs:max-w-[10rem] xs:max-w-[12rem] md:max-w-[14rem] lg:max-w-[20rem]' : ''}`"
+      :class="`relative aspect-square w-full overflow-hidden ${listView ? '2xs:max-w-[8rem] 2xs:shrink-0 xs:max-w-[10rem] md:max-w-[12rem] lg:max-w-[16rem]' : ''}`"
     >
       <UseImage
         :src="props.item.thumbnail"
@@ -70,11 +71,13 @@ const clickCart = () => {
       </div>
     </div>
     <div :class="`flex flex-col justify-center ${listView ? 'items-start' : 'items-center'}`">
-      <h3
-        :class="`line-clamp-2 font-serif text-2xl transition-colors duration-300 group-hover:text-main 2xs:text-[calc(0.8rem+1vw)] md:text-2xl ${listView ? '' : 'text-center'}`"
-      >
-        {{ props.item.title }}
-      </h3>
+      <AppLink :to="`/products/${props.item.id}`">
+        <h3
+          :class="`line-clamp-2 font-serif text-2xl transition-colors duration-300 group-hover:text-main 2xs:text-[calc(0.8rem+1vw)] md:text-2xl ${listView ? '' : 'text-center'}`"
+        >
+          {{ props.item.title }}
+        </h3>
+      </AppLink>
       <div :class="`flex items-center ${listView ? '' : 'justify-between'} gap-2`">
         <span class="font-serif text-xl 2xs:text-[calc(0.7rem+1vw)] md:text-xl">
           ${{ getDiscountedPrice(props.item.price, props.item.discountPercentage) }}
