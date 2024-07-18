@@ -53,7 +53,7 @@ const cartStore = useCartStore()
           </TableRow>
         </TableHeader>
         <TableBody>
-          <TransitionGroup name="cart-item" asChild>
+          <TransitionGroup name="cart-item">
             <TableRow v-for="item in cartStore.cart" :key="item.id">
               <TableCell>
                 <div class="group flex items-center gap-2">
