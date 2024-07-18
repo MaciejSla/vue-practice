@@ -13,10 +13,34 @@ import logo from '@/assets/images/logo/01-b.png'
 import logo2 from '@/assets/images/logo/01.png'
 
 const router = useRouter()
-const excludedRoutes = ['checkout', 'cart']
-const navbarRoutes = router.options.routes.filter(
-  (route) => !excludedRoutes.includes(route.name?.toString()!)
-)
+const routes = [
+  {
+    name: '',
+    alt: 'Home'
+  },
+  {
+    name: 'events'
+  },
+  {
+    name: 'causes'
+  },
+  {
+    name: 'gallery'
+  },
+  {
+    name: 'sermons'
+  },
+  {
+    name: 'blog'
+  },
+  {
+    name: 'shop'
+  },
+  {
+    name: 'contact',
+    alt: 'Contact Us'
+  }
+]
 
 watch(router.currentRoute, () => {
   info.value = false
@@ -77,13 +101,13 @@ const isBottom = computed(() => {
       <CollapsibleContent class="w-full">
         <div class="w-full px-5 xs:px-20">
           <AppLink
-            :to="route.path"
+            :to="`/${route.name}`"
             class="flex w-full items-center border-b border-black/15 px-6 py-2 font-semibold capitalize transition-colors hover:bg-black hover:text-main"
             active-class="bg-black text-main"
-            v-for="route in navbarRoutes"
+            v-for="route in routes"
             :key="route.name"
           >
-            {{ route.name === 'contact' ? 'Contact Us' : route.name }}
+            {{ route.alt ? route.alt : route.name }}
           </AppLink>
         </div>
       </CollapsibleContent>
@@ -91,8 +115,8 @@ const isBottom = computed(() => {
   </div>
   <div v-if="isLarge" ref="navEl" class="bg-black">
     <div class="flex justify-center gap-8 transition-all">
-      <MenuItem :to="route.path" v-for="route in navbarRoutes" :key="route.name" class="capitalize">
-        {{ route.name === 'contact' ? 'Contact Us' : route.name }}
+      <MenuItem :to="`/${route.name}`" v-for="route in routes" :key="route.name" class="capitalize">
+        {{ route.alt ? route.alt : route.name }}
       </MenuItem>
       <div
         class="ml-4 flex -skew-x-[20deg] cursor-pointer items-center gap-1 bg-main px-8 py-4 text-white transition-colors duration-300 hover:bg-main-hover"
@@ -103,18 +127,18 @@ const isBottom = computed(() => {
     </div>
   </div>
   <Transition name="slide-down">
-    <div v-if="isBottom && isLarge" class="fixed top-0 z-10 w-full bg-black p-4">
+    <div v-if="isBottom && isLarge" class="fixed top-0 z-50 w-full bg-black p-4">
       <div class="flex justify-center gap-8 transition-all">
         <AppLink to="/" @click="scrollToTop">
           <img :src="logo" class="mr-32" />
         </AppLink>
         <MenuItem
-          :to="route.path"
-          v-for="route in navbarRoutes"
+          :to="`/${route.name}`"
+          v-for="route in routes"
           :key="route.name"
           class="capitalize"
         >
-          {{ route.name === 'contact' ? 'Contact Us' : route.name }}
+          {{ route.alt ? route.alt : route.name }}
         </MenuItem>
       </div>
     </div>
