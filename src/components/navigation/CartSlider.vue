@@ -109,8 +109,14 @@ watch(total, () => {
           </div>
         </div>
       </TransitionGroup>
-      <div class="flex justify-center gap-4">
-        <SheetClose>
+      <div class="flex justify-center">
+        <SheetClose class="flex items-center justify-center gap-8">
+          <AppLink
+            to="/cart"
+            class="text-main transition-colors duration-300 hover:text-main/80 hover:underline"
+          >
+            SHOW CART
+          </AppLink>
           <AppLink to="/checkout">
             <CustomButton type="submit"> CHECKOUT </CustomButton>
           </AppLink>

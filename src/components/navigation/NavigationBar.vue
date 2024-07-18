@@ -13,7 +13,7 @@ import logo from '@/assets/images/logo/01-b.png'
 import logo2 from '@/assets/images/logo/01.png'
 
 const router = useRouter()
-const excludedRoutes = ['checkout']
+const excludedRoutes = ['checkout', 'cart']
 const navbarRoutes = router.options.routes.filter(
   (route) => !excludedRoutes.includes(route.name?.toString()!)
 )

@@ -77,6 +77,14 @@ const router = createRouter({
       meta: {
         title: `${mainTitle} | Checkout`
       }
+    },
+    {
+      path: '/cart',
+      name: 'cart',
+      component: () => import('../views/CartView.vue'),
+      meta: {
+        title: `${mainTitle} | Cart`
+      }
     }
   ],
   scrollBehavior(to, from, savedPosition) {
