@@ -17,6 +17,7 @@ import {
 import { Trash2Icon } from 'lucide-vue-next'
 import CustomButton from '@/components/ui/CustomButton.vue'
 import { Input } from '@/components/ui/input'
+import AppLink from '@/components/navigation/AppLink.vue'
 
 import { useCartStore } from '@/stores/cart'
 import { useWindowSize } from '@vueuse/core'
@@ -44,13 +45,22 @@ const cartStore = useCartStore()
         <TableBody>
           <TransitionGroup name="cart-item" asChild>
             <TableRow v-for="item in cartStore.cart" :key="item.id">
-              <TableCell class="flex items-center gap-2">
-                <div class="shrink-0">
-                  <img :src="item.thumbnail" :alt="item.title" class="size-24 shrink-0 bg-white" />
-                </div>
-                <h3 class="font-bold" v-if="!smallScreen">
-                  {{ item.title }}
-                </h3>
+              <TableCell>
+                <AppLink :to="`/product/${item.id}`" class="group flex items-center gap-2">
+                  <div class="size-24 shrink-0 bg-white">
+                    <img
+                      :src="item.thumbnail"
+                      :alt="item.title"
+                      class="h-full w-full object-cover"
+                    />
+                  </div>
+                  <h3
+                    class="font-bold transition-colors duration-300 hover:text-main"
+                    v-if="!smallScreen"
+                  >
+                    {{ item.title }}
+                  </h3>
+                </AppLink>
               </TableCell>
               <TableCell v-if="!smallScreen" class="font-semibold"
                 >${{ item.discountedPrice.toFixed(2) }}</TableCell
@@ -77,7 +87,9 @@ const cartStore = useCartStore()
                   </NumberFieldContent>
                 </NumberField>
               </TableCell>
-              <TableCell class="font-semibold">${{ cartStore.getItemTotal(item.id) }}</TableCell>
+              <TableCell class="font-semibold">
+                <div class="">${{ cartStore.getItemTotal(item.id) }}</div>
+              </TableCell>
               <TableCell class="text-right">
                 <button @click="cartStore.removeProduct(item.id)">
                   <Trash2Icon class="size-6 stroke-red-600" />
@@ -87,11 +99,17 @@ const cartStore = useCartStore()
           </TransitionGroup>
         </TableBody>
       </Table>
-      <div class="flex w-full flex-wrap items-center justify-center border p-2">
-        <div>
+      <div class="flex w-full flex-col items-start justify-between gap-4 border p-6 lg:flex-row">
+        <div class="flex items-center gap-2">
           <Input placeholder="Coupon Code..." />
+          <CustomButton class="py-3"> APPLY </CustomButton>
         </div>
-        <CustomButton @click="cartStore.clearCart"> CLEAR CART </CustomButton>
+        <div class="flex w-full items-center justify-between gap-2 text-sm xs:text-base lg:w-auto">
+          <CustomButton @click="cartStore.clearCart"> CLEAR CART </CustomButton>
+          <AppLink to="/checkout">
+            <CustomButton> PROCEED TO CHECKOUT</CustomButton>
+          </AppLink>
+        </div>
       </div>
     </div>
   </div>

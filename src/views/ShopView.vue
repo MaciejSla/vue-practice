@@ -118,8 +118,11 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
       />
     </div>
     <Transition name="slide-down">
-      <div v-if="showProduct" class="fixed inset-0 z-50 flex items-center justify-center bg-black">
-        <div class="relative flex max-w-[31rem] flex-col bg-white p-4 lg:max-w-[50rem] lg:flex-row">
+      <div
+        v-if="showProduct"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black p-4"
+      >
+        <div class="relative flex max-w-[31rem] flex-col bg-white p-6 lg:max-w-[50rem] lg:flex-row">
           <div class="w-full overflow-hidden lg:max-w-[19rem]">
             <img
               :src="currentProduct?.thumbnail"
