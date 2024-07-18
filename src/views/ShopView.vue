@@ -64,11 +64,8 @@ const url = computed(
 const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
 </script>
 
-<!-- TODO figure out layout change animation -->
-<!-- TODO fix closing dialog messing up product styling -->
-
 <template>
-  <div class="flex items-center justify-center p-4 md:p-10">
+  <div class="flex justify-center p-4 md:p-10">
     <div
       class="flex w-full max-w-[35rem] flex-col items-center justify-center gap-6 md:max-w-[45rem] lg:max-w-[60rem]"
     >
@@ -99,16 +96,11 @@ const { data } = useFetch(url, { refetch: true }).get().json<ResponseType>()
         :show-edges="showEdges"
         :items-per-page="limit"
       />
-      <div v-if="!listView" class="grid w-full grid-cols-1 gap-6 2xs:grid-cols-2 lg:grid-cols-3">
-        <ShopListElement
-          v-for="item in data?.products"
-          :key="item.id"
-          :list-view="listView"
-          :item="item"
-          :select-product="selectProduct"
-        />
-      </div>
-      <div v-else class="flex flex-col gap-6">
+      <div
+        :class="`gap-6 ${
+          listView ? 'flex flex-col' : 'grid w-full grid-cols-1 2xs:grid-cols-2 lg:grid-cols-3'
+        }`"
+      >
         <ShopListElement
           v-for="item in data?.products"
           :key="item.id"
