@@ -48,7 +48,7 @@ export const useCartStore = defineStore('cart', () => {
         cart.value.push({
           ...item,
           amount,
-          discountedPrice: item.price * (1 - item.discountPercentage / 100)
+          discountedPrice: Math.round(item.price * (100 - item.discountPercentage)) / 100
         })
       }
     },
