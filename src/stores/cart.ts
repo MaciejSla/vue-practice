@@ -62,6 +62,11 @@ export const useCartStore = defineStore('cart', () => {
         cart.value[index].amount = amount
       }
     },
+    getItemTotal: (itemId: number) => {
+      const index = cart.value.findIndex((i) => i.id === itemId)
+      if (index === -1) return 0
+      return (cart.value[index].amount * cart.value[index].discountedPrice).toFixed(2)
+    },
     clearCart: () => {
       cart.value = []
     }

@@ -126,7 +126,7 @@ watch(total, () => {
   </Sheet>
 </template>
 
-<style scoped>
+<style>
 .cart-item-enter-active,
 .cart-item-leave-active {
   transition: all 0.3s ease-in-out;
