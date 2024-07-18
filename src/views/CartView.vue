@@ -57,7 +57,7 @@ const cartStore = useCartStore()
             <TableRow v-for="item in cartStore.cart" :key="item.id">
               <TableCell>
                 <div class="group flex items-center gap-2">
-                  <AppLink :to="`/product/${item.id}`" class="size-24 shrink-0 bg-white">
+                  <AppLink :to="`/products/${item.id}`" class="size-24 shrink-0 bg-white">
                     <img
                       :src="item.thumbnail"
                       :alt="item.title"
@@ -65,7 +65,7 @@ const cartStore = useCartStore()
                     />
                   </AppLink>
                   <AppLink
-                    :to="`/product/${item.id}`"
+                    :to="`/products/${item.id}`"
                     class="font-bold transition-colors duration-300 hover:text-main"
                     v-if="!smallScreen"
                   >

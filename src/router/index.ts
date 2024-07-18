@@ -85,6 +85,14 @@ const router = createRouter({
       meta: {
         title: `${mainTitle} | Cart`
       }
+    },
+    {
+      path: '/products/:id',
+      name: 'product',
+      component: () => import('../views/ProductView.vue'),
+      meta: {
+        title: `${mainTitle} | Product`
+      }
     }
   ],
   scrollBehavior(to, from, savedPosition) {

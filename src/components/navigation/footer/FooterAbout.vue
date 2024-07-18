@@ -149,6 +149,7 @@ const links = [
             :key="link.text"
             class="text-white/40 transition-colors duration-300 hover:text-main"
             :to="link.url"
+            :show-icon="true"
           >
             {{ link.text }}
           </AppLink>
