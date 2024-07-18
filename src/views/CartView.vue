@@ -56,21 +56,22 @@ const cartStore = useCartStore()
           <TransitionGroup name="cart-item" asChild>
             <TableRow v-for="item in cartStore.cart" :key="item.id">
               <TableCell>
-                <AppLink :to="`/product/${item.id}`" class="group flex items-center gap-2">
-                  <div class="size-24 shrink-0 bg-white">
+                <div class="group flex items-center gap-2">
+                  <AppLink :to="`/product/${item.id}`" class="size-24 shrink-0 bg-white">
                     <img
                       :src="item.thumbnail"
                       :alt="item.title"
                       class="h-full w-full object-cover"
                     />
-                  </div>
-                  <span
+                  </AppLink>
+                  <AppLink
+                    :to="`/product/${item.id}`"
                     class="font-bold transition-colors duration-300 hover:text-main"
                     v-if="!smallScreen"
                   >
                     {{ item.title }}
-                  </span>
-                </AppLink>
+                  </AppLink>
+                </div>
               </TableCell>
               <TableCell v-if="!smallScreen" class="font-semibold"
                 >${{ item.discountedPrice.toFixed(2) }}</TableCell
