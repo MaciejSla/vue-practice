@@ -14,6 +14,14 @@ import {
   NumberFieldIncrement,
   NumberFieldInput
 } from '@/components/ui/number-field'
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/components/ui/select'
 import { Trash2Icon } from 'lucide-vue-next'
 import CustomButton from '@/components/ui/CustomButton.vue'
 import { Input } from '@/components/ui/input'
@@ -24,14 +32,16 @@ import { useWindowSize } from '@vueuse/core'
 import { computed } from 'vue'
 
 const { width } = useWindowSize()
-const smallScreen = computed(() => width.value < 720)
+const smallScreen = computed(() => width.value < 768)
 
 const cartStore = useCartStore()
 </script>
 
 <template>
   <div class="flex justify-center">
-    <div class="flex w-full max-w-[74rem] flex-col items-center justify-between sm:p-6">
+    <div
+      class="flex w-full max-w-[40rem] flex-col items-center justify-between gap-10 xs:p-4 md:max-w-[74rem]"
+    >
       <Table>
         <TableHeader class="bg-main">
           <TableRow>
@@ -54,12 +64,12 @@ const cartStore = useCartStore()
                       class="h-full w-full object-cover"
                     />
                   </div>
-                  <h3
+                  <span
                     class="font-bold transition-colors duration-300 hover:text-main"
                     v-if="!smallScreen"
                   >
                     {{ item.title }}
-                  </h3>
+                  </span>
                 </AppLink>
               </TableCell>
               <TableCell v-if="!smallScreen" class="font-semibold"
@@ -87,8 +97,8 @@ const cartStore = useCartStore()
                   </NumberFieldContent>
                 </NumberField>
               </TableCell>
-              <TableCell class="font-semibold">
-                <div class="">${{ cartStore.getItemTotal(item.id) }}</div>
+              <TableCell class="p-1 font-semibold">
+                <div>${{ cartStore.getItemTotal(item.id) }}</div>
               </TableCell>
               <TableCell class="text-right">
                 <button @click="cartStore.removeProduct(item.id)">
@@ -109,6 +119,68 @@ const cartStore = useCartStore()
           <AppLink to="/checkout">
             <CustomButton> PROCEED TO CHECKOUT</CustomButton>
           </AppLink>
+        </div>
+      </div>
+      <!-- TODO add basic shipping funcionality  -->
+      <div
+        class="grid w-full grid-cols-1 items-start justify-between gap-8 border p-6 md:grid-cols-2"
+      >
+        <div class="flex flex-col gap-5">
+          <h3 class="font-serif text-adaptive-xl lg:text-4xl">Calculate Shipping</h3>
+          <div class="flex w-full flex-col gap-4">
+            <Select>
+              <SelectTrigger class="h-14">
+                <SelectValue placeholder="Country" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectItem value="uk"> United Kingdom (UK) </SelectItem>
+                  <SelectItem value="bg"> Bangladesh </SelectItem>
+                  <SelectItem value="pk"> Pakistan </SelectItem>
+                  <SelectItem value="id"> India </SelectItem>
+                  <SelectItem value="np"> Nepal </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+            <div class="flex w-full flex-col gap-4 md:flex-row">
+              <Select>
+                <SelectTrigger class="h-14">
+                  <SelectValue placeholder="State/Province" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem value="dhaka"> Dhaka </SelectItem>
+                    <SelectItem value="benkok"> Benkok </SelectItem>
+                    <SelectItem value="kolkata"> Kolkata </SelectItem>
+                    <SelectItem value="kapasia"> Kapasia </SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+              <Input type="text" placeholder="Postcode/ZIP" class="h-14" />
+            </div>
+            <CustomButton class="rounded-md"> CALCULATE TOTAL </CustomButton>
+          </div>
+        </div>
+        <div class="flex flex-col gap-5">
+          <h3 class="font-serif text-adaptive-xl lg:text-4xl">Cart Total</h3>
+          <div class="flex w-full flex-col gap-4">
+            <div class="flex h-14 items-center justify-between rounded-md border px-4">
+              <span>Cart Subtotal</span>
+              <span class="text-main">$ {{ cartStore.discountedTotal.toFixed(2) }}</span>
+            </div>
+            <div class="flex h-14 items-center justify-between rounded-md border px-4">
+              <span>Shipping and Handling</span>
+              <span class="text-main">{{
+                cartStore.shipping > 0 ? '$ ' + cartStore.shipping.toFixed(2) : 'Free Shipping'
+              }}</span>
+            </div>
+            <div class="flex h-14 items-center justify-between rounded-md border px-4">
+              <span>Order Total</span>
+              <span class="text-main"
+                >$ {{ (cartStore.discountedTotal + cartStore.shipping).toFixed(2) }}</span
+              >
+            </div>
+          </div>
         </div>
       </div>
     </div>

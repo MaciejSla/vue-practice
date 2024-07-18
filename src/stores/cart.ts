@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import { useStorage } from '@vueuse/core'
 
@@ -22,6 +22,7 @@ export const getDiscountedPrice = (price: number, discountPercentage: number) =>
 
 export const useCartStore = defineStore('cart', () => {
   const cart = useStorage<CartItem[]>('cart', [])
+  const shipping = ref(0)
   const total = computed(() => cart.value.reduce((acc, item) => acc + item.price * item.amount, 0))
   const discountedTotal = computed(() =>
     cart.value.reduce((acc, item) => acc + item.discountedPrice * item.amount, 0)
@@ -31,6 +32,7 @@ export const useCartStore = defineStore('cart', () => {
   return {
     cart,
     total,
+    shipping,
     discountedTotal,
     count,
     setCart: (items: Product[]) => {
