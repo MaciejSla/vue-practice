@@ -32,11 +32,11 @@ onMounted(() => {
   <LoadingScreen :is-loading="isLoading" />
   <div>
     <NavigationBar />
-    <div class="flex w-full items-center justify-center">
-      <div
-        class="flex w-full max-w-[74rem] items-center justify-between px-3 py-6 xs:px-8"
-        v-if="route.name != 'home'"
-      >
+    <div
+      class="flex w-full items-center justify-center"
+      v-if="route.name != 'home' && route.name != '404'"
+    >
+      <div class="flex w-full max-w-[74rem] items-center justify-between px-3 py-6 xs:px-8">
         <h1 class="font-serif text-[calc(1.35rem+1.2vw)] capitalize xl:text-[2.25rem]">
           {{ route.name }}
         </h1>

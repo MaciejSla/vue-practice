@@ -93,6 +93,14 @@ const router = createRouter({
       meta: {
         title: `${mainTitle} | Product`
       }
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: '404',
+      component: () => import('../views/404View.vue'),
+      meta: {
+        title: `${mainTitle} | 404`
+      }
     }
   ],
   scrollBehavior(to, from, savedPosition) {
