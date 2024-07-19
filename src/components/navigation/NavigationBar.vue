@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { HeartIcon, InfoIcon, MenuIcon, ArrowUpIcon } from 'lucide-vue-next'
+import { HeartIcon, InfoIcon, MenuIcon, ArrowUpIcon, ConstructionIcon } from 'lucide-vue-next'
 import AppLink from '@/components/navigation/AppLink.vue'
 import MenuItem from '@/components/navigation/MenuItem.vue'
 import { ref, computed, watch } from 'vue'
@@ -19,10 +19,12 @@ const routes = [
     alt: 'Home'
   },
   {
-    name: 'events'
+    name: 'events',
+    wip: true
   },
   {
-    name: 'causes'
+    name: 'causes',
+    wip: true
   },
   {
     name: 'gallery'
@@ -31,7 +33,8 @@ const routes = [
     name: 'sermons'
   },
   {
-    name: 'blog'
+    name: 'blog',
+    wip: true
   },
   {
     name: 'shop'
@@ -102,12 +105,18 @@ const isBottom = computed(() => {
         <div class="w-full px-5 xs:px-20">
           <AppLink
             :to="`/${route.name}`"
-            class="flex w-full items-center border-b border-black/15 px-6 py-2 font-semibold capitalize transition-colors hover:bg-black hover:text-main"
+            class="group flex w-full items-center border-b border-black/15 px-6 py-2 font-semibold capitalize transition-colors hover:bg-black hover:text-main"
             active-class="bg-black text-main"
             v-for="route in routes"
             :key="route.name"
           >
-            {{ route.alt ? route.alt : route.name }}
+            <div class="flex items-center gap-1">
+              {{ route.alt ? route.alt : route.name }}
+              <ConstructionIcon
+                v-if="route.wip"
+                class="size-5 stroke-black transition-colors group-hover:stroke-main"
+              />
+            </div>
           </AppLink>
         </div>
       </CollapsibleContent>
@@ -116,7 +125,10 @@ const isBottom = computed(() => {
   <div v-if="isLarge" ref="navEl" class="bg-black">
     <div class="flex justify-center gap-8 transition-all">
       <MenuItem :to="`/${route.name}`" v-for="route in routes" :key="route.name" class="capitalize">
-        {{ route.alt ? route.alt : route.name }}
+        <div class="flex items-center gap-1">
+          {{ route.alt ? route.alt : route.name }}
+          <ConstructionIcon v-if="route.wip" class="size-6 stroke-main" />
+        </div>
       </MenuItem>
       <div
         class="ml-4 flex -skew-x-[20deg] cursor-pointer items-center gap-1 bg-main px-8 py-4 text-white transition-colors duration-300 hover:bg-main-hover"
@@ -138,7 +150,10 @@ const isBottom = computed(() => {
           :key="route.name"
           class="capitalize"
         >
-          {{ route.alt ? route.alt : route.name }}
+          <div class="flex items-center gap-1">
+            {{ route.alt ? route.alt : route.name }}
+            <ConstructionIcon v-if="route.wip" class="size-6 stroke-main" />
+          </div>
         </MenuItem>
       </div>
     </div>

@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import UnderConstruction from '@/components/UnderConstruction.vue'
 </script>
 
 <template>
-    <div>Causes</div>
+    <UnderConstruction />
 </template>
