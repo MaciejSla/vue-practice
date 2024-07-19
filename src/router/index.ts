@@ -88,7 +88,7 @@ const router = createRouter({
     },
     {
       path: '/products/:id',
-      name: 'product',
+      name: 'Shop Details',
       component: () => import('../views/ProductView.vue'),
       meta: {
         title: `${mainTitle} | Product`

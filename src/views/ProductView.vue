@@ -1,17 +1,5 @@
 <script setup lang="ts">
-import { useRoute } from 'vue-router'
-import { useFetch } from '@vueuse/core'
-import { computed } from 'vue'
-import { ref } from 'vue'
-import { watchOnce } from '@vueuse/core'
-import {
-  Carousel,
-  type CarouselApi,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious
-} from '@/components/ui/carousel'
+// UI
 import {
   Select,
   SelectContent,
@@ -27,43 +15,21 @@ import {
   NumberFieldIncrement,
   NumberFieldInput
 } from '@/components/ui/number-field'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Input } from '@/components/ui/input'
-import { getDiscountedPrice, useCartStore } from '@/stores/cart'
 import StarRating from '@/components/ui/StarRating.vue'
 import CustomButton from '@/components/ui/CustomButton.vue'
+import { ProductCarousel, ProductReviewForm } from '@/components/products'
 
-const emblaMainApi = ref<CarouselApi>()
-const emblaThumbnailApi = ref<CarouselApi>()
-const selectedIndex = ref(0)
+// Functional
+import { useRoute } from 'vue-router'
+import { useFetch } from '@vueuse/core'
+import { computed, ref } from 'vue'
+import { getDiscountedPrice, useCartStore } from '@/stores/cart'
+import { useDateFormat } from '@/lib/utils'
 
-function onSelect() {
-  if (!emblaMainApi.value || !emblaThumbnailApi.value) return
-  selectedIndex.value = emblaMainApi.value.selectedScrollSnap()
-  emblaThumbnailApi.value.scrollTo(emblaMainApi.value.selectedScrollSnap())
-}
-
-function onThumbClick(index: number) {
-  if (!emblaMainApi.value || !emblaThumbnailApi.value) return
-  emblaMainApi.value.scrollTo(index)
-}
-
-function thumbNext() {
-  if (!emblaMainApi.value) return
-  emblaMainApi.value.scrollNext()
-}
-
-function thumbPrev() {
-  if (!emblaMainApi.value) return
-  emblaMainApi.value.scrollPrev()
-}
-
-watchOnce(emblaMainApi, (emblaMainApi) => {
-  if (!emblaMainApi) return
-
-  onSelect()
-  emblaMainApi.on('select', onSelect)
-  emblaMainApi.on('reInit', onSelect)
-})
+const getFormattedDate = (date: string | Date) => useDateFormat(date, 'MMMM DD, YYYY').value
+const getFormattedTime = (date: string | Date) => useDateFormat(date, 'h:mm a').value
 
 type ProductReview = {
   rating: number
@@ -139,59 +105,28 @@ const addToCart = () => {
 <template>
   <div class="flex justify-center">
     <div
-      class="flex w-full max-w-[40rem] flex-col items-center justify-between gap-10 xs:p-4 md:max-w-[74rem]"
+      class="flex w-full max-w-[40rem] flex-col items-center justify-between gap-10 xs:p-4 md:max-w-[60rem]"
     >
-      <div class="flex flex-col gap-4 border p-4 md:flex-row">
-        <div class="flex w-full flex-col items-center sm:w-auto">
-          <Carousel
-            class="relative w-full max-w-[22rem]"
-            @init-api="(val) => (emblaMainApi = val)"
-            :opts="{ loop: true }"
-          >
-            <CarouselContent>
-              <CarouselItem v-for="(image, index) in images" :key="index">
-                <div class="p-1">
-                  <div class="flex aspect-square items-center justify-center">
-                    <img :src="image" :alt="data?.title" class="h-full w-full object-contain" />
-                  </div>
-                </div>
-              </CarouselItem>
-            </CarouselContent>
-          </Carousel>
-          <Carousel
-            class="relative w-full max-w-[15rem]"
-            @init-api="(val) => (emblaThumbnailApi = val)"
-            :opts="{ loop: true }"
-          >
-            <CarouselContent class="ml-0 flex">
-              <CarouselItem
-                v-for="(image, index) in images"
-                :key="index"
-                class="basis-1/2 cursor-pointer pl-0 xs:basis-1/3"
-                @click="onThumbClick(index)"
-              >
-                <div class="p-1" :class="index === selectedIndex ? '' : 'opacity-50'">
-                  <div class="flex aspect-square items-center justify-center">
-                    <img :src="image" :alt="data?.title" class="h-full w-full object-contain" />
-                  </div>
-                </div>
-              </CarouselItem>
-            </CarouselContent>
-            <CarouselPrevious @click="thumbPrev" />
-            <CarouselNext @click="thumbNext" />
-          </Carousel>
-        </div>
+      <div class="flex w-full flex-col items-center gap-10 rounded-md border p-4 md:flex-row">
+        <ProductCarousel :images="images" :title="data?.title" />
         <div class="flex flex-col gap-2">
           <h3 class="font-serif text-[calc(1.3125rem+0.75vw)] xl:text-3xl">{{ data?.title }}</h3>
           <div class="flex items-center gap-1">
             <StarRating :rating="data?.rating" class="size-5" />
             <span class="text-sm text-gray-500"> ({{ formattedReviews?.length }} reviews) </span>
           </div>
-          <div class="font-serif text-[calc(1.3125rem+0.75vw)] xl:text-3xl">
-            $ {{ getDiscountedPrice(data?.price!, data?.discountPercentage!) }}
+          <div class="flex items-center gap-3">
+            <div class="font-serif text-[calc(1.3125rem+0.75vw)] xl:text-3xl">
+              $ {{ getDiscountedPrice(data?.price!, data?.discountPercentage!) }}
+            </div>
+            <div
+              class="font-serif text-[calc(1.3125rem+0.75vw)] text-black/60 line-through xl:text-3xl"
+            >
+              $ {{ data?.price }}
+            </div>
           </div>
           <h4 class="font-serif text-lg">Product Description</h4>
-          <p class="max-w-[20rem] text-sm text-gray-500">
+          <p class="text-sm text-gray-500">
             {{ data?.description }}
           </p>
           <div class="grid grid-cols-2 gap-4">
@@ -245,9 +180,75 @@ const addToCart = () => {
           <CustomButton class="rounded-md" @click="addToCart"> ADD TO CART </CustomButton>
         </div>
       </div>
-      <div v-for="review in formattedReviews" :key="review.date.toString()">
-        <img :src="review.image" :alt="review.reviewerName" />
-      </div>
+      <Tabs default-value="reviews" class="w-full rounded-md border">
+        <TabsList class="h-14 p-0">
+          <TabsTrigger
+            value="description"
+            class="h-14 bg-white px-8 text-lg text-black data-[state=active]:bg-main data-[state=active]:text-white"
+          >
+            Description
+          </TabsTrigger>
+          <TabsTrigger
+            value="reviews"
+            class="h-14 bg-white px-8 text-lg text-black data-[state=active]:bg-main data-[state=active]:text-white"
+          >
+            Reviews {{ formattedReviews?.length }}
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="description">
+          <div class="flex flex-col gap-10 p-6 text-black/70">
+            <p>{{ data?.description }}</p>
+            <div class="flex flex-col-reverse items-center gap-4 md:flex-row">
+              <ul class="flex list-outside list-disc flex-col gap-4 self-start pl-6 md:self-auto">
+                <li
+                  v-for="(line, index) in data?.description.split('.').filter((line) => line)"
+                  :key="index"
+                  class="marker:text-main"
+                >
+                  {{ line }}.
+                </li>
+              </ul>
+              <img
+                :src="data?.images[0]"
+                :alt="data?.title"
+                class="aspect-square max-w-[25rem] object-contain"
+              />
+            </div>
+            <p>{{ data?.description }}</p>
+          </div>
+        </TabsContent>
+        <TabsContent value="reviews">
+          <div class="flex flex-col gap-10 p-6">
+            <div
+              v-for="review in formattedReviews"
+              :key="review.date.toString()"
+              class="flex flex-col items-start gap-4 md:flex-row"
+            >
+              <div class="aspect-square size-20 shrink-0 overflow-hidden rounded-full border">
+                <img
+                  :src="review.image"
+                  :alt="review.reviewerName"
+                  class="h-full w-full object-fill"
+                />
+              </div>
+              <div class="flex w-full flex-col gap-2">
+                <div class="flex w-full items-center justify-between gap-4">
+                  <div class="flex flex-col items-baseline gap-0 md:flex-row md:gap-4">
+                    <h4 class="text-lg font-semibold">{{ review.reviewerName }}</h4>
+                    <span class="text-sm text-gray-500"
+                      >Posted on {{ getFormattedDate(review.date) }} at
+                      {{ getFormattedTime(review.date) }}</span
+                    >
+                  </div>
+                  <StarRating :rating="review.rating" class="size-5" />
+                </div>
+                <p class="text-black/70">{{ review.comment }}</p>
+              </div>
+            </div>
+            <ProductReviewForm />
+          </div>
+        </TabsContent>
+      </Tabs>
     </div>
   </div>
 </template>
