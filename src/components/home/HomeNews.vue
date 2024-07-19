@@ -16,6 +16,11 @@ import Autoplay from 'embla-carousel-autoplay'
 import { useCartStore, type Product } from '@/stores/cart'
 
 const cartStore = useCartStore()
+const animating = ref(false)
+const addProduct = (product: Product, quantity: number) => {
+  animating.value = true
+  cartStore.addProduct(product, quantity)
+}
 
 const api = ref<CarouselApi>()
 const current = ref<number>(0)
@@ -187,12 +192,12 @@ const totalCount = computed(() => products?.value?.products.length)
                     <span class="font-serif text-[calc(1.4rem+0.3vw)] lg:text-2xl"
                       >${{ product?.price?.toFixed(2) }}</span
                     >
-                    <CustomButton
-                      class="w-fit px-4 py-2 text-sm"
-                      @click="cartStore.addProduct(product, 1)"
-                    >
+                    <CustomButton class="w-fit px-4 py-2 text-sm" @click="addProduct(product, 1)">
                       <span class="flex items-center gap-1">
-                        <ShoppingCartIcon class="size-4 stroke-white" />
+                        <ShoppingCartIcon
+                          :class="`size-4 stroke-white ${animating ? 'animate-rotate' : ''}`"
+                          @animationend="animating = false"
+                        />
                         ADD TO CART
                       </span>
                     </CustomButton>
