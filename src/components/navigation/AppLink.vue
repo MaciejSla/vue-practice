@@ -13,7 +13,7 @@ const props = withDefaults(
   defineProps<
     AllowedComponentProps &
       ComponentCustomProps &
-      RouterLinkProps & { showIcon?: boolean; class: string }
+      RouterLinkProps & { showIcon?: boolean; class?: string }
   >(),
   {
     showIcon: false
