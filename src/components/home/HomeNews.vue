@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import AnimatedAccent from '@/components/ui/AnimatedAccent.vue'
+import AppLink from '@/components/navigation/AppLink.vue'
 import CustomButton from '@/components/ui/CustomButton.vue'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import blog1 from '@/assets/images/blog/01.jpg'
@@ -8,11 +9,13 @@ import blog3 from '@/assets/images/blog/03.jpg'
 import blog4 from '@/assets/images/blog/04.jpg'
 import { CalendarIcon, UserIcon, MessagesSquareIcon, ShoppingCartIcon } from 'lucide-vue-next'
 import { type CarouselApi, Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
-import { scrollToTop } from '@/lib/utils'
 import StarRating from '@/components/ui/StarRating.vue'
 import { computed, ref } from 'vue'
 import { watchOnce, useFetch, useDateFormat } from '@vueuse/core'
 import Autoplay from 'embla-carousel-autoplay'
+import { useCartStore, type Product } from '@/stores/cart'
+
+const cartStore = useCartStore()
 
 const api = ref<CarouselApi>()
 const current = ref<number>(0)
@@ -77,11 +80,11 @@ const news = [
 ]
 
 const { data: products } = useFetch(
-  'https://dummyjson.com/products?skip=54&limit=4&select=title,thumbnail,price,rating'
+  'https://dummyjson.com/products?skip=54&limit=4&select=title,thumbnail,price,rating,discountPercentage,description'
 )
   .get()
   .json<{
-    products: { id: number; title: string; thumbnail: string; price: number; rating: number }[]
+    products: (Product & { rating?: number })[]
     total: number
   }>()
 
@@ -165,20 +168,29 @@ const totalCount = computed(() => products?.value?.products.length)
                 class="basis-1/1 w-full pl-0"
               >
                 <div class="flex flex-col bg-gray-200">
-                  <div class="p-3">
+                  <AppLink class="p-3" :to="`/products/${product.id}`">
                     <img
                       :src="product.thumbnail"
                       :alt="product.title"
                       class="aspect-square h-full w-full bg-white object-fill object-top"
                     />
-                  </div>
-                  <div class="flex flex-col items-center justify-center gap-1 p-8">
-                    <h3 class="line-clamp-1 font-serif text-xl">{{ product.title }}</h3>
+                  </AppLink>
+                  <div class="flex flex-col items-center justify-center gap-1 p-4">
+                    <AppLink :to="`/products/${product.id}`">
+                      <h3
+                        class="line-clamp-1 font-serif text-2xl transition-colors duration-300 hover:text-main"
+                      >
+                        {{ product.title }}
+                      </h3>
+                    </AppLink>
                     <StarRating :rating="product.rating" class="size-4" />
                     <span class="font-serif text-[calc(1.4rem+0.3vw)] lg:text-2xl"
                       >${{ product?.price?.toFixed(2) }}</span
                     >
-                    <CustomButton class="w-fit px-4 py-2 text-sm" @click="scrollToTop">
+                    <CustomButton
+                      class="w-fit px-4 py-2 text-sm"
+                      @click="cartStore.addProduct(product, 1)"
+                    >
                       <span class="flex items-center gap-1">
                         <ShoppingCartIcon class="size-4 stroke-white" />
                         ADD TO CART
